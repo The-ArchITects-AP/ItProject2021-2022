@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace ITproject
 
 {
-    class Program                                               /*Http-Client die de NBB api gaat aanspreken */
+    class Program          //veranderingen                                     
     {
         static void Main(string[] args)
         {
