@@ -13,6 +13,8 @@ namespace ITproject
     {
         static void Main(string[] args)
         {
+            var api = new NBBapi();
+
             while (true)
             {
 
@@ -26,7 +28,6 @@ namespace ITproject
 
                 else
                 {
-                    var api = new NBBapi();
                     api.GetReferences(answer);
                 }
             }
