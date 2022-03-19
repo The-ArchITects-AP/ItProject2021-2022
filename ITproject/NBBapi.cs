@@ -9,8 +9,8 @@ namespace ITproject
     public class NBBapi:IGetreference
     {
 
-        private string _url = "https://ws.uat2.cbso.nbb.be/authentic/legalEntity/{KBOnummer}/references";
 
+        private string _url = "https://ws.uat2.cbso.nbb.be/authentic/legalEntity/";
 
         public NBBapi(string url)
         {
@@ -35,19 +35,20 @@ namespace ITproject
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));        //Accept type is required
 
 
+                _url = $"{_url}{KBOnummer}/references";
 
-
+          
                 var response = client.GetAsync(_url).GetAwaiter().GetResult();
-                response.EnsureSuccessStatusCode();
+                //response.EnsureSuccessStatusCode();
                 var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
-
+              
                 //response in lijst van refrence model-object steken
                 List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
 
 
                 Console.WriteLine($"De naam van het bedrijf is: {referencemodels[0].EnterpriseName}");
-                Console.WriteLine();
+                
 
             }
 

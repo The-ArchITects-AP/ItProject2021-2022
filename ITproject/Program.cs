@@ -13,7 +13,7 @@ namespace ITproject
     {
         static void Main(string[] args)
         {
-            var api = new NBBapi();
+            var api = new NBBapi("http://localhost:3000/NBB/");
 
             while (true)
             {
