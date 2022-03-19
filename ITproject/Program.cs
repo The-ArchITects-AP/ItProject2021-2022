@@ -26,43 +26,11 @@ namespace ITproject
 
                 else
                 {
-                    GetReferences(answer);
+                    var api = new NBBapi();
+                    api.GetReferences(answer);
                 }
             }
         }
 
-
-
-        public static void GetReferences(string KBOnummer)
-        {
-
-            using (var client = new HttpClient())
-            {
-
-                //client-configuration
-
-                client.DefaultRequestHeaders.Add("X-Request-Id", "6457dc94-0b98-4c1a-b5f8-98d8627b5177");                                        //version 4 UUID is required
-                client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "f03301a6bfbe4f2897fd2b3df935e0bd");                               //subscription-key is required
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));        //Accept type is required
-
-
-                var url = $"https://ws.uat2.cbso.nbb.be/authentic/legalEntity/{KBOnummer}/references";
-
-
-                var response = client.GetAsync(url).GetAwaiter().GetResult();
-                //response.EnsureSuccessStatusCode();
-                var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-
-
-                //response in lijst van refrence model-objecten steken
-                List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
-
-
-                Console.WriteLine($"De naam van het bedrijf is: {referencemodels[1].Name}");
-                Console.WriteLine();
-
-            }
-
-        }
     }
 }
