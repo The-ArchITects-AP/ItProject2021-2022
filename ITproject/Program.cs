@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace ITproject
 
 {
-    class Program          //veranderingen                                     
+    class Program                                
     {
         static void Main(string[] args)
         {
@@ -63,6 +63,11 @@ namespace ITproject
 
             }
 
+        }
+
+        public static void test()
+        {
+            Console.WriteLine("roekoekoe");
         }
     }
 
