@@ -38,7 +38,7 @@ namespace ITproject
 
 
                 var response = client.GetAsync(_url).GetAwaiter().GetResult();
-                //response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
                 var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
 
@@ -46,7 +46,7 @@ namespace ITproject
                 List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
 
 
-                Console.WriteLine($"De naam van het bedrijf is: {referencemodels[1].EnterpriseName}");
+                Console.WriteLine($"De naam van het bedrijf is: {referencemodels[0].EnterpriseName}");
                 Console.WriteLine();
 
             }
