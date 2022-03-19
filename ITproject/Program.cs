@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace ITproject
 
 {
-    class Program                                
+    class Program
     {
         static void Main(string[] args)
         {
@@ -19,7 +19,7 @@ namespace ITproject
                 Console.Write("Please enter a KBO number (q to quit): ");
                 string answer = Console.ReadLine();
 
-                if (answer == "q")
+                if (answer.ToLower() == "q")
                 {
                     break;
                 }
@@ -58,18 +58,11 @@ namespace ITproject
                 List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
 
 
-                Console.WriteLine($"Info is: {referencemodels[1].Name}");
+                Console.WriteLine($"De naam van het bedrijf is: {referencemodels[1].Name}");
                 Console.WriteLine();
 
             }
 
         }
-
-        public static void test()
-        {
-            Console.WriteLine("roekoekoe");
-        }
     }
-
 }
-    
