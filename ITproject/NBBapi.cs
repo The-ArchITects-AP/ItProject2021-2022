@@ -44,7 +44,7 @@ namespace ITproject
 
               
                 //response in lijst van refrence model-object steken
-                List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
+                    List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
 
 
                 Console.WriteLine($"De naam van het bedrijf is: {referencemodels[0].EnterpriseName}");
