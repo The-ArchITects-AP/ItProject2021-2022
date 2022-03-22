@@ -20,12 +20,12 @@ const App = () => {
 
   return (
     <div>      
-      <input type="string" id="vatNumber1" name="vatNumber1" placeholder="vat number" onChange={handleVatNumber1Change} value={vatNumber1}/>
-      <input type="string" id="vatNumber2" name="vatNumber2" placeholder="vat number" onChange={handleVatNumber2Change} value={vatNumber2}/>
-      <input type="button" id="submit" value="Submit" onChange={handleOnClick}/>
+      <input type="string" id="vatNumber1" name="vatNumber1" placeholder="Ondernemingsnummer 1" onChange={handleVatNumber1Change} value={vatNumber1}/>
+      <input type="string" id="vatNumber2" name="vatNumber2" placeholder="Ondernemingsnummer 2" onChange={handleVatNumber2Change} value={vatNumber2}/>
+      <input type="button" id="submit" value="Vergelijk" onChange={handleOnClick}/>
       <div>
       <p>
-        VAT Number 1: {vatNumber1} - VAT Number 2: {vatNumber2}
+        Ondernemingsnummer 1: {vatNumber1} - Ondernemingsnummer 2: {vatNumber2}
       </p>
     </div>
     </div>
