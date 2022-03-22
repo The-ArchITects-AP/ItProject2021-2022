@@ -48,7 +48,8 @@ namespace ITproject
 
 
                 Console.WriteLine($"De naam van het bedrijf is: {referencemodels[0].EnterpriseName}");
-                
+                //Console.WriteLine($"De url van de accountingdata is: {referencemodels[0].AccountingDataURL}");
+
 
             }
 
