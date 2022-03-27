@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, useEffect, useState } from 'react';
 import './App.css';
-import { RootObject } from './types';
+import { RootObject, TestMockoon } from './types';
 
 //voorlopig staat alle code in de App-component (componenten pas opsplitsen als de volledige structuur in orde is)
 
@@ -31,14 +31,14 @@ const App = () => {
   const getReferenceNumber = async () => {
     setUpdating(true);
 
-    let response = await fetch('http://localhost:3000/legalEntity/0203201340/references', {
+    let response = await fetch('http://localhost:3000/legalEntity/0123456789/references', {
       method: 'GET',
     });
     let json = await response.json();
 
-    setReferenceNumberData(json as RootObject);
-
+    setReferenceNumberData(json as RootObject);    
     setUpdating(false);
+    console.log(referenceNumberData);
   }
 
   return (
@@ -52,8 +52,9 @@ const App = () => {
       <div>
         {!referenceNumberData || updating ? <div>Loading data</div> :
           <div>
-            <p>Naam: <span>{referenceNumberData.EnterpriseName}</span></p>
-            <p>Ondernemingsnummer: <span>{referenceNumberData.EnterpriseNumber}</span></p>
+            <p><strong>Naam</strong> {referenceNumberData.EnterpriseName}</p>
+            <p><strong>Adres</strong> {referenceNumberData.Address.Street} {referenceNumberData.Address.Number}</p>
+            <p>{referenceNumberData.Address.PostalCode} {referenceNumberData.Address.City}</p>
           </div>}
       </div>
     </div>
