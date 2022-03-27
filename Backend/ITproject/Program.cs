@@ -13,10 +13,11 @@ namespace ITproject
     {
         static void Main(string[] args)
         {
-            var api = new NBBapi("http://localhost:3000/NBB/");
+           
 
             while (true)
             {
+                var api = new NBBapi("http://localhost:3000/NBB/");
 
                 Console.Write("Please enter a KBO number (q to quit): ");
                 string answer = Console.ReadLine();

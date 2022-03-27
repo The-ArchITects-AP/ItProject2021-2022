@@ -8,7 +8,7 @@ namespace ITproject.Models
         }
 
         public string ReferenceNumber { get; set; }
-        public string DepositDate { get; set; }
+        public DateTime DepositDate { get; set; }
         public ExerciseDates ExerciseDates { get; set; }
         public string ModelType { get; set; }
         public string DepositType { get; set; }

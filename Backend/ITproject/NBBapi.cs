@@ -44,15 +44,33 @@ namespace ITproject
 
               
                 //response in lijst van refrence model-object steken
-                    List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
+                List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
 
 
                 Console.WriteLine($"De naam van het bedrijf is: {referencemodels[0].EnterpriseName}");
-                //Console.WriteLine($"De url van de accountingdata is: {referencemodels[0].AccountingDataURL}");
-
+                GetMostRecent(referencemodels);
 
             }
 
+        }
+
+        // methode om de meest recente neerlegging te bepalen
+
+        public void GetMostRecent(List<ReferenceModel> lijst)
+        {
+
+            int indexrecent = 0;
+
+            for (int i = 0; i < lijst.Count - 1; i++)
+            {
+                if (lijst[i].DepositDate < lijst[i + 1].DepositDate)
+                {
+                    indexrecent = i+1;
+                }
+
+            }
+
+            Console.WriteLine($"{lijst[indexrecent].DepositDate} is de meest recente neerlegging");
         }
     }
 }
