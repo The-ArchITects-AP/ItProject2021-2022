@@ -76,7 +76,7 @@ const App = () => {
       </div>
       <div>
         {!referenceNumberData || updating ? (
-          <div>Loading data</div>
+          <div>Loading data...........nog meer dots...</div>
         ) : (
           <div>
             <p>
