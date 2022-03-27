@@ -47,12 +47,14 @@ namespace ITproject
                 List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
 
 
-                Console.WriteLine($"De naam van het bedrijf is: {referencemodels[0].EnterpriseName}");
+                Console.WriteLine($"\nDe naam van het bedrijf is: {referencemodels[0].EnterpriseName}\n");
+            
                 GetMostRecent(referencemodels);
 
             }
 
         }
+
 
         // methode om de meest recente neerlegging te bepalen
 
@@ -67,10 +69,10 @@ namespace ITproject
                 {
                     indexrecent = i+1;
                 }
-
             }
 
-            Console.WriteLine($"{lijst[indexrecent].DepositDate} is de meest recente neerlegging");
+            Console.WriteLine($"{lijst[indexrecent].DepositDate.ToString("d")} is de meest recente neerlegging");
+            Console.WriteLine($"De referentie van deze neerlegging is: {lijst[indexrecent].ReferenceNumber}\n");
         }
     }
 }
