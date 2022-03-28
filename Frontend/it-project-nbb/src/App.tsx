@@ -53,7 +53,7 @@ const App = () => {
       {!referenceNumberData || updating ? (
         <div></div>
       ) : (
-        <PrintDetailsCompany referenceNumberData={referenceNumberData} updating={updating} />
+        <PrintDetailsCompany referenceNumberData={referenceNumberData} />
       )}
     </div>
   );
