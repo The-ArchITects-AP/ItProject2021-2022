@@ -7,21 +7,22 @@ import styles from './App.module.css';
 const App = () => {
   const [vatNumber1, setVatNumber1] = useState<string>("");
   const [vatNumber2, setVatNumber2] = useState<string>("");
-  const [referenceNumberData, setReferenceNumberData] = useState<RootObject>();
+  const [referenceNumberData1, setReferenceNumberData1] = useState<RootObject>();
+  const [referenceNumberData2, setReferenceNumberData2] = useState<RootObject>();
   const [updating, setUpdating] = useState<boolean>(true);
 
   const handleVatNumber1Change: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
     setVatNumber1(event.target.value);
-    getReferenceNumber(vatNumber1);
+    getReferenceNumber1(vatNumber1);
   };
 
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
     setVatNumber2(event.target.value);
-    getReferenceNumber(vatNumber2);
+    getReferenceNumber2(vatNumber2);
   };
 
   const handleOnClick: React.MouseEventHandler<HTMLInputElement> = (
@@ -32,9 +33,21 @@ const App = () => {
   //fetch gekoppeld aan input field ondernemingsnummers
   //ondernemingsnummer voorlopig hardcoded in url
   //url met variabele: `http://localhost:3000/legalEntity/${vatNumber}/references`
-  const getReferenceNumber = async (vatNumber: string) => {
+  const getReferenceNumber1 = async (vatNumber: string) => {  
     setUpdating(true);
+    let json = await fetchReferenceData(vatNumber);
+    setReferenceNumberData1(json as RootObject);
+    setUpdating(false);
+  };
 
+  const getReferenceNumber2 = async (vatNumber: string) => {  
+    setUpdating(true);
+    let json = await fetchReferenceData(vatNumber);
+    setReferenceNumberData2(json as RootObject);
+    setUpdating(false);
+  };
+
+  const fetchReferenceData = async (vatNumber: string) => {    
     let response = await fetch(
       "http://localhost:3000/legalEntity/0123456789/references",
       {
@@ -43,19 +56,22 @@ const App = () => {
     );
     let json = await response.json();
 
-    setReferenceNumberData(json as RootObject);
-    setUpdating(false);
-    console.log(referenceNumberData);
-  };
+    return json; 
+  }
 
   return (
     <div className={styles.app}>
       <Header />
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
-      {!referenceNumberData || updating ? (
+      {!referenceNumberData1 || updating ? (
         <div></div>
       ) : (
-        <PrintDetailsCompany referenceNumberData={referenceNumberData} />
+        <PrintDetailsCompany referenceNumberData={referenceNumberData1} />
+      )}
+      {!referenceNumberData2 || updating ? (
+        <div></div>
+      ) : (
+        <PrintDetailsCompany referenceNumberData={referenceNumberData2} />
       )}
     </div>
   );
