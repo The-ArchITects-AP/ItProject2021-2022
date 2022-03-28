@@ -14,12 +14,14 @@ const App = () => {
     event
   ) => {
     setVatNumber1(event.target.value);
+    getReferenceNumber(vatNumber1);
   };
 
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
     setVatNumber2(event.target.value);
+    getReferenceNumber(vatNumber2);
   };
 
   const handleOnClick: React.MouseEventHandler<HTMLInputElement> = (
@@ -27,13 +29,9 @@ const App = () => {
   ) => {};
 
   //fetch NBB API via Mockoon
-  //fetch nog niet gekoppeld aan button click
+  //fetch gekoppeld aan input field ondernemingsnummers
   //ondernemingsnummer voorlopig hardcoded in url
-  useEffect(() => {
-    getReferenceNumber();
-  }, []);
-
-  const getReferenceNumber = async () => {
+  const getReferenceNumber = async (vatNumber : string) => {
     setUpdating(true);
 
     let response = await fetch(
@@ -74,9 +72,10 @@ const App = () => {
       <div>
         Ondernemingsnummer 1: {vatNumber1} - Ondernemingsnummer 2: {vatNumber2}
       </div>
+     
       <div>
         {!referenceNumberData || updating ? (
-          <div>Loading data...........nog meer dots...</div>
+          <div>Loading data</div>
         ) : (
           <div>
             <p>
