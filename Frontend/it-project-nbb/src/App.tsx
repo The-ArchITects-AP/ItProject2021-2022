@@ -51,7 +51,7 @@ const App = () => {
   return (
     <div>
       <Header/>
-      <InputField handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
+      <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       {!referenceNumberData || updating ? (
         <div></div>
       ) : (
@@ -69,7 +69,7 @@ interface InputFormProps {
   vatNumber2: string
 }
 
-const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFieldProps) => {
+const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFormProps) => {
   return (
     <div>
       <input
