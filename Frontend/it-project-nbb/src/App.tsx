@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useEffect, useState } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import "./App.css";
 import { RootObject } from "./types";
 
@@ -31,6 +31,7 @@ const App = () => {
   //fetch NBB API via Mockoon
   //fetch gekoppeld aan input field ondernemingsnummers
   //ondernemingsnummer voorlopig hardcoded in url
+  //url met variabele: `http://localhost:3000/legalEntity/${vatNumber}/references`
   const getReferenceNumber = async (vatNumber: string) => {
     setUpdating(true);
 
@@ -49,6 +50,7 @@ const App = () => {
 
   return (
     <div>
+      <Header/>
       <InputField handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       {!referenceNumberData || updating ? (
         <div></div>
@@ -116,6 +118,12 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
         {referenceNumberData.Address.City}
       </p>
     </div>
+  )
+}
+
+const Header = () => {
+  return (
+    <div>LOGO</div>
   )
 }
 
