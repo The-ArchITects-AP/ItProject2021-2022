@@ -98,11 +98,10 @@ const InputField = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCl
 }
 
 interface PrintDetailsCompanyProps {
-  referenceNumberData: RootObject,
-  updating: boolean
+  referenceNumberData: RootObject
 }
 
-const PrintDetailsCompany = ({ referenceNumberData, updating }: PrintDetailsCompanyProps) => {
+const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) => {
   return (
     <div>
       <p>
