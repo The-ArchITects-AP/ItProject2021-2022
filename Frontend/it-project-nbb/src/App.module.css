@@ -1,0 +1,30 @@
+.app {
+    width: 100%;
+    padding: 2rem;
+}
+
+/* tijdelijke CSS: later modules.css file per component file */
+.header {
+    margin-bottom: 3rem;
+    font-weight: bolder;
+}
+
+.inputForm > input {
+    width: 10rem;
+    height: 1.5rem;
+    margin-right: 1rem;    
+    margin-bottom: 1rem;
+}
+
+.inputForm > button {
+    background-color: black;
+    color: white;
+    width: 8rem;
+    height: 1.8rem;    
+    border: none;
+    border-radius: 3px;
+}
+
+.printDetailsCompany {
+    margin-top: 1rem;
+}

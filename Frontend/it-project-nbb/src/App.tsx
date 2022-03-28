@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, useState } from "react";
-import "./App.css";
 import { RootObject } from "./types";
+import styles from './App.module.css';
 
 //voorlopig staat alle code in de App.tsx file (later opsplitsen in file per component)
 
@@ -49,8 +49,8 @@ const App = () => {
   };
 
   return (
-    <div>
-      <Header/>
+    <div className={styles.app}>
+      <Header />
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       {!referenceNumberData || updating ? (
         <div></div>
@@ -71,7 +71,7 @@ interface InputFormProps {
 
 const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFormProps) => {
   return (
-    <div>
+    <div className={styles.inputForm}>
       <input
         type="string"
         id="vatNumber1"
@@ -86,12 +86,11 @@ const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCli
         placeholder="Ondernemingsnummer 2"
         onBlur={handleVatNumber2Change}
       />
-      <input
-        type="button"
-        id="submit"
-        value="Vergelijk"
-        onClick={handleOnClick}
-      />
+      <button
+        type="submit"
+        onClick={handleOnClick}>
+        Vergelijk
+      </button>
       <div>
         Ondernemingsnummer 1: {vatNumber1} - Ondernemingsnummer 2: {vatNumber2}
       </div>
@@ -123,7 +122,9 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
 
 const Header = () => {
   return (
-    <div>LOGO</div>
+    <div className={styles.header}>
+      LOGO
+    </div>
   )
 }
 
