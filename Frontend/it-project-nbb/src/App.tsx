@@ -61,7 +61,7 @@ const App = () => {
   );
 };
 
-interface InputFieldProps {
+interface InputFormProps {
   handleVatNumber1Change: any,
   handleVatNumber2Change: any,
   handleOnClick: any,
@@ -69,7 +69,7 @@ interface InputFieldProps {
   vatNumber2: string
 }
 
-const InputField = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFieldProps) => {
+const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFieldProps) => {
   return (
     <div>
       <input
