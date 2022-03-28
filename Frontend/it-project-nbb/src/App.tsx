@@ -1,8 +1,8 @@
 import React, { ChangeEventHandler, useEffect, useState } from "react";
 import "./App.css";
-import { RootObject, TestMockoon } from "./types";
+import { RootObject } from "./types";
 
-//voorlopig staat alle code in de App.tsx file 
+//voorlopig staat alle code in de App.tsx file (later opsplitsen in file per component)
 
 const App = () => {
   const [vatNumber1, setVatNumber1] = useState<string>("");
@@ -50,25 +50,11 @@ const App = () => {
   return (
     <div>
       <InputField handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
-      <div>
-        {!referenceNumberData || updating ? (
-          <div></div>
-        ) : (
-          <div>
-            <p>
-              <strong>Naam</strong> {referenceNumberData.EnterpriseName}
-            </p>
-            <p>
-              <strong>Adres</strong> {referenceNumberData.Address.Street}{" "}
-              {referenceNumberData.Address.Number}
-            </p>
-            <p>
-              {referenceNumberData.Address.PostalCode}{" "}
-              {referenceNumberData.Address.City}
-            </p>
-          </div>
-        )}
-      </div>
+      {!referenceNumberData || updating ? (
+        <div></div>
+      ) : (
+        <PrintDetailsCompany referenceNumberData={referenceNumberData} updating={updating} />
+      )}
     </div>
   );
 };
@@ -107,6 +93,29 @@ const InputField = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCl
       <div>
         Ondernemingsnummer 1: {vatNumber1} - Ondernemingsnummer 2: {vatNumber2}
       </div>
+    </div>
+  )
+}
+
+interface PrintDetailsCompanyProps {
+  referenceNumberData: RootObject,
+  updating: boolean
+}
+
+const PrintDetailsCompany = ({ referenceNumberData, updating }: PrintDetailsCompanyProps) => {
+  return (
+    <div>
+      <p>
+        <strong>Naam</strong> {referenceNumberData.EnterpriseName}
+      </p>
+      <p>
+        <strong>Adres</strong> {referenceNumberData.Address.Street}{" "}
+        {referenceNumberData.Address.Number}
+      </p>
+      <p>
+        {referenceNumberData.Address.PostalCode}{" "}
+        {referenceNumberData.Address.City}
+      </p>
     </div>
   )
 }
