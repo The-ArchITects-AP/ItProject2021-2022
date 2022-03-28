@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, useEffect, useState } from "react";
 import "./App.css";
 import { RootObject, TestMockoon } from "./types";
 
-//voorlopig staat alle code in de App-component (componenten pas opsplitsen als de volledige structuur in orde is)
+//voorlopig staat alle code in de App.tsx file 
 
 const App = () => {
   const [vatNumber1, setVatNumber1] = useState<string>("");
@@ -26,12 +26,12 @@ const App = () => {
 
   const handleOnClick: React.MouseEventHandler<HTMLInputElement> = (
     event
-  ) => {};
+  ) => { };
 
   //fetch NBB API via Mockoon
   //fetch gekoppeld aan input field ondernemingsnummers
   //ondernemingsnummer voorlopig hardcoded in url
-  const getReferenceNumber = async (vatNumber : string) => {
+  const getReferenceNumber = async (vatNumber: string) => {
     setUpdating(true);
 
     let response = await fetch(
@@ -49,33 +49,10 @@ const App = () => {
 
   return (
     <div>
-      <input
-        type="string"
-        id="vatNumber1"
-        name="vatNumber1"
-        placeholder="Ondernemingsnummer 1"
-        onBlur={handleVatNumber1Change} //QIN: onChange veranderd naar onBlur, het tegenovergestelde van onFocus + value verwijderd, onnodig
-      />
-      <input
-        type="string"
-        id="vatNumber2"
-        name="vatNumber2"
-        placeholder="Ondernemingsnummer 2"
-        onBlur={handleVatNumber2Change} //QIN: onChange veranderd naar onBlur, het tegenovergestelde van onFocus + value verwijderd, onnodig
-      />
-      <input
-        type="button"
-        id="submit"
-        value="Vergelijk"
-        onClick={handleOnClick}
-      />
-      <div>
-        Ondernemingsnummer 1: {vatNumber1} - Ondernemingsnummer 2: {vatNumber2}
-      </div>
-     
+      <InputField handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       <div>
         {!referenceNumberData || updating ? (
-          <div>Loading data</div>
+          <div></div>
         ) : (
           <div>
             <p>
@@ -95,5 +72,43 @@ const App = () => {
     </div>
   );
 };
+
+interface InputFieldProps {
+  handleVatNumber1Change: any,
+  handleVatNumber2Change: any,
+  handleOnClick: any,
+  vatNumber1: string,
+  vatNumber2: string
+}
+
+const InputField = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFieldProps) => {
+  return (
+    <div>
+      <input
+        type="string"
+        id="vatNumber1"
+        name="vatNumber1"
+        placeholder="Ondernemingsnummer 1"
+        onBlur={handleVatNumber1Change}
+      />
+      <input
+        type="string"
+        id="vatNumber2"
+        name="vatNumber2"
+        placeholder="Ondernemingsnummer 2"
+        onBlur={handleVatNumber2Change}
+      />
+      <input
+        type="button"
+        id="submit"
+        value="Vergelijk"
+        onClick={handleOnClick}
+      />
+      <div>
+        Ondernemingsnummer 1: {vatNumber1} - Ondernemingsnummer 2: {vatNumber2}
+      </div>
+    </div>
+  )
+}
 
 export default App;
