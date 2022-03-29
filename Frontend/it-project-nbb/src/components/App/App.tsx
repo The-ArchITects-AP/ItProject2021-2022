@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler, useState } from "react";
-import { RootObject } from "./types";
 import styles from './App.module.css';
+import Header from "../Header/Header";
+import { RootObject } from "../../types";
 
 //voorlopig staat alle code in de App.tsx file (later opsplitsen in file per component)
 
@@ -30,24 +31,9 @@ const App = () => {
   ) => { };
 
   //fetch NBB API via Mockoon
-  //fetch gekoppeld aan input field ondernemingsnummers
   //ondernemingsnummer voorlopig hardcoded in url
   //url met variabele: `http://localhost:3000/legalEntity/${vatNumber}/references`
-  const getReferenceNumber1 = async (vatNumber: string) => {  
-    setUpdating(true);
-    let json = await fetchReferenceData(vatNumber);
-    setReferenceNumberData1(json as RootObject);
-    setUpdating(false);
-  };
-
-  const getReferenceNumber2 = async (vatNumber: string) => {  
-    setUpdating(true);
-    let json = await fetchReferenceData(vatNumber);
-    setReferenceNumberData2(json as RootObject);
-    setUpdating(false);
-  };
-
-  const fetchReferenceData = async (vatNumber: string) => {    
+  const fetchReferenceData = async (vatNumber: string) => {
     let response = await fetch(
       "http://localhost:3000/legalEntity/0123456789/references",
       {
@@ -56,8 +42,22 @@ const App = () => {
     );
     let json = await response.json();
 
-    return json; 
+    return json;
   }
+  
+  const getReferenceNumber1 = async (vatNumber: string) => {
+    setUpdating(true);
+    let json = await fetchReferenceData(vatNumber);
+    setReferenceNumberData1(json as RootObject);
+    setUpdating(false);
+  };
+
+  const getReferenceNumber2 = async (vatNumber: string) => {
+    setUpdating(true);
+    let json = await fetchReferenceData(vatNumber);
+    setReferenceNumberData2(json as RootObject);
+    setUpdating(false);
+  };
 
   return (
     <div className={styles.app}>
@@ -132,14 +132,6 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
         {referenceNumberData.Address.PostalCode}{" "}
         {referenceNumberData.Address.City}
       </p>
-    </div>
-  )
-}
-
-const Header = () => {
-  return (
-    <div className={styles.header}>
-      LOGO
     </div>
   )
 }

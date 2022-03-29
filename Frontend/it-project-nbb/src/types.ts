@@ -1,9 +1,3 @@
-//Mockoon test 
-export interface TestMockoon {
-    EnterpriseNumber: string;
-    EnterpriseName: string
-}
-
 //NBB API: interfaces output query kbo-nummer 
 export interface RootObject {
     ReferenceNumber: string;
@@ -40,5 +34,3 @@ export interface Address {
     PostalCode: string;
     Street: string;
 }
-
-export {}
