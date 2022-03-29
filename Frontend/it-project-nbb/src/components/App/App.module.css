@@ -1,18 +1,14 @@
 .app {
     width: 100%;
-    padding: 2rem;
+    padding: 3rem;
 }
 
 /* tijdelijke CSS: later modules.css file per component file */
-.header {
-    margin-bottom: 3rem;
-    font-weight: bolder;
-}
-
 .inputForm > input {
-    width: 10rem;
-    height: 1.5rem;
-    margin-right: 1rem;    
+    width: 20rem;
+    height: 1.8rem;
+    margin-top: 2rem;
+    margin-right: 1.3rem;    
     margin-bottom: 1rem;
 }
 
@@ -20,11 +16,33 @@
     background-color: black;
     color: white;
     width: 8rem;
-    height: 1.8rem;    
+    height: 2.2rem;    
     border: none;
     border-radius: 3px;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
 }
 
 .printDetailsCompany {
     margin-top: 1rem;
+}
+
+.flexboxContainer {
+    float: left;
+    margin-right: 6rem;
+    margin-top: 1.5rem;
+}
+
+.flexboxItem {
+    display: flex;
+    flex-direction: row;
+    margin-top: -0.5rem;
+}
+
+.flexboxItem > p {
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    margin-right: 1rem;
 }

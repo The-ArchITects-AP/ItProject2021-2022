@@ -44,7 +44,7 @@ const App = () => {
 
     return json;
   }
-  
+
   const getReferenceNumber1 = async (vatNumber: string) => {
     setUpdating(true);
     let json = await fetchReferenceData(vatNumber);
@@ -62,7 +62,7 @@ const App = () => {
   return (
     <div className={styles.app}>
       <Header />
-      <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
+      <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} />
       {!referenceNumberData1 || updating ? (
         <div></div>
       ) : (
@@ -77,15 +77,14 @@ const App = () => {
   );
 };
 
+//types handlerfuncties nog definiëren
 interface InputFormProps {
   handleVatNumber1Change: any,
   handleVatNumber2Change: any,
-  handleOnClick: any,
-  vatNumber1: string,
-  vatNumber2: string
+  handleOnClick: any
 }
 
-const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFormProps) => {
+const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick }: InputFormProps) => {
   return (
     <div className={styles.inputForm}>
       <input
@@ -107,9 +106,6 @@ const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCli
         onClick={handleOnClick}>
         Vergelijk
       </button>
-      <div>
-        Ondernemingsnummer 1: {vatNumber1} - Ondernemingsnummer 2: {vatNumber2}
-      </div>
     </div>
   )
 }
@@ -120,18 +116,26 @@ interface PrintDetailsCompanyProps {
 
 const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) => {
   return (
-    <div>
-      <p>
-        <strong>Naam</strong> {referenceNumberData.EnterpriseName}
-      </p>
-      <p>
-        <strong>Adres</strong> {referenceNumberData.Address.Street}{" "}
-        {referenceNumberData.Address.Number}
-      </p>
-      <p>
-        {referenceNumberData.Address.PostalCode}{" "}
-        {referenceNumberData.Address.City}
-      </p>
+    <div className={styles.flexboxContainer}>
+      <div className={styles.flexboxItem}>
+        <p className={styles.title}>
+          <strong>Naam</strong>
+        </p>
+        <p>
+          {referenceNumberData.EnterpriseName}
+        </p>
+      </div>
+      <div className={styles.flexboxItem}>
+        <p className={styles.title}>
+          <strong>Adres</strong>
+        </p>
+        <p>
+          {referenceNumberData.Address.Street}{" "}
+          {referenceNumberData.Address.Number}<br />
+          {referenceNumberData.Address.PostalCode}{" "}
+          {referenceNumberData.Address.City}
+        </p>
+      </div>
     </div>
   )
 }
