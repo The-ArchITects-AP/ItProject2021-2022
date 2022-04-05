@@ -33,7 +33,7 @@ namespace ITProjectAPI
 
             app.UseEndpoints(endpoints =>
             {
-            endpoints.MapControllerRoute("default","{controller=Home}/{action=GetName}/{kbonummer?}");
+                endpoints.MapControllers();
             });
         }
     }

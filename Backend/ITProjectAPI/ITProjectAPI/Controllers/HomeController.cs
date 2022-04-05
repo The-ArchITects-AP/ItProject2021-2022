@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ITProjectAPI.Controllers
 {
+    [Route("{Home}")]
     public class HomeController : Controller
     {
         private INbbApi _apiService;
