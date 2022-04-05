@@ -16,11 +16,13 @@ namespace ITProjectAPI.Controllers
         public IActionResult GetName(string kbonummer)
         {
             var dataReferenceNumber = _apiService.GetReferences(kbonummer);
+           
             if (dataReferenceNumber == null)
             {
                 return NotFound();
             }
-            return Ok(dataReferenceNumber[0].EnterpriseName);
+            
+            return new ObjectResult(dataReferenceNumber[0].EnterpriseName);
         }
     }
 }

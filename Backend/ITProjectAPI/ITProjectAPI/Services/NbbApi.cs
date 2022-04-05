@@ -8,7 +8,7 @@ namespace ITProjectAPI.Services
 {
     public class NbbApi : INbbApi
     {
-        private string _url = "http://localhost:3000/legalEntity/0123456789/references";
+        private string _url = "http://localhost:3000/legalEntity/";
 
         public NbbApi(string url)
         {
@@ -28,10 +28,10 @@ namespace ITProjectAPI.Services
                 client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "f03301a6bfbe4f2897fd2b3df935e0bd");                               //subscription-key is required
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));        //Accept type is required
 
-                //_url = $"{_url}{KBOnummer}/references";
+                _url = $"{_url}{KBOnummer}/references";
 
                 var response = client.GetAsync(_url).GetAwaiter().GetResult();
-                response.EnsureSuccessStatusCode();
+                //response.EnsureSuccessStatusCode();
                 var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
                 //response in lijst van refrence model-object steken

@@ -18,7 +18,7 @@ namespace ITProjectAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<INbbApi,NbbApi>();
+            services.AddScoped<INbbApi,NbbApi>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,7 +33,7 @@ namespace ITProjectAPI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+            endpoints.MapControllerRoute("default","{controller=Home}/{action=GetName}/{kbonummer?}");
             });
         }
     }
