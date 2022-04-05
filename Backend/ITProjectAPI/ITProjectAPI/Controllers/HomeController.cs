@@ -1,24 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ITProjectAPI.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ITProjectAPI.Controllers
 {
     public class HomeController : Controller
     {
+        private INbbApi _apiService;
         
-        public HomeController() 
+        public HomeController(INbbApi apiService) 
         {
+            _apiService = apiService;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{kbonummer}")]
+        public IActionResult GetName(string kbonummer)
         {
-            /*var bankAccount = _bankAccountRepository.Get(id);
-            if (bankAccount == null)
+            var dataReferenceNumber = _apiService.GetReferences(kbonummer);
+            if (dataReferenceNumber == null)
             {
                 return NotFound();
             }
-            return Ok(bankAccount);*/
-            return null;
+            return Ok(dataReferenceNumber[0].EnterpriseName);
         }
     }
 }

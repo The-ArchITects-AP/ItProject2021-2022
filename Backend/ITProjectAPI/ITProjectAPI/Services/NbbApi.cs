@@ -8,7 +8,7 @@ namespace ITProjectAPI.Services
 {
     public class NbbApi : INbbApi
     {
-        private string _url = "https://ws.uat2.cbso.nbb.be/authentic/legalEntity/";
+        private string _url = "http://localhost:3000/legalEntity/0123456789/references";
 
         public NbbApi(string url)
         {
@@ -19,7 +19,7 @@ namespace ITProjectAPI.Services
         {
         }
 
-        public void GetReferences(string KBOnummer)
+        public List<ReferenceModel> GetReferences(string KBOnummer)
         {
             using (var client = new HttpClient())
             {
@@ -28,7 +28,7 @@ namespace ITProjectAPI.Services
                 client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "f03301a6bfbe4f2897fd2b3df935e0bd");                               //subscription-key is required
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));        //Accept type is required
 
-                _url = $"{_url}{KBOnummer}/references";
+                //_url = $"{_url}{KBOnummer}/references";
 
                 var response = client.GetAsync(_url).GetAwaiter().GetResult();
                 response.EnsureSuccessStatusCode();
@@ -37,9 +37,7 @@ namespace ITProjectAPI.Services
                 //response in lijst van refrence model-object steken
                 List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
 
-                Console.WriteLine($"\nDe naam van het bedrijf is: {referencemodels[0].EnterpriseName}\n");
-
-                //GettMostRecent(referencemodels);
+                return referencemodels;
             }
         }
     }

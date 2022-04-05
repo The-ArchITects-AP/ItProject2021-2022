@@ -1,7 +1,10 @@
-﻿namespace ITProjectAPI.Services
+﻿using ITProjectAPI.Models;
+using System.Collections.Generic;
+
+namespace ITProjectAPI.Services
 {
     public interface INbbApi
     {
-        void GetReferences(string kbonummer);
+        List<ReferenceModel> GetReferences(string kbonummer);
     }
 }
