@@ -61,7 +61,7 @@ namespace ITProjectAPI.Services
                 }
             }
 
-            return $"{lijst[indexrecent].DepositDate.ToString("d")}";
+            return $"{lijst[indexrecent].ReferenceNumber}";
             
         }
     }
