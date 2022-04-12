@@ -40,5 +40,27 @@ namespace ITProjectAPI.Services
                 return referencemodels;
             }
         }
+
+
+        // methode om de meest recente neerlegging te bepalen
+
+        public void GetMostRecent(List<ReferenceModel> lijst)
+        {
+
+            int indexrecent = 0;
+
+            for (int i = 0; i < lijst.Count - 1; i++)
+            {
+                if (lijst[i].DepositDate < lijst[i + 1].DepositDate)
+                {
+                    indexrecent = i + 1;
+                }
+            }
+
+            Console.WriteLine($"{lijst[indexrecent].DepositDate.ToString("d")} is de meest recente neerlegging");
+            Console.WriteLine($"De referentie van deze neerlegging is: {lijst[indexrecent].ReferenceNumber}\n");
+
+            // test
+        }
     }
 }
