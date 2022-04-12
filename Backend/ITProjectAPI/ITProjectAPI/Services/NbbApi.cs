@@ -19,6 +19,9 @@ namespace ITProjectAPI.Services
         {
         }
 
+
+        //methode om de lijst van referentie-nummers terug te krijgen
+
         public List<ReferenceModel> GetReferences(string KBOnummer)
         {
             using (var client = new HttpClient())
@@ -42,9 +45,10 @@ namespace ITProjectAPI.Services
         }
 
 
-        // methode om de meest recente neerlegging te bepalen
 
-        public void GetMostRecent(List<ReferenceModel> lijst)
+        //methode om de meest recente neerlegging te bepalen
+
+        public string GetMostRecent(List<ReferenceModel> lijst)
         {
 
             int indexrecent = 0;
@@ -57,10 +61,8 @@ namespace ITProjectAPI.Services
                 }
             }
 
-            Console.WriteLine($"{lijst[indexrecent].DepositDate.ToString("d")} is de meest recente neerlegging");
-            Console.WriteLine($"De referentie van deze neerlegging is: {lijst[indexrecent].ReferenceNumber}\n");
-
-            // test
+            return $"{lijst[indexrecent].DepositDate.ToString("d")}";
+            
         }
     }
 }
