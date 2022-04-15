@@ -7,5 +7,6 @@ namespace ITProjectAPI.Services
     {
         List<ReferenceModel> GetReferences(string kbonummer);
         string GetMostRecent(List<ReferenceModel> lijst);
+        string GetAccountingData(string referentienummer);
     }
 }

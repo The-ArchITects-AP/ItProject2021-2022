@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ITProjectAPI.Controllers
 {
-    [Route("{Home}")]
+    [Route("Home")]
     public class HomeController : Controller
     {
 
@@ -15,14 +15,15 @@ namespace ITProjectAPI.Controllers
         }
 
 
+        //geeft de referentienummer van de meest recente neerlegging via home/kbonummer
 
         [HttpGet("{kbonummer}")]
 
-        public IActionResult GetName(string kbonummer)
+        public IActionResult GetMostRecentRef (string kbonummer)
         {
+
             var dataReferenceNumber = _apiService.GetReferences(kbonummer);
            
-
             if (dataReferenceNumber == null)
             {
                 return NotFound();
@@ -30,8 +31,31 @@ namespace ITProjectAPI.Controllers
 
             var result = _apiService.GetMostRecent(dataReferenceNumber);
 
-
             return new ObjectResult(result);
         }
+
+
+
+        //geeft de accountingdata weer van een desbetreffend referentienummer via home/accountingdata/referentienummer
+
+        [HttpGet("/accountingdata/{referentienummer}")]
+
+        public IActionResult GetAccountingData (string referentienummer)
+
+        {
+            var AccountingData  = _apiService.GetAccountingData(referentienummer);
+
+
+            if (AccountingData == null)
+            {
+                return NotFound();
+            }
+
+        // HIER nog via op een parsingmethode oproepen om de juiste info te extraheren
+
+        return new ObjectResult(AccountingData);
+
+        }
+
     }
 }
