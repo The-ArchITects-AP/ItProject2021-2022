@@ -76,10 +76,10 @@ namespace ITProjectAPI.Services
             {
                 //client-configuration
                 client.DefaultRequestHeaders.Add("X-Request-Id", "6457dc94-0b98-4c1a-b5f8-98d8627b5177");                                        //version 4 UUID is required
-                client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "f03301a6bfbe4f2897fd2b3df935e0bd");                               //subscription-key is required
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));        //Accept type is required
+                client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "263deb8f945342b9b7eabee7040cc130");                               //subscription-key is required
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x.xbrl"));        //Accept type is required
 
-                _url = $"{_url}{referentienummer}/references";
+                _url = $"https://ws.uat2.cbso.nbb.be/authentic/deposit/{referentienummer}/accountingData";
 
                 var response = client.GetAsync(_url).GetAwaiter().GetResult();
                 //response.EnsureSuccessStatusCode();

@@ -31,7 +31,7 @@ namespace ITProjectAPI.Controllers
 
             var result = _apiService.GetMostRecent(dataReferenceNumber);
 
-            return new ObjectResult(result);
+            return  Ok(result);
         }
 
 
