@@ -18,7 +18,7 @@ namespace ITProjectAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<INbbApi,NbbApi>();
+            services.AddSingleton<INbbApi>(new NbbApi());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

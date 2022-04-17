@@ -52,6 +52,7 @@ namespace ITProjectAPI.Controllers
             }
 
         // HIER nog via op een parsingmethode oproepen om de juiste info te extraheren
+        //en dan een Viewmodel opvullen met de juiste data en die terugsturen
 
         return new ObjectResult(AccountingData);
 
