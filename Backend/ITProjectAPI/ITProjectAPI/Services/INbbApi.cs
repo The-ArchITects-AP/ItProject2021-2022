@@ -6,7 +6,7 @@ namespace ITProjectAPI.Services
     public interface INbbApi
     {
         List<ReferenceModel> GetReferences(string kbonummer);
-        string GetMostRecent(List<ReferenceModel> lijst);
+        ReferenceModel GetMostRecent(List<ReferenceModel> lijst);
         string GetAccountingData(string referentienummer);
     }
 }

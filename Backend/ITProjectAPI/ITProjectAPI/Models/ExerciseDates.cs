@@ -1,8 +1,10 @@
-﻿namespace ITProjectAPI.Models
+﻿using System;
+
+namespace ITProjectAPI.Models
 {
     public class ExerciseDates
     {
-        public string startDate { get; set; }
-        public string endDate { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
     }
 }

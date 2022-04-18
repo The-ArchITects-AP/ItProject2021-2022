@@ -9,7 +9,7 @@ namespace ITProjectAPI.Services
     public class NbbApi : INbbApi
     {
 
-        private string _url = "http://localhost:3000/legalEntity/";
+        private string _url = "https://ws.uat2.cbso.nbb.be/authentic/";
 
         public NbbApi(string url)
         {
@@ -29,16 +29,17 @@ namespace ITProjectAPI.Services
             {
                 //client-configuration
                 client.DefaultRequestHeaders.Add("X-Request-Id", "6457dc94-0b98-4c1a-b5f8-98d8627b5177");                                        //version 4 UUID is required
-                client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "f03301a6bfbe4f2897fd2b3df935e0bd");                               //subscription-key is required
+                client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "263deb8f945342b9b7eabee7040cc130");                               //subscription-key is required
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));        //Accept type is required
 
-                string url = $"{_url}{KBOnummer}/references";
+
+                string url = $"{_url}legalEntity/{KBOnummer}/references";
 
                 var response = client.GetAsync(url).GetAwaiter().GetResult();
                 //response.EnsureSuccessStatusCode();
                 var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
-                //response in lijst van refrence model-object steken
+                //response in lijst van reference model-object steken
                 List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
 
                 return referencemodels;
@@ -47,9 +48,9 @@ namespace ITProjectAPI.Services
 
 
 
-        //methode om de meest recente neerlegging te bepalen
+        //methode om de meest recente neerlegging te bepalen, returned het meest recente reference
 
-        public string GetMostRecent(List<ReferenceModel> lijst)
+        public ReferenceModel GetMostRecent(List<ReferenceModel> lijst)
         {
 
             int indexrecent = 0;
@@ -60,9 +61,18 @@ namespace ITProjectAPI.Services
                 {
                     indexrecent = i + 1;
                 }
+
+                else if (lijst[i].DepositDate == lijst[i + 1].DepositDate)
+                {
+                    if (lijst[i].ExerciseDates.endDate < lijst[i + 1].ExerciseDates.endDate)
+                    {
+                        indexrecent = i + 1;
+                    }    
+            
+                }
             }
 
-            return $"{lijst[indexrecent].ReferenceNumber}";
+            return lijst[indexrecent];
         }
 
 
@@ -74,12 +84,12 @@ namespace ITProjectAPI.Services
             using (var client = new HttpClient())
             {
                 //client-configuration
-                client.DefaultRequestHeaders.Add("X-Request-Id", "6457dc94-0b98-4c1a-b5f8-98d8627b5177");                                        //version 4 UUID is required
-                client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "263deb8f945342b9b7eabee7040cc130");                               //subscription-key is required
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x.xbrl"));      //Accept type is required
+                client.DefaultRequestHeaders.Add("X-Request-Id", "6457dc94-0b98-4c1a-b5f8-98d8627b5177");                                       
+                client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "263deb8f945342b9b7eabee7040cc130");                               
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x.xbrl"));      
 
-                //string url = $"https://ws.uat2.cbso.nbb.be/authentic/deposit/{referentienummer}/accountingData";
-                string url = $"http://localhost:3000/accountingData/{referentienummer}";
+                string url = $"{_url}deposit/{referentienummer}/accountingData";
+                //string url = $"http://localhost:3000/accountingData/{referentienummer}";
 
                 var response = client.GetAsync(url).GetAwaiter().GetResult();
                 //response.EnsureSuccessStatusCode();

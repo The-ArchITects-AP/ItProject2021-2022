@@ -6,10 +6,14 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="Viewmodels\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Viewmodels\" />
+  </ItemGroup>
 </Project>

@@ -1,4 +1,6 @@
-﻿using ITProjectAPI.Services;
+﻿using ITProjectAPI.Models;
+using ITProjectAPI.Services;
+using ITProjectAPI.Viewmodels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITProjectAPI.Controllers
@@ -15,48 +17,65 @@ namespace ITProjectAPI.Controllers
         }
 
 
-        //pakt de KBO-nummer als string; returned de naam als string 
+        //pakt de KBO-nummer als string; returned NameView 
 
-        [HttpGet("naam/{kbonummer}")]
-        public IActionResult GetName (string kbonummer)
+        [HttpGet("gegevens/{kbonummer}")]
+        public IActionResult GetName(string kbonummer)
         {
 
             var dataReferenceNumber = _apiService.GetReferences(kbonummer);
-           
+
             if (dataReferenceNumber == null)
             {
                 return NotFound();
             }
 
-            var result = dataReferenceNumber[0].EnterpriseName;
+            var result = new NameView()
+            {
+                EnterpriseName = dataReferenceNumber[0].EnterpriseName,
+                Street = dataReferenceNumber[0].Address.Street,
+                Number = dataReferenceNumber[0].Address.Number,
+                PostalCode = dataReferenceNumber[0].Address.PostalCode,
+                City = dataReferenceNumber[0].Address.City
+            };
 
             return  Ok(result);
         }
 
 
 
-        //geeft de accountingdata weer van een desbetreffend KBO-nummer via home/accountingdata/kbonummer
+        //pakt KBO-nummer als string; geeft AccountingView terug
 
         [HttpGet("accountingdata/{kbonummer}")]
         public IActionResult GetAccountingData (string kbonummer)
 
         {
 
-            var dataReferenceNumber = _apiService.GetReferences(kbonummer);                 //haalt alle referentienummer op via eerste api-call
-            var mostRecentRef = _apiService.GetMostRecent(dataReferenceNumber);             //haalt uit de lisjt de meest recente referentie
-            var accountingData  = _apiService.GetAccountingData(mostRecentRef);             //haalt de accountingdata van deze meest recente refnummer
+            var dataReferenceNumber = _apiService.GetReferences(kbonummer);                             //haalt alle referentienummers op via eerste api-call
 
+            var mostRecentRef = _apiService.GetMostRecent(dataReferenceNumber).ReferenceNumber;         //haalt uit de lijst de meest recente referentie en depositdate
+            var mostRecentDepositDate = _apiService.GetMostRecent(dataReferenceNumber).DepositDate;
+
+            var accountingData  = _apiService.GetAccountingData(mostRecentRef);                         //haalt de accountingdata van deze meest recente refnummer via 2e api-call
+           
 
             if (accountingData == null)
             {
                 return NotFound();
             }
 
+            var result = new AccountingView()
+            {
+                DepositDate = mostRecentDepositDate,
+               
 
-        // HIER nog via op een parsingmethode oproepen om de juiste info te extraheren
-        //en dan een Viewmodel opvullen met de juiste data en die terugsturen
+            };
 
-        return new ObjectResult(accountingData);
+
+            // HIER nog via op een parsingmethode oproepen om de juiste info te extraheren
+            
+            
+            return new ObjectResult(result);
 
         }
 
