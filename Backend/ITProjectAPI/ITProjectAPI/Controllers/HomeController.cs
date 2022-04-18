@@ -15,11 +15,11 @@ namespace ITProjectAPI.Controllers
         }
 
 
-        //geeft de referentienummer van de meest recente neerlegging via home/kbonummer
+        //pakt de KBO-nummer als string; returned de naam als string 
 
         [HttpGet("{kbonummer}")]
 
-        public IActionResult GetMostRecentRef (string kbonummer)
+        public IActionResult GetName (string kbonummer)
         {
 
             var dataReferenceNumber = _apiService.GetReferences(kbonummer);
@@ -29,32 +29,36 @@ namespace ITProjectAPI.Controllers
                 return NotFound();
             }
 
-            var result = _apiService.GetMostRecent(dataReferenceNumber);
+            var result = dataReferenceNumber[0].EnterpriseName;
 
             return  Ok(result);
         }
 
 
 
-        //geeft de accountingdata weer van een desbetreffend referentienummer via home/accountingdata/referentienummer
+        //geeft de accountingdata weer van een desbetreffend KBO-nummer via home/accountingdata/kbonummer
 
-        [HttpGet("/accountingdata/{referentienummer}")]
+        [HttpGet("/accountingdata/{kbonummer}")]
 
-        public IActionResult GetAccountingData (string referentienummer)
+        public IActionResult GetAccountingData (string kbonummer)
 
         {
-            var AccountingData  = _apiService.GetAccountingData(referentienummer);
+
+            var dataReferenceNumber = _apiService.GetReferences(kbonummer);                 //haalt alle referentienummer op via eerste api-call
+            var mostRecentRef = _apiService.GetMostRecent(dataReferenceNumber);             //haalt uit de lisjt de meest recente referentie
+            var accountingData  = _apiService.GetAccountingData(mostRecentRef);             //haalt de accountingdata van deze meest recente refnummer
 
 
-            if (AccountingData == null)
+            if (accountingData == null)
             {
                 return NotFound();
             }
 
+
         // HIER nog via op een parsingmethode oproepen om de juiste info te extraheren
         //en dan een Viewmodel opvullen met de juiste data en die terugsturen
 
-        return new ObjectResult(AccountingData);
+        return new ObjectResult(accountingData);
 
         }
 
