@@ -17,8 +17,7 @@ namespace ITProjectAPI.Controllers
 
         //pakt de KBO-nummer als string; returned de naam als string 
 
-        [HttpGet("{kbonummer}")]
-
+        [HttpGet("naam/{kbonummer}")]
         public IActionResult GetName (string kbonummer)
         {
 
@@ -38,8 +37,7 @@ namespace ITProjectAPI.Controllers
 
         //geeft de accountingdata weer van een desbetreffend KBO-nummer via home/accountingdata/kbonummer
 
-        [HttpGet("/accountingdata/{kbonummer}")]
-
+        [HttpGet("accountingdata/{kbonummer}")]
         public IActionResult GetAccountingData (string kbonummer)
 
         {

@@ -21,7 +21,6 @@ namespace ITProjectAPI.Services
         }
 
 
-
         //methode om via HTTP-call de lijst van referentie-nummers terug te krijgen
 
         public List<ReferenceModel> GetReferences(string KBOnummer)
@@ -79,7 +78,8 @@ namespace ITProjectAPI.Services
                 client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "263deb8f945342b9b7eabee7040cc130");                               //subscription-key is required
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x.xbrl"));      //Accept type is required
 
-                string url = $"https://ws.uat2.cbso.nbb.be/authentic/deposit/{referentienummer}/accountingData";
+                //string url = $"https://ws.uat2.cbso.nbb.be/authentic/deposit/{referentienummer}/accountingData";
+                string url = $"http://localhost:3000/accountingData/{referentienummer}";
 
                 var response = client.GetAsync(url).GetAwaiter().GetResult();
                 //response.EnsureSuccessStatusCode();
