@@ -1,4 +1,22 @@
-//NBB API: interfaces output query kbo-nummer 
+//interfaces overeenkomstig met ViewModels backend/api
+
+export interface NameView {
+    EnterpriseName: string;
+    Street: string
+    Number: string;
+    PostalCode: string;
+    City: string
+}
+
+export interface AccountingView {
+    DepositDate: Date;
+    EigenVermogen: number;
+    Schulden: number;
+    Bedrijfswinst: number
+}
+
+//NBB API: interfaces output first query (to get reference numbers) 
+
 export interface RootObject {
     ReferenceNumber: string;
     DepositDate: string;
