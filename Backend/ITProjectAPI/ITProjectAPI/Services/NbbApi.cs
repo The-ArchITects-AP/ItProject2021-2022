@@ -32,17 +32,26 @@ namespace ITProjectAPI.Services
                 client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "263deb8f945342b9b7eabee7040cc130");                               //subscription-key is required
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));        //Accept type is required
 
-
+                
                 string url = $"{_url}legalEntity/{KBOnummer}/references";
 
                 var response = client.GetAsync(url).GetAwaiter().GetResult();
-                //response.EnsureSuccessStatusCode();
-                var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var succes = response.IsSuccessStatusCode;
 
-                //response in lijst van reference model-object steken
-                List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
+                if (succes)
+                {
+                    var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
-                return referencemodels;
+                    //response in lijst van reference model-object steken
+                    List<ReferenceModel> referencemodels = JsonConvert.DeserializeObject<List<ReferenceModel>>(stringresponse);
+
+                    return referencemodels;
+                }
+                else
+                {
+                    return null;
+                }
+               
             }
         }
 
