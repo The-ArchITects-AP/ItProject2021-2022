@@ -19,11 +19,6 @@ namespace ITProjectAPI.Services
 
         public static string GetSchulden(string input)
         {
-            return "roekoekoe";
-        }
-
-        public static string GetSchulden(string input)
-        {
             var lengteBeginString = "<pfs:AmountsPayable decimals=\"INF\" contextRef=\"CurrentInstant\" unitRef=\"U - EUR\">".Length;
             var startpositie = input.IndexOf("<pfs:AmountsPayable decimals=\"INF\" contextRef=\"CurrentInstant\" unitRef=\"U - EUR\">") + lengteBeginString;
             var eindpositie = input.IndexOf("</pfs:AmountsPayable>", startpositie);
@@ -33,5 +28,15 @@ namespace ITProjectAPI.Services
             return resultaat;
         }
 
+        public static string GetBedrijfswinst(string input)
+        {
+            var lengteBeginString = "<pfs:OperatingProfitLoss decimals=\"INF\" contextRef=\"CurrentDuration\" unitRef=\"U - EUR\">".Length;
+            var startpositie = input.IndexOf("<pfs:OperatingProfitLoss decimals=\"INF\" contextRef=\"CurrentDuration\" unitRef=\"U - EUR\">") + lengteBeginString;
+            var eindpositie = input.IndexOf("</pfs:OperatingProfitLoss>", startpositie);
+            var lengte = eindpositie - startpositie;
+            var resultaat = input.Substring(startpositie, lengte);
+
+            return resultaat;
+        }
     }
 }
