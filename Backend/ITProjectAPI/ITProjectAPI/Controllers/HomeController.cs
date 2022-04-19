@@ -73,7 +73,6 @@ namespace ITProjectAPI.Controllers
                 {
                     DepositDate = mostRecentDepositDate.ToString("d"),
 
-
                 };
 
                 return new ObjectResult(result);
