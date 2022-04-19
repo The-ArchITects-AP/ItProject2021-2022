@@ -8,9 +8,9 @@ namespace ITProjectAPI.Viewmodels
         }
 
         public string DepositDate { get; set; }
-        public double EigenVermogen { get; set; }
-        public double Schulden { get; set; }
-        public double Bedrijfswinst { get; set; }
+        public string EigenVermogen { get; set; }
+        public string Schulden { get; set; }
+        public string Bedrijfswinst { get; set; }
         
     }
 }

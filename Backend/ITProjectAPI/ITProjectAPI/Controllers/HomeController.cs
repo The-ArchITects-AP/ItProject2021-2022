@@ -66,11 +66,13 @@ namespace ITProjectAPI.Controllers
                 var accountingData = _apiService.GetAccountingData(mostRecentRef);                              //haalt de accountingdata van meest recente refnummer via 2e api-call
 
 
-                // HIER nog via op een parsingmethode oproepen om de juiste info te extraheren en in accountingviwew te steken
 
                 var result = new AccountingView()
                 {
                     DepositDate = mostRecentDepositDate.ToString("d"),
+                    EigenVermogen = DataParser.GetEigenVermogen(accountingData),
+                    Bedrijfswinst = DataParser.GetBedrijfswinst(accountingData),
+                    Schulden = DataParser.GetSchulden(accountingData)
 
                 };
 
