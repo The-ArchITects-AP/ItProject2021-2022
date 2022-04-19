@@ -54,7 +54,6 @@ namespace ITProjectAPI.Controllers
 
             var dataReferenceNumber = _apiService.GetReferences(kbonummer);                                     //haalt alle referentienummers op via 1e api-call
 
-
             if (dataReferenceNumber == null)
             {
                 return NotFound("Gelieve een geldig KBO-nummer in te geven");
@@ -72,7 +71,7 @@ namespace ITProjectAPI.Controllers
 
                 var result = new AccountingView()
                 {
-                    DepositDate = mostRecentDepositDate,
+                    DepositDate = mostRecentDepositDate.ToString("d"),
 
 
                 };

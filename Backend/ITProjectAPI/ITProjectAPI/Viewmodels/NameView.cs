@@ -1,5 +1,4 @@
-﻿using System;
-namespace ITProjectAPI.Viewmodels
+﻿namespace ITProjectAPI.Viewmodels
 {
     public class NameView
     {

@@ -7,7 +7,7 @@ namespace ITProjectAPI.Viewmodels
         {
         }
 
-        public DateTime DepositDate { get; set; }
+        public string DepositDate { get; set; }
         public double EigenVermogen { get; set; }
         public double Schulden { get; set; }
         public double Bedrijfswinst { get; set; }
