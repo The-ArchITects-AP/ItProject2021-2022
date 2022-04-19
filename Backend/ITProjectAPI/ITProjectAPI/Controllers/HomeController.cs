@@ -2,7 +2,6 @@
 using ITProjectAPI.Services;
 using ITProjectAPI.Viewmodels;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 
 namespace ITProjectAPI.Controllers
 {
