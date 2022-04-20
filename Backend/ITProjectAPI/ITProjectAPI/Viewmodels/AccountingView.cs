@@ -11,6 +11,7 @@ namespace ITProjectAPI.Viewmodels
         public string EigenVermogen { get; set; }
         public string Schulden { get; set; }
         public string Bedrijfswinst { get; set; }
-        
+        public string Referentie { get; set; }
+
     }
 }

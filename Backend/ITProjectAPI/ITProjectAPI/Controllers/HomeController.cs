@@ -72,7 +72,8 @@ namespace ITProjectAPI.Controllers
                     DepositDate = mostRecentDepositDate.ToString("d"),
                     EigenVermogen = DataParser.GetEigenVermogen(accountingData),
                     Bedrijfswinst = DataParser.GetBedrijfswinst(accountingData),
-                    Schulden = DataParser.GetSchulden(accountingData)
+                    Schulden = DataParser.GetSchulden(accountingData),
+                    Referentie = mostRecentRef
 
                 };
 
