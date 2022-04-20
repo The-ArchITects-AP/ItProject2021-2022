@@ -73,7 +73,6 @@ namespace ITProjectAPI.Controllers
                     EigenVermogen = DataParser.GetEigenVermogen(accountingData),
                     Bedrijfswinst = DataParser.GetBedrijfswinst(accountingData),
                     Schulden = DataParser.GetSchulden(accountingData),
-                    Referentie = mostRecentRef
 
                 };
 
