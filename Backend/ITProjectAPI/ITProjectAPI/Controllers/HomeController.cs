@@ -51,28 +51,31 @@ namespace ITProjectAPI.Controllers
 
         {
 
-            var dataReferenceNumber = _apiService.GetReferences(kbonummer);                                     //haalt alle referentienummers op via 1e api-call
+            var dataReferenceNumbers = _apiService.GetReferences(kbonummer);                                  //haalt alle referentienummers op via 1e api-call
 
-            if (dataReferenceNumber == null)
+            if (dataReferenceNumbers == null)
             {
                 return NotFound("Gelieve een geldig KBO-nummer in te geven");
             }
 
             else
             {
-                var mostRecentRef = _apiService.GetMostRecent(dataReferenceNumber).ReferenceNumber;             //haalt uit de lijst de meest recente referentie en depositdate
-                var mostRecentDepositDate = _apiService.GetMostRecent(dataReferenceNumber).DepositDate;
+                var mostRecentModel = _apiService.GetMostRecent(dataReferenceNumbers);                        //haalt uit de lijst de meest recente volledige model
 
-                var accountingData = _apiService.GetAccountingData(mostRecentRef);                              //haalt de accountingdata van meest recente refnummer via 2e api-call
+                var mostRecentRef = mostRecentModel.ReferenceNumber;            
+                var mostRecentDepositDate = mostRecentModel.DepositDate;
+                var mostRecentModeltype = mostRecentModel.ModelType;
+
+                var accountingData = _apiService.GetAccountingData(mostRecentRef);                             //haalt de accountingdata van meest recente refnummer via 2e api-call
 
 
 
                 var result = new AccountingView()
                 {
                     DepositDate = mostRecentDepositDate.ToString("d"),
-                    EigenVermogen = DataParser.GetEigenVermogen(accountingData),
-                    Bedrijfswinst = DataParser.GetBedrijfswinst(accountingData),
-                    Schulden = DataParser.GetSchulden(accountingData),
+                    EigenVermogen = DataParser.GetEigenVermogen(accountingData, mostRecentModeltype),
+                    Bedrijfswinst = DataParser.GetBedrijfswinst(accountingData, mostRecentModeltype),
+                    Schulden = DataParser.GetSchulden(accountingData, mostRecentModeltype),
 
                 };
 

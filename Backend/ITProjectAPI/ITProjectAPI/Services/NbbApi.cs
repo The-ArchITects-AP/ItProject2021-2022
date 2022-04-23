@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 
 namespace ITProjectAPI.Services
@@ -103,6 +104,7 @@ namespace ITProjectAPI.Services
                 var response = client.GetAsync(url).GetAwaiter().GetResult();
                 //response.EnsureSuccessStatusCode();
                 var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+               
 
                 return stringresponse;
             }
