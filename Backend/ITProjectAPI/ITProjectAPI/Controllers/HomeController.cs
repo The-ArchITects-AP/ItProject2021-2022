@@ -60,7 +60,7 @@ namespace ITProjectAPI.Controllers
 
             else
             {
-                var mostRecentModel = _apiService.GetMostRecent(dataReferenceNumbers);                        //haalt uit de lijst de meest recente volledige model
+                var mostRecentModel = _apiService.GetMostRecent(dataReferenceNumbers);                        //haalt uit de lijst het meest recente volledige model
 
                 var mostRecentRef = mostRecentModel.ReferenceNumber;            
                 var mostRecentDepositDate = mostRecentModel.DepositDate;
