@@ -64,8 +64,7 @@ namespace ITProjectAPI.Controllers
 
                 var mostRecentRef = mostRecentModel.ReferenceNumber;            
                 var mostRecentDepositDate = mostRecentModel.DepositDate;
-                var mostRecentModeltype = mostRecentModel.ModelType;
-
+               
                 var accountingData = _apiService.GetAccountingData(mostRecentRef);                             //haalt de accountingdata van meest recente refnummer via 2e api-call
 
 
@@ -73,10 +72,9 @@ namespace ITProjectAPI.Controllers
                 var result = new AccountingView()
                 {
                     DepositDate = mostRecentDepositDate.ToString("d"),
-                    EigenVermogen = DataParser.GetEigenVermogen(accountingData, mostRecentModeltype),
-                    Bedrijfswinst = DataParser.GetBedrijfswinst(accountingData, mostRecentModeltype),
-                    Schulden = DataParser.GetSchulden(accountingData, mostRecentModeltype),
-
+                    EigenVermogen = DataParser.GetEigenVermogen(accountingData),
+                    Bedrijfswinst = DataParser.GetBedrijfswinst(accountingData),
+                    Schulden = DataParser.GetSchulden(accountingData),
                 };
 
                 return new ObjectResult(result);

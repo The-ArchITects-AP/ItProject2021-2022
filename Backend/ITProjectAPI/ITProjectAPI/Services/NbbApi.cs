@@ -89,14 +89,14 @@ namespace ITProjectAPI.Services
 
         //methode om via HTTP-call, met een referentienummer de accountingdata op te halen
 
-        public string GetAccountingData (string referentienummer)
+        public AccountingModel GetAccountingData (string referentienummer)
         {
             using (var client = new HttpClient())
             {
                 //client-configuration
                 client.DefaultRequestHeaders.Add("X-Request-Id", "6457dc94-0b98-4c1a-b5f8-98d8627b5177");                                       
                 client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "263deb8f945342b9b7eabee7040cc130");                               
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x.xbrl"));      
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x.jsonxbrl"));      
 
                 string url = $"{_url}deposit/{referentienummer}/accountingData";
                 //string url = $"http://localhost:3000/accountingData/{referentienummer}";
@@ -104,9 +104,9 @@ namespace ITProjectAPI.Services
                 var response = client.GetAsync(url).GetAwaiter().GetResult();
                 //response.EnsureSuccessStatusCode();
                 var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-               
+                AccountingModel accountingmodel = JsonConvert.DeserializeObject<AccountingModel>(stringresponse);
 
-                return stringresponse;
+                return accountingmodel;
             }
         }
 

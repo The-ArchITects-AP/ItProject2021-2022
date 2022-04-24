@@ -8,6 +8,6 @@ namespace ITProjectAPI.Services
     {
         List<ReferenceModel> GetReferences(string kbonummer);
         ReferenceModel GetMostRecent(List<ReferenceModel> lijst);
-        string GetAccountingData(string referentienummer);
+        AccountingModel GetAccountingData(string referentienummer);
     }
 }
