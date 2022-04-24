@@ -96,7 +96,7 @@ namespace ITProjectAPI.Services
                 //client-configuration
                 client.DefaultRequestHeaders.Add("X-Request-Id", "6457dc94-0b98-4c1a-b5f8-98d8627b5177");                                       
                 client.DefaultRequestHeaders.Add("NBB-CBSO-Subscription-Key", "263deb8f945342b9b7eabee7040cc130");                               
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x.jsonxbrl"));      
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x.jsonxbrl"));       //hier krijg je de accountingdata terug in json
 
                 string url = $"{_url}deposit/{referentienummer}/accountingData";
                 //string url = $"http://localhost:3000/accountingData/{referentienummer}";
@@ -104,6 +104,8 @@ namespace ITProjectAPI.Services
                 var response = client.GetAsync(url).GetAwaiter().GetResult();
                 //response.EnsureSuccessStatusCode();
                 var stringresponse = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                //json mappen in een accountingmodel
                 AccountingModel accountingmodel = JsonConvert.DeserializeObject<AccountingModel>(stringresponse);
 
                 return accountingmodel;

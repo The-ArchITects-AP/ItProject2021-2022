@@ -14,7 +14,6 @@ namespace ITProjectAPI.Services
             if (item is null)
             {
                 return "geen data beschikbaar";
-
             }
 
             return item.Value;
@@ -29,7 +28,6 @@ namespace ITProjectAPI.Services
             if (item is null)
             {
                 return "geen data beschikbaar";
-
             }
 
             return item.Value;
@@ -44,7 +42,6 @@ namespace ITProjectAPI.Services
             if (item is null)
             {
                 return "geen data beschikbaar";
-
             }
 
             return item.Value;
