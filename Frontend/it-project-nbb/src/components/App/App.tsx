@@ -42,13 +42,13 @@ const App = () => {
     console.log(url);
     let response = await fetch(url,
       {
-        method: "GET",
-        mode: 'no-cors', //geeft opaque response terug (Access-Control-Allow-Origin server side oplossen)
+        method: "GET",        
       }
     );
     console.log(response);
     let json = await response.json();
 
+    console.log(json);
     return json;
   }
 
