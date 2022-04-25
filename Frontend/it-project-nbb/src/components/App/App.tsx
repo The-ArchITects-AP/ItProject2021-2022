@@ -1,45 +1,52 @@
-import React, { ChangeEventHandler, useState } from "react";
+import React, { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import styles from './App.module.css';
 import Header from "../Header/Header";
-import { RootObject } from "../../types";
+import { NameView } from "../../types";
 
 //voorlopig staat alle code in de App.tsx file (later opsplitsen in file per component)
 
 const App = () => {
   const [vatNumber1, setVatNumber1] = useState<string>("");
   const [vatNumber2, setVatNumber2] = useState<string>("");
-  const [referenceNumberData1, setReferenceNumberData1] = useState<RootObject>();
-  const [referenceNumberData2, setReferenceNumberData2] = useState<RootObject>();
+  const [referenceNumberData1, setReferenceNumberData1] = useState<NameView>();
+  const [referenceNumberData2, setReferenceNumberData2] = useState<NameView>();
   const [updating, setUpdating] = useState<boolean>(true);
 
   const handleVatNumber1Change: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
     setVatNumber1(event.target.value);
-    getReferenceNumber1(vatNumber1);
+    console.log(vatNumber1);
+    if (vatNumber1 !== "") {
+      getReferenceNumber1(vatNumber1);
+    }
   };
 
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
     setVatNumber2(event.target.value);
-    getReferenceNumber2(vatNumber2);
+    console.log(vatNumber2);
+    if (vatNumber2 !== "") {
+      getReferenceNumber2(vatNumber2);
+    }
   };
 
-  const handleOnClick: React.MouseEventHandler<HTMLInputElement> = (
+  const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (
     event
   ) => { };
 
-  //fetch NBB API via Mockoon
-  //ondernemingsnummer voorlopig hardcoded in url
-  //url met variabele: `http://localhost:3000/legalEntity/${vatNumber}/references`
+  //methode haalt bedrijfsgegevens op bij API 
   const fetchReferenceData = async (vatNumber: string) => {
-    let response = await fetch(
-      "http://localhost:3000/legalEntity/0123456789/references",
+    let url = `https://nbb-architects-api.azurewebsites.net/home/gegevens/${vatNumber}`;
+    console.log(url);
+    let response = await fetch(url,
       {
         method: "GET",
+        mode: 'no-cors', //geeft opaque response terug (Access-Control-Allow-Origin server side oplossen)
       }
     );
+    console.log(response);
     let json = await response.json();
 
     return json;
@@ -48,15 +55,17 @@ const App = () => {
   const getReferenceNumber1 = async (vatNumber: string) => {
     setUpdating(true);
     let json = await fetchReferenceData(vatNumber);
-    setReferenceNumberData1(json as RootObject);
+    setReferenceNumberData1(json as NameView);
     setUpdating(false);
+    console.log(referenceNumberData1);
   };
 
   const getReferenceNumber2 = async (vatNumber: string) => {
     setUpdating(true);
     let json = await fetchReferenceData(vatNumber);
-    setReferenceNumberData2(json as RootObject);
+    setReferenceNumberData2(json as NameView);
     setUpdating(false);
+    console.log(referenceNumberData2);
   };
 
   return (
@@ -77,11 +86,10 @@ const App = () => {
   );
 };
 
-//types handlerfuncties nog definiëren
 interface InputFormProps {
-  handleVatNumber1Change: any,
-  handleVatNumber2Change: any,
-  handleOnClick: any
+  handleVatNumber1Change: ChangeEventHandler<HTMLInputElement>,
+  handleVatNumber2Change: ChangeEventHandler<HTMLInputElement>,
+  handleOnClick: MouseEventHandler<HTMLButtonElement>
 }
 
 const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick }: InputFormProps) => {
@@ -111,7 +119,7 @@ const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCli
 }
 
 interface PrintDetailsCompanyProps {
-  referenceNumberData: RootObject
+  referenceNumberData: NameView
 }
 
 const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) => {
@@ -130,10 +138,10 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
           <strong>Adres</strong>
         </p>
         <p>
-          {referenceNumberData.Address.Street}{" "}
-          {referenceNumberData.Address.Number}<br />
-          {referenceNumberData.Address.PostalCode}{" "}
-          {referenceNumberData.Address.City}
+          {referenceNumberData.Street}{" "}
+          {referenceNumberData.Number}<br />
+          {referenceNumberData.PostalCode}{" "}
+          {referenceNumberData.City}
         </p>
       </div>
     </div>
