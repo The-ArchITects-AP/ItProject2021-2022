@@ -1,4 +1,4 @@
-//interfaces overeenkomstig met ViewModels backend/api
+//interfaces overeenkomstig met ViewModels API (backend)
 
 export interface NameView {
     EnterpriseName: string;
@@ -15,7 +15,7 @@ export interface AccountingView {
     Bedrijfswinst: number
 }
 
-//NBB API: interfaces output first query (to get reference numbers) 
+//NBB API: interfaces output eerste query (om reference numbers op te halen) 
 
 export interface RootObject {
     ReferenceNumber: string;
