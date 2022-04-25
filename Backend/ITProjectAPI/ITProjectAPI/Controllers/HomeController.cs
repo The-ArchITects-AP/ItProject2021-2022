@@ -22,6 +22,9 @@ namespace ITProjectAPI.Controllers
         [HttpGet("gegevens/{kbonummer}")]
         public IActionResult GetName(string kbonummer)
         {
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS");
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization,Content-lenght,X-Requested-With");
 
             var dataReferenceNumber = _apiService.GetReferences(kbonummer);
 
@@ -50,7 +53,11 @@ namespace ITProjectAPI.Controllers
         public IActionResult GetAccountingData (string kbonummer)
 
         {
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS");
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization,Content-lenght,X-Requested-With");
 
+       
             var dataReferenceNumbers = _apiService.GetReferences(kbonummer);                                  //haalt alle referentienummers op via 1e api-call
 
             if (dataReferenceNumbers == null)
