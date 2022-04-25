@@ -1,18 +1,18 @@
 //interfaces overeenkomstig met ViewModels API (backend)
 
 export interface NameView {
-    EnterpriseName: string;
-    Street: string
-    Number: string;
-    PostalCode: string;
-    City: string
+    enterpriseName: string;
+    street: string
+    number: string;
+    postalCode: string;
+    city: string
 }
 
 export interface AccountingView {
-    DepositDate: Date;
-    EigenVermogen: number;
-    Schulden: number;
-    Bedrijfswinst: number
+    depositDate: Date;
+    eigenVermogen: number;
+    schulden: number;
+    bedrijfswinst: number
 }
 
 //NBB API: interfaces output eerste query (om reference numbers op te halen) 

@@ -130,7 +130,7 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
           <strong>Naam</strong>
         </p>
         <p>
-          {referenceNumberData.EnterpriseName}
+          {referenceNumberData.enterpriseName}
         </p>
       </div>
       <div className={styles.flexboxItem}>
@@ -138,10 +138,10 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
           <strong>Adres</strong>
         </p>
         <p>
-          {referenceNumberData.Street}{" "}
-          {referenceNumberData.Number}<br />
-          {referenceNumberData.PostalCode}{" "}
-          {referenceNumberData.City}
+          {referenceNumberData.street}{" "}
+          {referenceNumberData.number}<br />
+          {referenceNumberData.postalCode}{" "}
+          {referenceNumberData.city}
         </p>
       </div>
     </div>
