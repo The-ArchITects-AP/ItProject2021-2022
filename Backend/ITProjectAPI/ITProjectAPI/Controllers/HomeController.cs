@@ -22,6 +22,7 @@ namespace ITProjectAPI.Controllers
         [HttpGet("gegevens/{kbonummer}")]
         public IActionResult GetName(string kbonummer)
         {
+            // response-headers nodig voor frontend
             HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             HttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS");
             HttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization,Content-lenght,X-Requested-With");
@@ -53,6 +54,7 @@ namespace ITProjectAPI.Controllers
         public IActionResult GetAccountingData (string kbonummer)
 
         {
+            // response-headers nodig voor frontend
             HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             HttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS");
             HttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization,Content-lenght,X-Requested-With");
