@@ -109,26 +109,32 @@ const App = () => {
     <div className={styles.app}>
       <Header />
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} />
-      {!referenceNumberData1 || updating ? (
-        <div></div>
-      ) : (
-        <PrintDetailsCompany referenceNumberData={referenceNumberData1} />
-      )}
-      {!referenceNumberData2 || updating ? (
-        <div></div>
-      ) : (
-        <PrintDetailsCompany referenceNumberData={referenceNumberData2} />
-      )}
-      {!accountingData1 || updating ? (
-        <div></div>
-      ) : (
-        <PrintAccountingData accountingData={accountingData1} />
-      )}
-      {!accountingData2 || updating ? (
-        <div></div>
-      ) : (
-        <PrintAccountingData accountingData={accountingData2} />
-      )}
+      <div className={styles.flexboxContainer}>
+        <div>
+          {!referenceNumberData1 || updating ? (
+            <div></div>
+          ) : (
+            <PrintDetailsCompany referenceNumberData={referenceNumberData1} />
+          )}
+          {!referenceNumberData2 || updating ? (
+            <div></div>
+          ) : (
+            <PrintDetailsCompany referenceNumberData={referenceNumberData2} />
+          )}
+        </div>
+        <div>
+          {!accountingData1 || updating ? (
+            <div></div>
+          ) : (
+            <PrintAccountingData accountingData={accountingData1} />
+          )}
+          {!accountingData2 || updating ? (
+            <div></div>
+          ) : (
+            <PrintAccountingData accountingData={accountingData2} />
+          )}
+        </div>
+      </div>
     </div>
   );
 };
@@ -162,7 +168,7 @@ const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCli
         Vergelijk
       </button>
     </div>
-  )
+  );
 }
 
 interface PrintDetailsCompanyProps {
@@ -181,7 +187,7 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
         </p>
       </div>
       <div className={styles.flexboxItem}>
-        <p className={styles.title}>
+        <p className={styles.address}>
           <strong>Adres</strong>
         </p>
         <p>
@@ -192,7 +198,7 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 interface PrintAccountingDataProps {
@@ -201,12 +207,12 @@ interface PrintAccountingDataProps {
 
 const PrintAccountingData = ({ accountingData }: PrintAccountingDataProps) => {
   return (
-    <div>
+    <div className={styles.flexboxContainer}>
       <div>
-        <p>Datum neerlegging: {accountingData.depositDate}</p>
-        <p>Eigen Vermogen: {accountingData.eigenVermogen} EUR</p>
-        <p>Schulden: {accountingData.schulden} EUR</p>
-        <p>Bedrijfswinst: {accountingData.bedrijfswinst} EUR</p>
+        <p><span>Datum neerlegging</span> {accountingData.depositDate}</p>
+        <p><span>Eigen Vermogen</span> {accountingData.eigenVermogen} EUR</p>
+        <p><span>Schulden</span> {accountingData.schulden} EUR</p>
+        <p><span>Bedrijfswinst</span> {accountingData.bedrijfswinst} EUR</p>
       </div>
     </div>
   )
