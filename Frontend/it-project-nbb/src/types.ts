@@ -1,5 +1,6 @@
 //interfaces overeenkomstig met ViewModels API (backend)
 
+//path [gegevens/{kbonummer}]
 export interface NameView {
     enterpriseName: string;
     street: string
@@ -8,6 +9,7 @@ export interface NameView {
     city: string
 }
 
+//path [accountingdata/{kbonummer}]
 export interface AccountingView {
     depositDate: Date;
     eigenVermogen: number;

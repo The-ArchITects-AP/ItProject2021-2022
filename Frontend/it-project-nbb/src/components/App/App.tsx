@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import styles from './App.module.css';
 import Header from "../Header/Header";
-import { NameView } from "../../types";
+import { AccountingView, NameView } from "../../types";
 
 //voorlopig staat alle code in de App.tsx file (later opsplitsen in file per component)
 
@@ -10,6 +10,8 @@ const App = () => {
   const [vatNumber2, setVatNumber2] = useState<string>("");
   const [referenceNumberData1, setReferenceNumberData1] = useState<NameView>();
   const [referenceNumberData2, setReferenceNumberData2] = useState<NameView>();
+  const [accountingData1, setAccountingData1] = useState<AccountingView>();
+  const [accountingData2, setAccountingData2] = useState<AccountingView>();
   const [updating, setUpdating] = useState<boolean>(true);
 
   const handleVatNumber1Change: ChangeEventHandler<HTMLInputElement> = (
@@ -34,7 +36,10 @@ const App = () => {
 
   const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (
     event
-  ) => { };
+  ) => {
+    getAccountingData1(vatNumber1);
+    getAccountingData2(vatNumber2);
+  };
 
   //methode haalt bedrijfsgegevens op bij API 
   const fetchReferenceData = async (vatNumber: string) => {
@@ -42,7 +47,7 @@ const App = () => {
     console.log(url);
     let response = await fetch(url,
       {
-        method: "GET",        
+        method: "GET",
       }
     );
     console.log(response);
@@ -68,6 +73,38 @@ const App = () => {
     console.log(referenceNumberData2);
   };
 
+  //methode haalt accounting data op bij API 
+  const fetchAccountingData = async (vatNumber: string) => {
+    let url = `https://nbb-architects-api.azurewebsites.net/home/accountingdata/${vatNumber}`;
+    console.log(url);
+    let response = await fetch(url,
+      {
+        method: "GET",
+      }
+    );
+    console.log(response);
+    let json = await response.json();
+
+    console.log(json);
+    return json;
+  }
+
+  const getAccountingData1 = async (vatNumber: string) => {
+    setUpdating(true);
+    let json = await fetchAccountingData(vatNumber);
+    setAccountingData1(json as AccountingView);
+    setUpdating(false);
+    console.log(referenceNumberData1);
+  };
+
+  const getAccountingData2 = async (vatNumber: string) => {
+    setUpdating(true);
+    let json = await fetchAccountingData(vatNumber);
+    setAccountingData2(json as AccountingView);
+    setUpdating(false);
+    console.log(referenceNumberData2);
+  };
+
   return (
     <div className={styles.app}>
       <Header />
@@ -81,6 +118,16 @@ const App = () => {
         <div></div>
       ) : (
         <PrintDetailsCompany referenceNumberData={referenceNumberData2} />
+      )}
+      {!accountingData1 || updating ? (
+        <div></div>
+      ) : (
+        <PrintAccountingData accountingData={accountingData1} />
+      )}
+      {!accountingData2 || updating ? (
+        <div></div>
+      ) : (
+        <PrintAccountingData accountingData={accountingData2} />
       )}
     </div>
   );
@@ -143,6 +190,23 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
           {referenceNumberData.postalCode}{" "}
           {referenceNumberData.city}
         </p>
+      </div>
+    </div>
+  )
+}
+
+interface PrintAccountingDataProps {
+  accountingData: AccountingView
+}
+
+const PrintAccountingData = ({ accountingData }: PrintAccountingDataProps) => {
+  return (
+    <div>
+      <div>
+        <p>Datum neerlegging: {accountingData.depositDate}</p>
+        <p>Eigen Vermogen: {accountingData.eigenVermogen} EUR</p>
+        <p>Schulden: {accountingData.schulden} EUR</p>
+        <p>Bedrijfswinst: {accountingData.bedrijfswinst} EUR</p>
       </div>
     </div>
   )
