@@ -16,6 +16,8 @@ namespace ITProjectAPI.Controllers
             _apiService = apiService;
         }
 
+        
+
 
         //pakt de KBO-nummer als string; returned NameView 
 
