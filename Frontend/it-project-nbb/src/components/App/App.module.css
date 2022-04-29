@@ -8,7 +8,7 @@
     width: 20rem;
     height: 1.8rem;
     margin-top: 2rem;
-    margin-right: 1.3rem;    
+    margin-right: 3rem;    
     margin-bottom: 1rem;
 }
 
@@ -23,13 +23,9 @@
     letter-spacing: 0.1rem;
 }
 
-.printDetailsCompany {
-    margin-top: 1rem;
-}
-
 .flexboxContainer {
     float: left;
-    margin-right: 6rem;
+    margin-right: 7rem;
     margin-top: 1.5rem;
 }
 
@@ -43,6 +39,12 @@
     margin-bottom: 0.5rem;
 }
 
-.title {
+.title, .address {
     margin-right: 1rem;
+}
+
+span {
+    font-weight: bold;
+    margin-right: 2rem;
+    width: 10%;
 }
