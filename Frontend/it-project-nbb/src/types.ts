@@ -12,9 +12,9 @@ export interface NameView {
 //path [accountingdata/{kbonummer}]
 export interface AccountingView {
     depositDate: Date;
-    eigenVermogen: number;
-    schulden: number;
-    bedrijfswinst: number
+    eigenVermogen: string;
+    schulden: string;
+    bedrijfswinst: string
 }
 
 //NBB API: interfaces output eerste query (om reference numbers op te halen) 
