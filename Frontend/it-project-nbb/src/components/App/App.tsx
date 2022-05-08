@@ -134,6 +134,15 @@ const App = () => {
             <PrintAccountingData accountingData={accountingData2} />
           )}
         </div>
+
+        <div>
+          {!accountingData1 || !accountingData2 || updating ? (
+            <div></div>
+          ) : (
+            <PrintAccountingData2 accountingData1={accountingData1} accountingData2={accountingData2} />
+          )}
+        </div>
+
       </div>
     </div>
   );
@@ -201,6 +210,8 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
   );
 }
 
+//onderstaande methode PrintAccountingData verwijderen als PrintAccountingData2 (vergelijking met kleur) voldoende getest is 
+
 interface PrintAccountingDataProps {
   accountingData: AccountingView
 }
@@ -213,6 +224,30 @@ const PrintAccountingData = ({ accountingData }: PrintAccountingDataProps) => {
         <p><span>Eigen Vermogen</span> {accountingData.eigenVermogen} EUR</p>
         <p><span>Schulden</span> {accountingData.schulden} EUR</p>
         <p><span>Bedrijfswinst</span> {accountingData.bedrijfswinst} EUR</p>
+      </div>
+    </div>
+  )
+}
+
+interface PrintAccountingDataProps2 {
+  accountingData1: AccountingView,
+  accountingData2: AccountingView
+}
+
+const PrintAccountingData2 = ({ accountingData1, accountingData2 }: PrintAccountingDataProps2) => {
+  return (
+    <div className={styles.flexboxContainer}>
+      <div>
+        <p><span>Datum neerlegging</span> {accountingData1.depositDate}</p>
+        <p><span>Eigen Vermogen</span></p><p style={{ color: accountingData1.eigenVermogen >= accountingData2.eigenVermogen ? "green" : "red" }}>{accountingData1.eigenVermogen} EUR</p>
+        <p><span>Schulden</span></p><p style={{ color: accountingData1.schulden >= accountingData2.schulden ? "red" : "green" }}>{accountingData1.schulden} EUR</p>
+        <p><span>Bedrijfswinst</span></p><p style={{ color: accountingData1.bedrijfswinst >= accountingData2.bedrijfswinst ? "green" : "red" }}>{accountingData1.bedrijfswinst} EUR</p>
+      </div>
+      <div>
+        <p><span>Datum neerlegging</span> {accountingData2.depositDate}</p>
+        <p><span>Eigen Vermogen</span></p><p style={{ color: accountingData2.eigenVermogen >= accountingData1.eigenVermogen ? "green" : "red" }}>{accountingData2.eigenVermogen} EUR</p>
+        <p><span>Schulden</span></p><p style={{ color: accountingData2.schulden >= accountingData1.schulden ? "red" : "green" }}>{accountingData2.schulden} EUR</p>
+        <p><span>Bedrijfswinst</span></p><p style={{ color: accountingData2.bedrijfswinst >= accountingData1.bedrijfswinst ? "green" : "red" }}>{accountingData2.bedrijfswinst} EUR</p>
       </div>
     </div>
   )
