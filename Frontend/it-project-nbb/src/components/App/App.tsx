@@ -119,28 +119,14 @@ const App = () => {
           ) : (
             <PrintDetailsCompany referenceNumberData={referenceNumberData2} />
           )}
-        </div>
-        <div>
-          {!accountingData1 || updating ? (
-            <div></div>
-          ) : (
-            <PrintAccountingData accountingData={accountingData1} />
-          )}
-          {!accountingData2 || updating ? (
-            <div></div>
-          ) : (
-            <PrintAccountingData accountingData={accountingData2} />
-          )}
-        </div>
-
+        </div>    
         <div>
           {!accountingData1 || !accountingData2 || updating ? (
             <div></div>
           ) : (
-            <PrintAccountingData2 accountingData1={accountingData1} accountingData2={accountingData2} />
+            <PrintAccountingData accountingData1={accountingData1} accountingData2={accountingData2} />
           )}
         </div>
-
       </div>
     </div>
   );
@@ -208,31 +194,12 @@ const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) 
   );
 }
 
-//onderstaande methode PrintAccountingData verwijderen als PrintAccountingData2 (vergelijking met kleur) voldoende getest is 
-
 interface PrintAccountingDataProps {
-  accountingData: AccountingView
-}
-
-const PrintAccountingData = ({ accountingData }: PrintAccountingDataProps) => {
-  return (
-    <div className={styles.flexboxContainer}>
-      <div>
-        <p><span>Datum neerlegging</span> {accountingData.depositDate}</p>
-        <p><span>Eigen Vermogen</span> {accountingData.eigenVermogen} EUR</p>
-        <p><span>Schulden</span> {accountingData.schulden} EUR</p>
-        <p><span>Bedrijfswinst</span> {accountingData.bedrijfswinst} EUR</p>
-      </div>
-    </div>
-  )
-}
-
-interface PrintAccountingDataProps2 {
   accountingData1: AccountingView,
   accountingData2: AccountingView
 }
 
-const PrintAccountingData2 = ({ accountingData1, accountingData2 }: PrintAccountingDataProps2) => {
+const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccountingDataProps) => {
   var boolEigenVermogen;
   var boolSchulden;
   var boolBedrijfswinst;
