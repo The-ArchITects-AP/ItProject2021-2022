@@ -94,7 +94,6 @@ const App = () => {
     let json = await fetchAccountingData(vatNumber);
     setAccountingData1(json as AccountingView);
     setUpdating(false);
-    console.log(referenceNumberData1);
   };
 
   const getAccountingData2 = async (vatNumber: string) => {
@@ -102,7 +101,6 @@ const App = () => {
     let json = await fetchAccountingData(vatNumber);
     setAccountingData2(json as AccountingView);
     setUpdating(false);
-    console.log(referenceNumberData2);
   };
 
   return (
@@ -235,19 +233,44 @@ interface PrintAccountingDataProps2 {
 }
 
 const PrintAccountingData2 = ({ accountingData1, accountingData2 }: PrintAccountingDataProps2) => {
+  var boolEigenVermogen;
+  var boolSchulden;
+  var boolBedrijfswinst;
+  if (Number(accountingData1.eigenVermogen) > Number(accountingData2.eigenVermogen)){
+    boolEigenVermogen = true;
+  }
+  else {
+    boolEigenVermogen = false;
+  }
+  if (Number(accountingData1.schulden) > Number(accountingData2.schulden)){
+    boolSchulden = true;
+  }
+  else {
+    boolSchulden = false;
+  }
+  if (Number(accountingData1.bedrijfswinst) > Number(accountingData2.bedrijfswinst)){
+    boolBedrijfswinst = true;
+  }
+  else {
+    boolBedrijfswinst = false;
+  }
+  console.log(boolEigenVermogen);  
+  console.log(boolSchulden);  
+  console.log(boolBedrijfswinst);
+  
   return (
     <div className={styles.flexboxContainer}>
       <div>
         <p><span>Datum neerlegging</span> {accountingData1.depositDate}</p>
-        <p><span>Eigen Vermogen</span></p><p style={{ color: accountingData1.eigenVermogen >= accountingData2.eigenVermogen ? "green" : "red" }}>{accountingData1.eigenVermogen} EUR</p>
-        <p><span>Schulden</span></p><p style={{ color: accountingData1.schulden >= accountingData2.schulden ? "red" : "green" }}>{accountingData1.schulden} EUR</p>
-        <p><span>Bedrijfswinst</span></p><p style={{ color: accountingData1.bedrijfswinst >= accountingData2.bedrijfswinst ? "green" : "red" }}>{accountingData1.bedrijfswinst} EUR</p>
+        <p><span>Eigen Vermogen</span></p><p style={ boolEigenVermogen ? {color: "green"} : {color:"red"} }>{Math.round(accountingData1.eigenVermogen)} EUR</p>
+        <p><span>Schulden</span></p><p style={ boolSchulden ? {color: "red"} : {color:"green"} }>{Math.round(accountingData1.schulden)} EUR</p>
+        <p><span>Bedrijfswinst</span></p><p style={ boolBedrijfswinst ? {color: "green"} : {color:"red"} }>{Math.round(accountingData1.bedrijfswinst)} EUR</p>
       </div>
       <div>
         <p><span>Datum neerlegging</span> {accountingData2.depositDate}</p>
-        <p><span>Eigen Vermogen</span></p><p style={{ color: accountingData2.eigenVermogen >= accountingData1.eigenVermogen ? "green" : "red" }}>{accountingData2.eigenVermogen} EUR</p>
-        <p><span>Schulden</span></p><p style={{ color: accountingData2.schulden >= accountingData1.schulden ? "red" : "green" }}>{accountingData2.schulden} EUR</p>
-        <p><span>Bedrijfswinst</span></p><p style={{ color: accountingData2.bedrijfswinst >= accountingData1.bedrijfswinst ? "green" : "red" }}>{accountingData2.bedrijfswinst} EUR</p>
+        <p><span>Eigen Vermogen</span></p><p style={ boolEigenVermogen ? {color: "red"} : {color:"green"} }>{Math.round(accountingData2.eigenVermogen)} EUR</p>
+        <p><span>Schulden</span></p><p style={ boolSchulden ? {color: "green"} : {color:"red"} }>{Math.round(accountingData2.schulden)} EUR</p>
+        <p><span>Bedrijfswinst</span></p><p style={ boolBedrijfswinst ? {color: "red"} : {color:"green"} }>{Math.round(accountingData2.bedrijfswinst)} EUR</p>
       </div>
     </div>
   )
