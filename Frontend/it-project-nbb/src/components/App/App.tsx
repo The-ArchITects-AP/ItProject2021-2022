@@ -6,8 +6,6 @@ import InputForm from "../InputForm/InputForm";
 import PrintDetailsCompany from "../PrintDetailsCompany/PrintDetailsCompany";
 import PrintAccountingData from "../PrintAccountingData/PrintAccountingData";
 
-//voorlopig staat alle code in de App.tsx file (later opsplitsen in file per component)
-
 const App = () => {
   const [vatNumber1, setVatNumber1] = useState<string>("");
   const [vatNumber2, setVatNumber2] = useState<string>("");
