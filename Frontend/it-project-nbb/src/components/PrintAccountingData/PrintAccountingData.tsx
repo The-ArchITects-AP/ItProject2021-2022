@@ -35,7 +35,8 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
   return (
     <div>
       <div className={styles.flexboxContainer}>
-        <p><span>Datum neerlegging</span> {accountingData1.depositDate}</p>
+        <p><span>Datum neerlegging</span></p>
+        <p>{accountingData1.depositDate}</p> 
         <p><span>Eigen Vermogen</span></p>
         <p style={boolEigenVermogen ? { color: "green" } : { color: "red" }}>{Number(accountingData1.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
         <p><span>Schulden</span></p>
@@ -44,7 +45,8 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
         <p style={boolBedrijfswinst ? { color: "green" } : { color: "red" }}>{Number(accountingData1.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
       </div>
       <div className={styles.flexboxContainer}>
-        <p><span>Datum neerlegging</span> {accountingData2.depositDate}</p>
+        <p><span>Datum neerlegging</span></p>
+        <p>{accountingData2.depositDate}</p>  
         <p><span>Eigen Vermogen</span></p>
         <p style={boolEigenVermogen ? { color: "red" } : { color: "green" }}>{Number(accountingData2.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
         <p><span>Schulden</span></p>

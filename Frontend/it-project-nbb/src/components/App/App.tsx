@@ -13,7 +13,10 @@ const App = () => {
   const [referenceNumberData2, setReferenceNumberData2] = useState<NameView>();
   const [accountingData1, setAccountingData1] = useState<AccountingView>();
   const [accountingData2, setAccountingData2] = useState<AccountingView>();
-  const [updating, setUpdating] = useState<boolean>(true);
+  const [updating, setUpdating] = useState<boolean>(false);  
+  //loading nog verbeteren
+  const [updating1, setUpdating1] = useState<boolean>(false);  
+  const [updating2, setUpdating2] = useState<boolean>(false);
 
   const handleVatNumber1Change: ChangeEventHandler<HTMLInputElement> = (
     event
@@ -63,18 +66,18 @@ const App = () => {
   }
 
   const getReferenceNumber1 = async (vatNumber: string) => {
-    setUpdating(true);
+    setUpdating1(true);
     let json = await fetchReferenceData(vatNumber);
     setReferenceNumberData1(json as NameView);
-    setUpdating(false);
+    setUpdating1(false);
     console.log(referenceNumberData1);
   };
 
   const getReferenceNumber2 = async (vatNumber: string) => {
-    setUpdating(true);
+    setUpdating2(true);
     let json = await fetchReferenceData(vatNumber);
     setReferenceNumberData2(json as NameView);
-    setUpdating(false);
+    setUpdating2(false);
     console.log(referenceNumberData2);
   };
 
@@ -114,12 +117,12 @@ const App = () => {
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} />
       <div className={styles.flexboxContainer}>
         <div>
-          {!referenceNumberData1 || updating ? (
-            <div></div>
+          {!referenceNumberData1 || updating1 ? (
+            <div className={styles.loading}>{!updating1 ? (<div></div>) : (<div>loading</div>)}</div>
           ) : (
             <PrintDetailsCompany referenceNumberData={referenceNumberData1} />
           )}
-          {!referenceNumberData2 || updating ? (
+          {!referenceNumberData2 || updating2 ? (
             <div></div>
           ) : (
             <PrintDetailsCompany referenceNumberData={referenceNumberData2} />
