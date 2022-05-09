@@ -2,6 +2,9 @@ import React, { ChangeEventHandler, MouseEventHandler, useEffect, useState } fro
 import styles from './App.module.css';
 import Header from "../Header/Header";
 import { AccountingView, NameView } from "../../types";
+import InputForm from "../InputForm/InputForm";
+import PrintDetailsCompany from "../PrintDetailsCompany/PrintDetailsCompany";
+import PrintAccountingData from "../PrintAccountingData/PrintAccountingData";
 
 //voorlopig staat alle code in de App.tsx file (later opsplitsen in file per component)
 
@@ -26,7 +29,7 @@ const App = () => {
     setVatNumber2(event.target.value);
   };
 
-  const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (
+  const handleOnClick: MouseEventHandler<HTMLButtonElement> = (
     event
   ) => {
     getAccountingData1(vatNumber1);
@@ -135,122 +138,5 @@ const App = () => {
     </div>
   );
 };
-
-interface InputFormProps {
-  handleVatNumber1Change: ChangeEventHandler<HTMLInputElement>,
-  handleVatNumber2Change: ChangeEventHandler<HTMLInputElement>,
-  handleOnClick: MouseEventHandler<HTMLButtonElement>
-}
-
-const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick }: InputFormProps) => {
-  return (
-    <div className={styles.inputForm}>
-      <input
-        type="string"
-        id="vatNumber1"
-        name="vatNumber1"
-        placeholder="Ondernemingsnummer 1"
-        onChange={handleVatNumber1Change}
-      />
-      <input
-        type="string"
-        id="vatNumber2"
-        name="vatNumber2"
-        placeholder="Ondernemingsnummer 2"
-        onChange={handleVatNumber2Change}
-      />
-      <button
-        type="submit"
-        onClick={handleOnClick}>
-        Vergelijk
-      </button>
-    </div>
-  );
-}
-
-interface PrintDetailsCompanyProps {
-  referenceNumberData: NameView
-}
-
-const PrintDetailsCompany = ({ referenceNumberData }: PrintDetailsCompanyProps) => {
-  return (
-    <div className={styles.flexboxContainer}>
-      <div className={styles.flexboxItem}>
-        <p className={styles.title}>
-          <strong>Naam</strong>
-        </p>
-        <p>
-          {referenceNumberData.enterpriseName}
-        </p>
-      </div>
-      <div className={styles.flexboxItem}>
-        <p className={styles.address}>
-          <strong>Adres</strong>
-        </p>
-        <p>
-          {referenceNumberData.street}{" "}
-          {referenceNumberData.number}<br />
-          {referenceNumberData.postalCode}{" "}
-          {referenceNumberData.city}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-interface PrintAccountingDataProps {
-  accountingData1: AccountingView,
-  accountingData2: AccountingView
-}
-
-const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccountingDataProps) => {
-  var boolEigenVermogen;
-  var boolSchulden;
-  var boolBedrijfswinst;
-  if (Number(accountingData1.eigenVermogen) > Number(accountingData2.eigenVermogen)) {
-    boolEigenVermogen = true;
-  }
-  else {
-    boolEigenVermogen = false;
-  }
-  if (Number(accountingData1.schulden) > Number(accountingData2.schulden)) {
-    boolSchulden = true;
-  }
-  else {
-    boolSchulden = false;
-  }
-  if (Number(accountingData1.bedrijfswinst) > Number(accountingData2.bedrijfswinst)) {
-    boolBedrijfswinst = true;
-  }
-  else {
-    boolBedrijfswinst = false;
-  }
-  console.log(boolEigenVermogen);
-  console.log(boolSchulden);
-  console.log(boolBedrijfswinst);
-
-  return (
-    <div>
-      <div className={styles.flexboxContainer}>
-        <p><span>Datum neerlegging</span> {accountingData1.depositDate}</p>
-        <p><span>Eigen Vermogen</span></p>
-        <p style={boolEigenVermogen ? { color: "green" } : { color: "red" }}>{Number(accountingData1.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-        <p><span>Schulden</span></p>
-        <p style={boolSchulden ? { color: "red" } : { color: "green" }}>{Number(accountingData1.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-        <p><span>Bedrijfswinst</span></p>
-        <p style={boolBedrijfswinst ? { color: "green" } : { color: "red" }}>{Number(accountingData1.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-      </div>
-      <div className={styles.flexboxContainer}>
-        <p><span>Datum neerlegging</span> {accountingData2.depositDate}</p>
-        <p><span>Eigen Vermogen</span></p>
-        <p style={boolEigenVermogen ? { color: "red" } : { color: "green" }}>{Number(accountingData2.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-        <p><span>Schulden</span></p>
-        <p style={boolSchulden ? { color: "green" } : { color: "red" }}>{Number(accountingData2.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-        <p><span>Bedrijfswinst</span></p>
-        <p style={boolBedrijfswinst ? { color: "red" } : { color: "green" }}>{Number(accountingData2.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-      </div>
-    </div>
-  )
-}
 
 export default App;

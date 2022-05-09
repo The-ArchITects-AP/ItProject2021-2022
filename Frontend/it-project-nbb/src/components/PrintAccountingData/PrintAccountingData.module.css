@@ -1,0 +1,11 @@
+.flexboxContainer {
+    float: left;
+    margin-right: 7rem;
+    margin-top: 1.5rem;
+}
+
+.flexboxItem {
+    display: flex;
+    flex-direction: row;
+    margin-top: -0.5rem;
+}
