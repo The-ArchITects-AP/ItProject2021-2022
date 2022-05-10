@@ -2,7 +2,8 @@
 {
     public class Address
     {
-        public object Box { get; set; }
+        public int Id { get; set; }
+        public string Box { get; set; }
         public string City { get; set; }
         public string CountryCode { get; set; }
         public string Number { get; set; }
