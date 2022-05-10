@@ -1,4 +1,29 @@
-.header {
-    margin-bottom: 3rem;
-    font-weight: bolder;
+.header {  
+    font-size: 12pt;
+    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4rem;
+}
+   
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+  
+li {
+    margin-left: 90rem;
+    margin-top: 0rem;
+}
+  
+li a {
+    color: black;
+    text-align: right;
+    text-decoration: none;
+}
+  
+li a:hover {
+    color: rgb(48, 44, 155);
 }

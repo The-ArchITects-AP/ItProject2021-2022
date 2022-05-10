@@ -1,7 +1,7 @@
 .inputForm > input {
     width: 20rem;
     height: 1.8rem;
-    margin-top: 5rem;
+    margin-top: 4rem;
     margin-right: 3rem;    
     margin-bottom: 1rem;
 }
@@ -15,4 +15,20 @@
     border-radius: 3px;
     font-weight: bold;
     letter-spacing: 0.1rem;
+}
+
+.printCompany {
+    margin-top: 3rem;
+}
+
+.printCompanyDetail {
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: black 1px solid;
+    width: 31rem;
+}
+
+.back {
+    color: black;
+    text-decoration: none;
 }

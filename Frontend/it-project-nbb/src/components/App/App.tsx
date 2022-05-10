@@ -2,9 +2,9 @@ import React, { ChangeEventHandler, MouseEventHandler, useEffect, useState } fro
 import styles from './App.module.css';
 import Header from "../Header/Header";
 import { AccountingView, NameView } from "../../types";
-import InputForm from "../InputForm/InputForm";
-import PrintDetailsCompany from "../PrintDetailsCompany/PrintDetailsCompany";
-import PrintAccountingData from "../PrintAccountingData/PrintAccountingData";
+import HomePage from "../../pages/HomePage/HomePage";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import HistoryPage from "../../pages/HistoryPage/HistoryPage";
 
 const App = () => {
   const [vatNumber1, setVatNumber1] = useState<string>("");
@@ -13,9 +13,9 @@ const App = () => {
   const [referenceNumberData2, setReferenceNumberData2] = useState<NameView>();
   const [accountingData1, setAccountingData1] = useState<AccountingView>();
   const [accountingData2, setAccountingData2] = useState<AccountingView>();
-  const [updating, setUpdating] = useState<boolean>(false);  
+  const [updating, setUpdating] = useState<boolean>(false);
   //loading nog verbeteren
-  const [updating1, setUpdating1] = useState<boolean>(false);  
+  const [updating1, setUpdating1] = useState<boolean>(false);
   const [updating2, setUpdating2] = useState<boolean>(false);
 
   const handleVatNumber1Change: ChangeEventHandler<HTMLInputElement> = (
@@ -112,31 +112,21 @@ const App = () => {
   };
 
   return (
-    <div className={styles.app}>
-      <Header />
-      <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} />
-      <div className={styles.flexboxContainer}>
+    <BrowserRouter>
+      <div className={styles.app}>
+        <Header />
         <div>
-          {!referenceNumberData1 || updating1 ? (
-            <div className={styles.loading}>{!updating1 ? (<div></div>) : (<div>loading</div>)}</div>
-          ) : (
-            <PrintDetailsCompany referenceNumberData={referenceNumberData1} />
-          )}
-          {!referenceNumberData2 || updating2 ? (
-            <div></div>
-          ) : (
-            <PrintDetailsCompany referenceNumberData={referenceNumberData2} />
-          )}
-        </div>
-        <div>
-          {!accountingData1 || !accountingData2 || updating ? (
-            <div></div>
-          ) : (
-            <PrintAccountingData accountingData1={accountingData1} accountingData2={accountingData2} />
-          )}
+          <Switch>
+            <Route path='/history'>
+              <HistoryPage referenceNumberData1={referenceNumberData1} referenceNumberData2={referenceNumberData2} />
+            </Route>
+            <Route path='/' exact>
+              <HomePage handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} referenceNumberData1={referenceNumberData1} referenceNumberData2={referenceNumberData2} accountingData1={accountingData1} accountingData2={accountingData2} updating={updating} updating1={updating1} updating2={updating2} />
+            </Route>
+          </Switch>
         </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
