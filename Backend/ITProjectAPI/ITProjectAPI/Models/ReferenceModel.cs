@@ -4,6 +4,7 @@ namespace ITProjectAPI.Models
 {
     public class ReferenceModel
     {
+        public int Id { get; set; }
         public string ReferenceNumber { get; set; }
         public DateTime DepositDate { get; set; }
         public ExerciseDates ExerciseDates { get; set; }
@@ -17,11 +18,11 @@ namespace ITProjectAPI.Models
         public string LegalForm { get; set; }
         public string LegalSituation { get; set; }
         public bool FullFillLegalValidation { get; set; }
-        public object ActivityCode { get; set; }
+        public string ActivityCode { get; set; }
         public string GeneralAssemblyDate { get; set; }
         public string AccountingDataURL { get; set; }
         public string DataVersion { get; set; }
-        public object ImprovementDate { get; set; }
-        public object CorrectedData { get; set; }
+        public string ImprovementDate { get; set; }
+        public string CorrectedData { get; set; }
     }
 }
