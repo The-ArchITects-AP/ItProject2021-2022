@@ -4,17 +4,12 @@ import styles from './HistoryPage.module.css';
 
 //tijdelijke code voor nabootsen database 
 
-interface HistoryPageProps {
-    referenceNumberData1: NameView | undefined,
-    referenceNumberData2: NameView | undefined
-}
-
-const HistoryPage = ({ referenceNumberData1, referenceNumberData2 }: HistoryPageProps) => {
+const HistoryPage = () => {
     return (
         <div>
             <Link className={styles.back} to="/">back</Link>
             <SearchBar />
-            <GetSearchList referenceNumberData1={referenceNumberData1} referenceNumberData2={referenceNumberData2} />
+            <GetSearchList />
         </div>
     );
 }
@@ -37,28 +32,11 @@ const SearchBar = () => {
 }
 
 interface GetSearchListProps {
-    referenceNumberData1: NameView | undefined,
-    referenceNumberData2: NameView | undefined
 }
 
-const GetSearchList = ({ referenceNumberData1, referenceNumberData2 }: GetSearchListProps) => {
+const GetSearchList = () => {
     return (
-        <div>
-            <div className={styles.flexboxContainer}>
-                <div>
-                    {!referenceNumberData1 ? (
-                        <div></div>
-                    ) : (
-                        <PrintSearchList referenceNumberData={referenceNumberData1} />
-                    )}
-                    {!referenceNumberData2 ? (
-                        <div></div>
-                    ) : (
-                        <PrintSearchList referenceNumberData={referenceNumberData2} />
-                    )}
-                </div>
-            </div>
-        </div>
+       <div></div>
     );
 }
 
