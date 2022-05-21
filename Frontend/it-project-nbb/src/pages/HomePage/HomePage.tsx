@@ -5,9 +5,6 @@ import PrintDetailsCompany from '../../components/PrintDetailsCompany/PrintDetai
 import { AccountingView, NameView } from '../../types';
 import styles from './HomePage.module.css';
 
-interface HomePageProps {
-}
-
 const HomePage = () => {
   const [vatNumber1, setVatNumber1] = useState<string>("");
   const [vatNumber2, setVatNumber2] = useState<string>("");
@@ -24,6 +21,9 @@ const HomePage = () => {
     event
   ) => {
     setVatNumber1(event.target.value);
+    setUpdating(true);
+    setUpdating1(true);
+    setUpdating2(true);
   };
 
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
@@ -112,6 +112,7 @@ const HomePage = () => {
     setAccountingData2(json as AccountingView);
     setUpdating(false);
   };
+
     return (
     <div className={styles.app}>
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} />
