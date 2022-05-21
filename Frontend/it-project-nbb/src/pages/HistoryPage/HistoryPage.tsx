@@ -21,7 +21,7 @@ const SearchBar = () => {
                 type="string"
                 id="search"
                 name="search"
-                placeholder="Zoek"
+                placeholder="Ondernemingsnummer"
             />
             <button
                 type="submit">

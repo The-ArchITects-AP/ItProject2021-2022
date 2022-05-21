@@ -9,3 +9,7 @@
     flex-direction: row;
     margin-top: -0.5rem;
 }
+
+span {
+    font-weight: bold;
+}
