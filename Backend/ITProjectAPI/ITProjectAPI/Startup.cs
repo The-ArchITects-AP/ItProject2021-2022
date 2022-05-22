@@ -21,8 +21,11 @@ namespace ITProjectAPI
         {
             services.AddControllers();
             services.AddSingleton<INbbApi>(new NbbApi());
-            services.AddSingleton<IDBServices>(new DBServices());
+            services.AddScoped<IDBServices, DBServices>();
             services.AddDbContext<NbbDbContext>(options => options.UseSqlServer("Server=tcp:nbb-vergelijker.database.windows.net,1433;Initial Catalog=nbb-vergelijker-db;Persist Security Info=False;User ID=qin-ap;Password=+3g?2fA5;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+
+           
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
