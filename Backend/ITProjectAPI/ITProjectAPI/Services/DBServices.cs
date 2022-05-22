@@ -45,7 +45,7 @@ namespace ITProjectAPI.Services
             var result = _context.ReferenceModels.Include(x => x.Address).FirstOrDefault(x => x.EnterpriseNumber == input);
             if (result is null)
             {
-                result = _context.ReferenceModels.Include(x => x.Address).FirstOrDefault(x => x.EnterpriseName == input);
+                result = _context.ReferenceModels.Include(x => x.Address).FirstOrDefault(x => x.EnterpriseName.Contains(input));
             }
             return result;
         }
