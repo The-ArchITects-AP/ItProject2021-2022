@@ -17,18 +17,26 @@
     letter-spacing: 0.1rem;
 }
 
-.printCompany {
-    margin-top: 3rem;
-}
-
-.printCompanyDetail {
-    margin-top: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: black 1px solid;
-    width: 31rem;
-}
-
 .back {
     color: black;
     text-decoration: none;
+}
+
+.flexboxContainer {
+   border-bottom: solid 1px black;
+   width: 30rem;
+}
+
+.flexboxItem {
+    display: flex;
+    flex-direction: row;
+    margin-top: -0.5rem;
+}
+
+.flexboxItem > p {
+    margin-bottom: 0.5rem;
+}
+
+.title, .address {
+    margin-right: 1rem;
 }

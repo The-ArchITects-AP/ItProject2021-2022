@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { NameView } from '../../types';
+import { FullView } from '../../types';
 import styles from './HistoryPage.module.css';
 
 const HistoryPage = () => {
-    const [latestDbEntries, setLatestDbEntries] = useState<NameView[]>();
+    const [latestDbEntries, setLatestDbEntries] = useState<FullView[]>();
     const [updating, setUpdating] = useState<boolean>(false);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const HistoryPage = () => {
 
     const fetchLatestDbEntries = async () => {
         setUpdating(true);
-        let url = `http://nbb-architects-api.azurewebsites.net/search/all`;
+        let url = `https://nbb-architects-api.azurewebsites.net/search/alldata`;
         console.log(url);
         let response = await fetch(url,
             {
@@ -25,7 +25,7 @@ const HistoryPage = () => {
         let json = await response.json();
         console.log(json);
 
-        setLatestDbEntries(json as NameView[]);
+        setLatestDbEntries(json as FullView[]);
         console.log(latestDbEntries);
         setUpdating(false);
     };
@@ -65,16 +65,34 @@ const SearchBar = () => {
 }
 
 interface GetLatestDbEntriesProps {
-    latestDbEntries: NameView[]
+    latestDbEntries: FullView[]
 }
 
 const GetLatestDbEntries = ({ latestDbEntries }: GetLatestDbEntriesProps) => {
     return (
-        <div>
-            <p>{latestDbEntries[0].enterpriseName}</p>
-            <p>{latestDbEntries[1].enterpriseName}</p>
-            <p>{latestDbEntries[2].enterpriseName}</p>
-            <p>{latestDbEntries[3].enterpriseName}</p>
+        <div>{latestDbEntries.map((companyDetails: FullView) => {
+            return <div className={styles.flexboxContainer} key={companyDetails.enterpriseName}>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.title}>
+                        <strong>Naam</strong>
+                    </p>
+                    <p>
+                        {companyDetails.enterpriseName}
+                    </p>
+                </div>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.address}>
+                        <strong>Adres</strong>
+                    </p>
+                    <p>
+                        {companyDetails.street}{" "}
+                        {companyDetails.number}<br />
+                        {companyDetails.postalCode}{" "}
+                        {companyDetails.city}
+                    </p>
+                </div>
+            </div>
+        })}
         </div>
     );
 }

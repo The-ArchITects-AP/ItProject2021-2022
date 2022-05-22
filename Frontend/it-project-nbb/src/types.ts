@@ -16,3 +16,16 @@ export interface AccountingView {
     schulden: string;
     bedrijfswinst: string
 }
+
+//path [search/alldata]
+export interface FullView {
+    enterpriseName: string;
+    street: string
+    number: string;
+    postalCode: string;
+    city: string
+    depositDate: Date;
+    eigenVermogen: string;
+    schulden: string;
+    bedrijfswinst: string
+}
