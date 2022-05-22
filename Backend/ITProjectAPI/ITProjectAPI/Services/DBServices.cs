@@ -32,9 +32,9 @@ namespace ITProjectAPI.Services
 
         //geeft de accountingdata terug
 
-        public IEnumerable<AccountingModel> GetAccountingData(string refnummer)
+        public AccountingModel GetAccountingData(string refnummer)
         {
-            return _context.AccountingModels.Where(x => x.ReferenceNumber == refnummer).Include(x => x.Rubrics);
+            return _context.AccountingModels.Include(x => x.Rubrics).FirstOrDefault(x => x.ReferenceNumber == refnummer);
         }
 
 

@@ -77,7 +77,7 @@ namespace ITProjectAPI.Controllers
             foreach (var item in dbfetchNames)                                                              //voor elk item in de lijst geef Referencenumber door aan getAccountingdata
 
             {
-                var accountingdata = _dbService.GetAccountingData(item.ReferenceNumber).ToList();           //accountingdata ophalen voor de referencenumbers
+                var accountingdata = _dbService.GetAccountingData(item.ReferenceNumber);                    //accountingdata ophalen voor de referencenumbers
 
 
                 var temp = new FullView()                                                                   // fullview wordt opgevuld door dbfetchNames en door accountingdata
@@ -88,9 +88,9 @@ namespace ITProjectAPI.Controllers
                     PostalCode = item.Address.PostalCode,
                     City = item.Address.City,
                     DepositDate = item.DepositDate.ToString("d"),
-                    EigenVermogen = DataParser.GetEigenVermogen(accountingdata[0]),
-                    Schulden = DataParser.GetSchulden(accountingdata[0]),
-                    Bedrijfswinst = DataParser.GetBedrijfswinst(accountingdata[0]),
+                    EigenVermogen = DataParser.GetEigenVermogen(accountingdata),
+                    Schulden = DataParser.GetSchulden(accountingdata),
+                    Bedrijfswinst = DataParser.GetBedrijfswinst(accountingdata),
 
                 };
 
@@ -117,7 +117,7 @@ namespace ITProjectAPI.Controllers
                 return NotFound("Deze KBO-nummer/bedrijfsnaam staat niet in de database");
             }
 
-            var accountingdata = _dbService.GetAccountingData(dbfetch.ReferenceNumber).ToList();
+            var accountingdata = _dbService.GetAccountingData(dbfetch.ReferenceNumber);
 
             var result = new FullView()
             {
@@ -127,9 +127,9 @@ namespace ITProjectAPI.Controllers
                 PostalCode = dbfetch.Address.PostalCode,
                 City = dbfetch.Address.City,
                 DepositDate = dbfetch.DepositDate.ToString("d"),
-                EigenVermogen = DataParser.GetEigenVermogen(accountingdata[0]),
-                Schulden = DataParser.GetSchulden(accountingdata[0]),
-                Bedrijfswinst = DataParser.GetBedrijfswinst(accountingdata[0]),
+                EigenVermogen = DataParser.GetEigenVermogen(accountingdata),
+                Schulden = DataParser.GetSchulden(accountingdata),
+                Bedrijfswinst = DataParser.GetBedrijfswinst(accountingdata),
             };
 
             return Ok(result);
