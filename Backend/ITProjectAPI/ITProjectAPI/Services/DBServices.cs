@@ -40,12 +40,12 @@ namespace ITProjectAPI.Services
 
         //doet en search op kbonummer, als deze lijst leeg is dan zoekt hij op ondernemingsnaam
 
-        public IEnumerable<ReferenceModel> GetSearch(string input)
+        public ReferenceModel GetSearch(string input)
         {
-            var result = _context.ReferenceModels.Include(x => x.Address).Where(x => x.EnterpriseNumber == input).ToList();
-            if (result.Count == 0 )
+            var result = _context.ReferenceModels.Include(x => x.Address).FirstOrDefault(x => x.EnterpriseNumber == input);
+            if (result is null)
             {
-                result = _context.ReferenceModels.Include(x => x.Address).Where(x => x.EnterpriseName == input).ToList();
+                result = _context.ReferenceModels.Include(x => x.Address).FirstOrDefault(x => x.EnterpriseName == input);
             }
             return result;
         }

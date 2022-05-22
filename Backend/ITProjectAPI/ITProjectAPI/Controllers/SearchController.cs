@@ -110,23 +110,23 @@ namespace ITProjectAPI.Controllers
             HttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS");
             HttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization,Content-lenght,X-Requested-With");
 
-            var dbfetch = _dbService.GetSearch(input).ToList();
+            var dbfetch = _dbService.GetSearch(input);
 
-            if (dbfetch.Count == 0)
+            if (dbfetch is null)
             {
                 return NotFound("Deze KBO-nummer/bedrijfsnaam staat niet in de database");
             }
 
-            var accountingdata = _dbService.GetAccountingData(dbfetch[0].ReferenceNumber).ToList();
+            var accountingdata = _dbService.GetAccountingData(dbfetch.ReferenceNumber).ToList();
 
             var result = new FullView()
             {
-                EnterpriseName = dbfetch[0].EnterpriseName,
-                Street = dbfetch[0].Address.Street,
-                Number = dbfetch[0].Address.Number,
-                PostalCode = dbfetch[0].Address.PostalCode,
-                City = dbfetch[0].Address.City,
-                DepositDate = dbfetch[0].DepositDate.ToString("d"),
+                EnterpriseName = dbfetch.EnterpriseName,
+                Street = dbfetch.Address.Street,
+                Number = dbfetch.Address.Number,
+                PostalCode = dbfetch.Address.PostalCode,
+                City = dbfetch.Address.City,
+                DepositDate = dbfetch.DepositDate.ToString("d"),
                 EigenVermogen = DataParser.GetEigenVermogen(accountingdata[0]),
                 Schulden = DataParser.GetSchulden(accountingdata[0]),
                 Bedrijfswinst = DataParser.GetBedrijfswinst(accountingdata[0]),
