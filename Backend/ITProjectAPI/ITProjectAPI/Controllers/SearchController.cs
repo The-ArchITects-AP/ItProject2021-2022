@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ITProjectAPI.Models;
 using ITProjectAPI.Services;
 using ITProjectAPI.Viewmodels;
@@ -39,7 +40,7 @@ namespace ITProjectAPI.Controllers
             var result = new List<NameView>();                              //list van NAmeView maken
 
 
-            foreach (var item in dbfetch)                                   //voor elk item vanuit de DB een nameView maken en aan de lijst toevoegen
+            foreach (var item in dbfetch)                                   //voor elk item vanuit de DBfetch een nameView maken en aan de lijst toevoegen
             {
                 var temp = new NameView()
                 {
@@ -51,6 +52,52 @@ namespace ITProjectAPI.Controllers
                 };
                 result.Add(temp);
             }
+
+            return Ok(result);
+        }
+
+        [HttpGet("alldata")]
+        public IActionResult GetAllData()
+        {
+            // response-headers nodig voor frontend
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS");
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization,Content-lenght,X-Requested-With");
+
+            List<ReferenceModel> dbfetchNames = _dbService.GetLastNames().ToList();
+
+            if (dbfetchNames == null)
+            {
+                return NotFound("nog geen searches gedaan");
+            }
+         
+
+            var result = new List<FullView>();
+
+            foreach (var item in dbfetchNames)
+
+            {
+               var accountingdata = _dbService.GetAccountingData(item.ReferenceNumber).ToList();
+
+
+                var temp = new FullView()
+                {
+                    EnterpriseName = item.EnterpriseName,
+                    Street = item.Address.Street,
+                    Number = item.Address.Number,
+                    PostalCode = item.Address.PostalCode,
+                    City = item.Address.City,
+                    DepositDate = item.DepositDate.ToString("d"),
+                    EigenVermogen = DataParser.GetEigenVermogen(accountingdata[0]),
+                    Schulden = DataParser.GetSchulden(accountingdata[0]),
+                    Bedrijfswinst = DataParser.GetBedrijfswinst (accountingdata[0]),
+
+                };
+
+                result.Add(temp);
+            }
+
+
 
             return Ok(result);
         }

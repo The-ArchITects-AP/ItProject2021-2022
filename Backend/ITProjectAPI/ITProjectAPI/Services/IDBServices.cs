@@ -10,6 +10,7 @@ namespace ITProjectAPI.Services
         IEnumerable<ReferenceModel> GetLastNames();
         void Add(ReferenceModel newReferenceModel);
         void Addaccounting(AccountingModel newAccountingModel);
+        IEnumerable<AccountingModel> GetAccountingData(string refnummer);
     }
 }
 

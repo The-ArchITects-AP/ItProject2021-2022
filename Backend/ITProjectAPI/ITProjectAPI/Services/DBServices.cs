@@ -28,6 +28,13 @@ namespace ITProjectAPI.Services
             return _context.ReferenceModels.Include(x => x.Address).OrderByDescending(x => x.Id).Take(4);
         }
 
+
+        public IEnumerable<AccountingModel> GetAccountingData(string refnummer)
+        {
+            return _context.AccountingModels.Where(x => x.ReferenceNumber == refnummer).Include(x => x.Rubrics);
+        }
+
+
         //voegt een referencemodel toe
         public void Add (ReferenceModel newReferenceModel)
         {
@@ -43,6 +50,6 @@ namespace ITProjectAPI.Services
             _context.SaveChanges();
         }
 
-
+       
     }
 }
