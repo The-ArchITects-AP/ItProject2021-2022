@@ -70,17 +70,17 @@ namespace ITProjectAPI.Controllers
             {
                 return NotFound("nog geen searches gedaan");
             }
-         
+
 
             var result = new List<FullView>();
 
-            foreach (var item in dbfetchNames)
+            foreach (var item in dbfetchNames)                                                              //voor elk item in de lijst geef Referencenumber door aan getAccountingdata
 
             {
-               var accountingdata = _dbService.GetAccountingData(item.ReferenceNumber).ToList();
+                var accountingdata = _dbService.GetAccountingData(item.ReferenceNumber).ToList();           //accountingdata ophalen voor de referencenumbers
 
 
-                var temp = new FullView()
+                var temp = new FullView()                                                                   // fullview wordt opgevuld door dbfetchNames en door accountingdata
                 {
                     EnterpriseName = item.EnterpriseName,
                     Street = item.Address.Street,
@@ -90,7 +90,7 @@ namespace ITProjectAPI.Controllers
                     DepositDate = item.DepositDate.ToString("d"),
                     EigenVermogen = DataParser.GetEigenVermogen(accountingdata[0]),
                     Schulden = DataParser.GetSchulden(accountingdata[0]),
-                    Bedrijfswinst = DataParser.GetBedrijfswinst (accountingdata[0]),
+                    Bedrijfswinst = DataParser.GetBedrijfswinst(accountingdata[0]),
 
                 };
 
@@ -100,5 +100,40 @@ namespace ITProjectAPI.Controllers
             return Ok(result);
         }
 
+
+        [HttpGet("searchquery/{input}")]
+
+        public IActionResult GetSearch(string input)
+        {
+            // response-headers nodig voor frontend
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS");
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization,Content-lenght,X-Requested-With");
+
+            var dbfetch = _dbService.GetSearch(input).ToList();
+
+            if (dbfetch.Count == 0)
+            {
+                return NotFound("Deze KBO-nummer/bedrijfsnaam staat niet in de database");
+            }
+
+            var accountingdata = _dbService.GetAccountingData(dbfetch[0].ReferenceNumber).ToList();
+
+            var result = new FullView()
+            {
+                EnterpriseName = dbfetch[0].EnterpriseName,
+                Street = dbfetch[0].Address.Street,
+                Number = dbfetch[0].Address.Number,
+                PostalCode = dbfetch[0].Address.PostalCode,
+                City = dbfetch[0].Address.City,
+                DepositDate = dbfetch[0].DepositDate.ToString("d"),
+                EigenVermogen = DataParser.GetEigenVermogen(accountingdata[0]),
+                Schulden = DataParser.GetSchulden(accountingdata[0]),
+                Bedrijfswinst = DataParser.GetBedrijfswinst(accountingdata[0]),
+            };
+
+            return Ok(result);
+
+        }
     }
 }

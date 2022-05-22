@@ -29,10 +29,27 @@ namespace ITProjectAPI.Services
         }
 
 
+
+        //geeft de accountingdata terug
+
         public IEnumerable<AccountingModel> GetAccountingData(string refnummer)
         {
             return _context.AccountingModels.Where(x => x.ReferenceNumber == refnummer).Include(x => x.Rubrics);
         }
+
+
+        //doet en search op kbonummer, als deze lijst leeg is dan zoekt hij op ondernemingsnaam
+
+        public IEnumerable<ReferenceModel> GetSearch(string input)
+        {
+            var result = _context.ReferenceModels.Include(x => x.Address).Where(x => x.EnterpriseNumber == input).ToList();
+            if (result.Count == 0 )
+            {
+                result = _context.ReferenceModels.Include(x => x.Address).Where(x => x.EnterpriseName == input).ToList();
+            }
+            return result;
+        }
+
 
 
         //voegt een referencemodel toe
@@ -49,6 +66,8 @@ namespace ITProjectAPI.Services
             _context.AccountingModels.Add(newAccountingModel);
             _context.SaveChanges();
         }
+
+
 
        
     }

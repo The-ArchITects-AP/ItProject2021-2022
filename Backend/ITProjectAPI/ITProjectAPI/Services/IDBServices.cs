@@ -11,6 +11,7 @@ namespace ITProjectAPI.Services
         void Add(ReferenceModel newReferenceModel);
         void Addaccounting(AccountingModel newAccountingModel);
         IEnumerable<AccountingModel> GetAccountingData(string refnummer);
+        IEnumerable<ReferenceModel> GetSearch(string input);
     }
 }
 
