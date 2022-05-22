@@ -36,10 +36,10 @@ namespace ITProjectAPI.Controllers
                 return NotFound("nog geen searches gedaan");
             }
 
-            var result = new List<NameView>();
-            
+            var result = new List<NameView>();                              //list van NAmeView maken
 
-            foreach (var item in dbfetch)
+
+            foreach (var item in dbfetch)                                   //voor elk item vanuit de DB een nameView maken en aan de lijst toevoegen
             {
                 var temp = new NameView()
                 {
