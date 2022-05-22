@@ -1,15 +1,51 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NameView } from '../../types';
 import styles from './HistoryPage.module.css';
 
-//tijdelijke code voor nabootsen database 
-
 const HistoryPage = () => {
+    const [latestDbEntries, setLatestDbEntries] = useState<NameView[]>();
+    const [updating, setUpdating] = useState<boolean>(false);
+
+    useEffect(() => {
+        getDbData();
+    }, [])
+
+    const fetchLatestDbEntries = async () => {
+        let url = `http://nbb-architects-api.azurewebsites.net/search/all`;
+        console.log(url);
+        let response = await fetch(url,
+            {
+                method: "GET",
+            }
+        );
+        console.log(response);
+
+        let json = await response.json();
+        console.log(json);
+        return json;
+    }
+
+    const getDbData = async () => {
+        setUpdating(true);
+        let json = await fetchLatestDbEntries();
+        setLatestDbEntries(json as NameView[]);
+        setUpdating(false);
+    };
+
     return (
         <div>
             <Link className={styles.back} to="/">back</Link>
             <SearchBar />
-            <GetSearchList />
+            <div className={styles.flexboxContainer}>
+                <div>
+                    {!latestDbEntries ? (
+                        <div></div>
+                    ) : (
+                        <GetLatestDbEntries latestDbEntries={latestDbEntries} />
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
@@ -31,29 +67,17 @@ const SearchBar = () => {
     );
 }
 
-interface GetSearchListProps {
+interface GetLatestDbEntriesProps {
+    latestDbEntries: NameView[]
 }
 
-const GetSearchList = () => {
+const GetLatestDbEntries = ({ latestDbEntries }: GetLatestDbEntriesProps) => {
     return (
-       <div></div>
-    );
-}
-
-interface PrintSearchListProps {
-    referenceNumberData: NameView | undefined
-}
-
-const PrintSearchList = ({ referenceNumberData }: PrintSearchListProps) => {
-    return (
-        <div className={styles.printCompany}>
-            <p className={styles.printCompanyDetail}>
-                <strong>{referenceNumberData?.enterpriseName}</strong><br />
-                {referenceNumberData?.street}{" "}
-                {referenceNumberData?.number}<br />
-                {referenceNumberData?.postalCode}{" "}
-                {referenceNumberData?.city}
-            </p>
+        <div>
+            <p>{latestDbEntries[0].enterpriseName}</p>
+            <p>{latestDbEntries[1].enterpriseName}</p>
+            <p>{latestDbEntries[2].enterpriseName}</p>
+            <p>{latestDbEntries[3].enterpriseName}</p>
         </div>
     );
 }
