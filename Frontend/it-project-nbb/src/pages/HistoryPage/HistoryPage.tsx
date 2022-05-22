@@ -1,11 +1,25 @@
-import { useEffect, useState } from 'react';
+import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FullView } from '../../types';
 import styles from './HistoryPage.module.css';
 
 const HistoryPage = () => {
+    const [searchVariable, setSearchVariable] = useState<string>("");
+    const [searchResult, setSearchResult] = useState<FullView>();
     const [latestDbEntries, setLatestDbEntries] = useState<FullView[]>();
     const [updating, setUpdating] = useState<boolean>(false);
+
+    const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (
+        event
+      ) => {
+        setSearchVariable(event.target.value);
+      };
+
+    const handleOnClick: MouseEventHandler<HTMLButtonElement> = (
+        event
+    ) => {
+        doSearch(searchVariable);
+    };
 
     useEffect(() => {
         fetchLatestDbEntries();
@@ -30,10 +44,29 @@ const HistoryPage = () => {
         setUpdating(false);
     };
 
+    const doSearch = async (searchVariable: string) => {
+        setUpdating(true);
+        let url = `https://nbb-architects-api.azurewebsites.net/search/searchquery/${searchVariable}`;
+        console.log(url);
+        let response = await fetch(url,
+            {
+                method: "GET",
+            }
+        );
+        console.log(response);
+
+        let json = await response.json();
+        console.log(json);
+
+        setSearchResult(json as FullView);
+        console.log(latestDbEntries);
+        setUpdating(false);
+    };
+
     return (
         <div>
             <Link className={styles.back} to="/">back</Link>
-            <SearchBar />
+            <SearchBar searchVariable={searchVariable} handleSearchChange={handleSearchChange} handleOnClick={handleOnClick} />
             <div className={styles.flexboxContainer}>
                 <div>
                     {!latestDbEntries ? (
@@ -47,17 +80,28 @@ const HistoryPage = () => {
     );
 }
 
-const SearchBar = () => {
+interface SearchBarProps {
+    searchVariable: string,
+    handleSearchChange: ChangeEventHandler<HTMLInputElement>,
+    handleOnClick: MouseEventHandler<HTMLButtonElement>
+}
+
+const SearchBar = ({ searchVariable, handleSearchChange, handleOnClick }: SearchBarProps) => {
     return (
         <div className={styles.inputForm}>
             <input
                 type="string"
                 id="search"
                 name="search"
-                placeholder="Ondernemingsnummer"
+                value={searchVariable}
+                placeholder="Ondernemingsnummer of bedrijfsnaam"
+                title="Gelieve een ondernemingsnummer in te voeren of een bedrijfsnaam"
+                onChange={handleSearchChange}
+                required
             />
             <button
-                type="submit">
+                type="submit"
+                onClick={handleOnClick}>
                 Zoek
             </button>
         </div>
