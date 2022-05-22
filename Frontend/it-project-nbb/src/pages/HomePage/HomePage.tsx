@@ -13,8 +13,9 @@ const HomePage = () => {
   const [referenceNumberData2, setReferenceNumberData2] = useState<NameView>();
   const [accountingData1, setAccountingData1] = useState<AccountingView>();
   const [accountingData2, setAccountingData2] = useState<AccountingView>();
-  const [statusNotFound, setStatusNotFound] = useState<string>("");
-  const [loadingMessage, setLoadMessage] = useState<string>("loading...");
+  const [statusNotFound, setStatusNotFound] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [loadingMessage, setLoadingMessage] = useState<string>("loading...");
   const [updating, setUpdating] = useState<boolean>(false);
   const [updating1, setUpdating1] = useState<boolean>(false);
   const [updating2, setUpdating2] = useState<boolean>(false);
@@ -26,16 +27,24 @@ const HomePage = () => {
     setReferenceNumberData2(undefined);
     setAccountingData1(undefined);
     setAccountingData2(undefined);
-    setStatusNotFound("");
+    setStatusNotFound(false);
+    setErrorMessage("");
     setVatNumber2("");
     setVatNumber1(event.target.value);
+    if (vatNumber1 && !vatNumber1.match(/^[0-9]+$/)) {
+      setErrorMessage("Gelieve enkel getallen in te voeren.")
+    }
   };
 
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
-    setStatusNotFound("");
+    setStatusNotFound(false); 
+    setErrorMessage("");
     setVatNumber2(event.target.value);
+    if (vatNumber2 && !vatNumber2.match(/^[0-9]+$/)) {
+      setErrorMessage("Gelieve enkel getallen in te voeren.")
+    }
   };
 
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (
@@ -47,13 +56,23 @@ const HomePage = () => {
 
   useEffect(() => {
     if (vatNumber1.length === 10) {
-      getReferenceNumber1(vatNumber1)
+      if (vatNumber1.match(/^[0-9]+$/)) {
+        getReferenceNumber1(vatNumber1)
+      }
+      else {
+        setErrorMessage("Gelieve enkel getallen in te voeren.")
+      }
     }
   }, [vatNumber1])
 
   useEffect(() => {
     if (vatNumber2.length === 10) {
-      getReferenceNumber2(vatNumber2);
+      if (vatNumber2.match(/^[0-9]+$/)) {
+        getReferenceNumber2(vatNumber2);
+      }
+      else {
+        setErrorMessage("Gelieve enkel getallen in te voeren.")
+      }
     }
   }, [vatNumber2])
 
@@ -70,8 +89,9 @@ const HomePage = () => {
     console.log(response.status);
 
     if (response.status === 404) {
-      setStatusNotFound("Het ingevoerde ondernemingsnummer is niet geldig");
-      setLoadMessage("");
+      setStatusNotFound(true);
+      setErrorMessage("Het ingevoerde ondernemingsnummer is niet geldig");
+      setLoadingMessage("");
     }
 
     let json = await response.json();
@@ -131,7 +151,14 @@ const HomePage = () => {
           {!statusNotFound ? (
             <div></div>
           ) : (
-            <PrintErrorMessage statusNotFound={statusNotFound} />
+            <PrintErrorMessage errorMessage={errorMessage} />
+          )}
+        </div>
+        <div>
+          {errorMessage && !statusNotFound ? (
+            <PrintErrorMessage errorMessage={errorMessage} />
+          ) : (
+            <div></div>
           )}
         </div>
         <div>

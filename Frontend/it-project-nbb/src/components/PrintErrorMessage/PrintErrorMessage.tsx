@@ -1,13 +1,13 @@
 import styles from './PrintErrorMessage.module.css';
 
 interface PrintErrorMessageProps {
-    statusNotFound: string
+    errorMessage: string
 }
 
-const PrintErrorMessage = ({ statusNotFound }: PrintErrorMessageProps) => {
+const PrintErrorMessage = ({ errorMessage }: PrintErrorMessageProps) => {
     return (
         <div>
-            <p>{statusNotFound}</p>
+            <p>{errorMessage}</p>
         </div>
     );
 }

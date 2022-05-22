@@ -19,7 +19,6 @@ const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCli
           value={vatNumber1}
           placeholder="Ondernemingsnummer 1"
           title="Gelieve een 10-cijferig ondernemingsnummer in te voeren."
-          pattern="[0-9]{10}"
           onChange={handleVatNumber1Change}
           required
         />
@@ -29,8 +28,7 @@ const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCli
           name="vatNumber2"
           value={vatNumber2}
           placeholder="Ondernemingsnummer 2"   
-          title="Gelieve een 10-cijferig ondernemingsnummer in te voeren."       
-          pattern="[0-9]{10}"
+          title="Gelieve een 10-cijferig ondernemingsnummer in te voeren."    
           onChange={handleVatNumber2Change}
           required
         />
