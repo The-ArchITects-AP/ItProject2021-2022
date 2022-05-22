@@ -32,18 +32,18 @@ const HomePage = () => {
     setVatNumber2("");
     setVatNumber1(event.target.value);
     if (vatNumber1 && !vatNumber1.match(/^[0-9]+$/)) {
-      setErrorMessage("Gelieve enkel getallen in te voeren.")
+      setErrorMessage("Gelieve enkel getallen in te voeren.");
     }
   };
 
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
-    setStatusNotFound(false); 
+    setStatusNotFound(false);
     setErrorMessage("");
     setVatNumber2(event.target.value);
     if (vatNumber2 && !vatNumber2.match(/^[0-9]+$/)) {
-      setErrorMessage("Gelieve enkel getallen in te voeren.")
+      setErrorMessage("Gelieve enkel getallen in te voeren.");
     }
   };
 
@@ -56,23 +56,13 @@ const HomePage = () => {
 
   useEffect(() => {
     if (vatNumber1.length === 10) {
-      if (vatNumber1.match(/^[0-9]+$/)) {
-        getReferenceNumber1(vatNumber1)
-      }
-      else {
-        setErrorMessage("Gelieve enkel getallen in te voeren.")
-      }
+      getReferenceNumber1(vatNumber1);
     }
   }, [vatNumber1])
 
   useEffect(() => {
     if (vatNumber2.length === 10) {
-      if (vatNumber2.match(/^[0-9]+$/)) {
-        getReferenceNumber2(vatNumber2);
-      }
-      else {
-        setErrorMessage("Gelieve enkel getallen in te voeren.")
-      }
+      getReferenceNumber2(vatNumber2);
     }
   }, [vatNumber2])
 
@@ -88,6 +78,7 @@ const HomePage = () => {
     console.log(response);
     console.log(response.status);
 
+    //if (response.status === 404 && !errorMessage) {
     if (response.status === 404) {
       setStatusNotFound(true);
       setErrorMessage("Het ingevoerde ondernemingsnummer is niet geldig");
@@ -148,14 +139,7 @@ const HomePage = () => {
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       <div className={styles.flexboxContainer}>
         <div>
-          {!statusNotFound ? (
-            <div></div>
-          ) : (
-            <PrintErrorMessage errorMessage={errorMessage} />
-          )}
-        </div>
-        <div>
-          {errorMessage && !statusNotFound ? (
+          {statusNotFound || (errorMessage && !statusNotFound) ? (
             <PrintErrorMessage errorMessage={errorMessage} />
           ) : (
             <div></div>
