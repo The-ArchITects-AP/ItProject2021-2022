@@ -75,6 +75,13 @@ const HistoryPage = () => {
                         <GetLatestDbEntries latestDbEntries={latestDbEntries} />
                     )}
                 </div>
+                <div>
+                    {!searchResult ? (
+                        <div></div>
+                    ) : (
+                        <PrintSearchData searchResult={searchResult} />
+                    )}
+                </div>
             </div>
         </div>
     );
@@ -138,6 +145,69 @@ const GetLatestDbEntries = ({ latestDbEntries }: GetLatestDbEntriesProps) => {
             </div>
         })}
         </div>
+    );
+}
+
+interface PrintSearchDataProps {
+    searchResult: FullView
+}
+
+//component nog aanpassen: voorlopig om te testen
+const PrintSearchData = ({ searchResult }: PrintSearchDataProps) => {
+    return (
+        <div className={styles.flexboxContainer}>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.title}>
+                        <strong>Naam</strong>
+                    </p>
+                    <p>
+                        {searchResult.enterpriseName}
+                    </p>
+                </div>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.address}>
+                        <strong>Adres</strong>
+                    </p>
+                    <p>
+                        {searchResult.street}{" "}
+                        {searchResult.number}<br />
+                        {searchResult.postalCode}{" "}
+                        {searchResult.city}
+                    </p>
+                </div>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.title}>
+                        <strong>Datum neerlegging</strong>
+                    </p>
+                    <p>
+                        {searchResult.depositDate}
+                    </p>
+                </div>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.title}>
+                        <strong>Eigen Vermogen</strong>
+                    </p>
+                    <p>
+                        {searchResult.eigenVermogen}
+                    </p>
+                </div>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.title}>
+                        <strong>Schulden</strong>
+                    </p>
+                    <p>
+                        {searchResult.schulden}
+                    </p>
+                </div>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.title}>
+                        <strong>Bedrijfswinst</strong>
+                    </p>
+                    <p>
+                        {searchResult.bedrijfswinst}
+                    </p>
+                </div>
+            </div>
     );
 }
 
