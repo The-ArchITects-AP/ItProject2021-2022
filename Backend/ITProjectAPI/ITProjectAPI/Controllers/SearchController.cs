@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ITProjectAPI.Models;
 using ITProjectAPI.Services;
 using ITProjectAPI.Viewmodels;
@@ -35,7 +36,23 @@ namespace ITProjectAPI.Controllers
                 return NotFound("nog geen searches gedaan");
             }
 
-            return Ok(dbfetch);
+            var result = new List<NameView>();
+            
+
+            foreach (var item in dbfetch)
+            {
+                var temp = new NameView()
+                {
+                    EnterpriseName = item.EnterpriseName,
+                    Street = item.Address.Street,
+                    Number = item.Address.Number,
+                    PostalCode = item.Address.PostalCode,
+                    City = item.Address.City
+                };
+                result.Add(temp);
+            }
+
+            return Ok(result);
         }
 
     }

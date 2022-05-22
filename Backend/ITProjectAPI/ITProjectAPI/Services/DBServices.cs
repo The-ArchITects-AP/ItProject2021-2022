@@ -25,7 +25,7 @@ namespace ITProjectAPI.Services
 
         public IEnumerable<ReferenceModel> GetLastNames()
         {
-            return _context.ReferenceModels;
+            return _context.ReferenceModels.Include(x => x.Address);
         }
 
         //voegt een referencemodel toe
