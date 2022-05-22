@@ -8,10 +8,11 @@ const HistoryPage = () => {
     const [updating, setUpdating] = useState<boolean>(false);
 
     useEffect(() => {
-        getDbData();
+        fetchLatestDbEntries();
     }, [])
 
     const fetchLatestDbEntries = async () => {
+        setUpdating(true);
         let url = `http://nbb-architects-api.azurewebsites.net/search/all`;
         console.log(url);
         let response = await fetch(url,
@@ -23,13 +24,9 @@ const HistoryPage = () => {
 
         let json = await response.json();
         console.log(json);
-        return json;
-    }
 
-    const getDbData = async () => {
-        setUpdating(true);
-        let json = await fetchLatestDbEntries();
         setLatestDbEntries(json as NameView[]);
+        console.log(latestDbEntries);
         setUpdating(false);
     };
 
