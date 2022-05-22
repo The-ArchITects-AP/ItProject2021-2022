@@ -1,17 +1,7 @@
-﻿using ITProjectAPI.Models;
-using ITProjectAPI.Viewmodels;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 namespace ITProjectAPI.Services
-
 {
     public interface IDBServices
     {
-       List<NameView> GetLastNames();
-        
     }
 }
-
-
-
-
