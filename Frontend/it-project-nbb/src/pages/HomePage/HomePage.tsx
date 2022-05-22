@@ -1,8 +1,9 @@
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
+import { AccountingView, NameView } from '../../types';
 import InputForm from '../../components/InputForm/InputForm';
 import PrintAccountingData from '../../components/PrintAccountingData/PrintAccountingData';
 import PrintDetailsCompany from '../../components/PrintDetailsCompany/PrintDetailsCompany';
-import { AccountingView, NameView } from '../../types';
+import PrintErrorMessage from '../../components/PrintErrorMessage/PrintErrorMessage';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
@@ -12,17 +13,20 @@ const HomePage = () => {
   const [referenceNumberData2, setReferenceNumberData2] = useState<NameView>();
   const [accountingData1, setAccountingData1] = useState<AccountingView>();
   const [accountingData2, setAccountingData2] = useState<AccountingView>();
+  const [statusNotFound, setStatusNotFound] = useState<string>("");
+  const [loadingMessage, setLoadMessage] = useState<string>("loading...");
   const [updating, setUpdating] = useState<boolean>(false);
   const [updating1, setUpdating1] = useState<boolean>(false);
   const [updating2, setUpdating2] = useState<boolean>(false);
 
   const handleVatNumber1Change: ChangeEventHandler<HTMLInputElement> = (
     event
-  ) => {    
+  ) => {
     setReferenceNumberData1(undefined);
     setReferenceNumberData2(undefined);
-    setAccountingData1(undefined);    
+    setAccountingData1(undefined);
     setAccountingData2(undefined);
+    setStatusNotFound("");
     setVatNumber2("");
     setVatNumber1(event.target.value);
   };
@@ -30,6 +34,7 @@ const HomePage = () => {
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
+    setStatusNotFound("");
     setVatNumber2(event.target.value);
   };
 
@@ -62,8 +67,14 @@ const HomePage = () => {
       }
     );
     console.log(response);
-    let json = await response.json();
+    console.log(response.status);
 
+    if (response.status === 404) {
+      setStatusNotFound("Het ingevoerde ondernemingsnummer is niet geldig");
+      setLoadMessage("");
+    }
+
+    let json = await response.json();
     console.log(json);
     return json;
   }
@@ -73,7 +84,6 @@ const HomePage = () => {
     let json = await fetchReferenceData(vatNumber);
     setReferenceNumberData1(json as NameView);
     setUpdating1(false);
-    console.log(referenceNumberData1);
   };
 
   const getReferenceNumber2 = async (vatNumber: string) => {
@@ -81,7 +91,6 @@ const HomePage = () => {
     let json = await fetchReferenceData(vatNumber);
     setReferenceNumberData2(json as NameView);
     setUpdating2(false);
-    console.log(referenceNumberData2);
   };
 
   //methode haalt accounting data op bij API 
@@ -114,13 +123,20 @@ const HomePage = () => {
     setUpdating(false);
   };
 
-    return (
+  return (
     <div className={styles.app}>
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       <div className={styles.flexboxContainer}>
         <div>
+          {!statusNotFound ? (
+            <div></div>
+          ) : (
+            <PrintErrorMessage statusNotFound={statusNotFound} />
+          )}
+        </div>
+        <div>
           {!referenceNumberData1 || updating1 ? (
-            <div className={styles.loading}>{updating1 ? (<div>loading...</div>) : (<div></div>) }</div>
+            <div className={styles.loading}>{updating1 ? (<div>{loadingMessage}</div>) : (<div></div>)}</div>
           ) : (
             <PrintDetailsCompany referenceNumberData={referenceNumberData1} />
           )}
