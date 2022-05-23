@@ -1,3 +1,16 @@
+.flexboxContainerRender {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchResultContainer {
+    background-color: rgb(241, 236, 236);
+    border-radius: 5px;
+    margin-top: 4rem;
+    margin-left: 9rem;
+    padding: 3rem 4rem 6rem 4rem;
+}
+
 .inputForm > input {
     width: 20rem;
     height: 1.8rem;
@@ -23,11 +36,14 @@
 }
 
 .flexboxContainer {
-   border-bottom: solid 1px black;
    width: 30rem;
 }
 
-.flexboxItem {
+.flexboxContainer:first-child {
+    margin-top: 3rem;
+  }
+
+.flexboxItem, .flexboxItem2 {
     display: flex;
     flex-direction: row;
     margin-top: -0.5rem;
@@ -35,6 +51,15 @@
 
 .flexboxItem > p {
     margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.flexboxItem2 > p {
+    margin-bottom: 1rem;
+}
+
+.flexboxItem2 {
+    border-bottom: solid 1px black;
 }
 
 .title, .address {

@@ -11,9 +11,9 @@ const HistoryPage = () => {
 
     const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (
         event
-      ) => {
+    ) => {
         setSearchVariable(event.target.value);
-      };
+    };
 
     const handleOnClick: MouseEventHandler<HTMLButtonElement> = (
         event
@@ -67,10 +67,10 @@ const HistoryPage = () => {
         <div>
             <Link className={styles.back} to="/">back</Link>
             <SearchBar searchVariable={searchVariable} handleSearchChange={handleSearchChange} handleOnClick={handleOnClick} />
-            <div className={styles.flexboxContainer}>
+            <div className={styles.flexboxContainerRender}>
                 <div>
                     {!latestDbEntries ? (
-                        <div></div>
+                        <div>loading...</div>
                     ) : (
                         <GetLatestDbEntries latestDbEntries={latestDbEntries} />
                     )}
@@ -131,7 +131,7 @@ const GetLatestDbEntries = ({ latestDbEntries }: GetLatestDbEntriesProps) => {
                         {companyDetails.enterpriseName}
                     </p>
                 </div>
-                <div className={styles.flexboxItem}>
+                <div className={styles.flexboxItem2}>
                     <p className={styles.address}>
                         <strong>Adres</strong>
                     </p>
@@ -152,62 +152,62 @@ interface PrintSearchDataProps {
     searchResult: FullView
 }
 
-//component nog aanpassen: voorlopig om te testen
+//component nog herschrijven: voorlopig om te testen
 const PrintSearchData = ({ searchResult }: PrintSearchDataProps) => {
     return (
-        <div className={styles.flexboxContainer}>
-                <div className={styles.flexboxItem}>
-                    <p className={styles.title}>
-                        <strong>Naam</strong>
-                    </p>
-                    <p>
-                        {searchResult.enterpriseName}
-                    </p>
-                </div>
-                <div className={styles.flexboxItem}>
-                    <p className={styles.address}>
-                        <strong>Adres</strong>
-                    </p>
-                    <p>
-                        {searchResult.street}{" "}
-                        {searchResult.number}<br />
-                        {searchResult.postalCode}{" "}
-                        {searchResult.city}
-                    </p>
-                </div>
-                <div className={styles.flexboxItem}>
-                    <p className={styles.title}>
-                        <strong>Datum neerlegging</strong>
-                    </p>
-                    <p>
-                        {searchResult.depositDate}
-                    </p>
-                </div>
-                <div className={styles.flexboxItem}>
-                    <p className={styles.title}>
-                        <strong>Eigen Vermogen</strong>
-                    </p>
-                    <p>
-                        {searchResult.eigenVermogen}
-                    </p>
-                </div>
-                <div className={styles.flexboxItem}>
-                    <p className={styles.title}>
-                        <strong>Schulden</strong>
-                    </p>
-                    <p>
-                        {searchResult.schulden}
-                    </p>
-                </div>
-                <div className={styles.flexboxItem}>
-                    <p className={styles.title}>
-                        <strong>Bedrijfswinst</strong>
-                    </p>
-                    <p>
-                        {searchResult.bedrijfswinst}
-                    </p>
-                </div>
+        <div className={styles.searchResultContainer}>
+            <div className={styles.flexboxItem}>
+                <p className={styles.title}>
+                    <strong>Naam</strong>
+                </p>
+                <p>
+                    {searchResult.enterpriseName}
+                </p>
             </div>
+            <div className={styles.flexboxItem}>
+                <p className={styles.address}>
+                    <strong>Adres</strong>
+                </p>
+                <p>
+                    {searchResult.street}{" "}
+                    {searchResult.number}<br />
+                    {searchResult.postalCode}{" "}
+                    {searchResult.city}
+                </p>
+            </div>
+            <div className={styles.flexboxItem}>
+                <p className={styles.title}>
+                    <strong>Datum neerlegging</strong>
+                </p>
+                <p>
+                    {searchResult.depositDate}
+                </p>
+            </div>
+            <div className={styles.flexboxItem}>
+                <p className={styles.title}>
+                    <strong>Eigen Vermogen</strong>
+                </p>
+                <p>
+                    {Number(searchResult.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR
+                </p>
+            </div>
+            <div className={styles.flexboxItem}>
+                <p className={styles.title}>
+                    <strong>Schulden</strong>
+                </p>
+                <p>
+                    {Number(searchResult.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR
+                </p>
+            </div>
+            <div className={styles.flexboxItem}>
+                <p className={styles.title}>
+                    <strong>Bedrijfswinst</strong>
+                </p>
+                <p>
+                    {Number(searchResult.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR
+                </p>
+            </div>
+        </div>
     );
 }
 
