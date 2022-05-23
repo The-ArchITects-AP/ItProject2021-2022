@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Viewmodels\" />
+    <Folder Include="wwwroot" />
   </ItemGroup>
 
   <ItemGroup>

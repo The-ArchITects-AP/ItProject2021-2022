@@ -36,6 +36,8 @@ namespace ITProjectAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseFileServer();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
