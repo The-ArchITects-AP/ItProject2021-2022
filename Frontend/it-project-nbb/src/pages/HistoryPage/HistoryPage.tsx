@@ -75,7 +75,7 @@ const HistoryPage = () => {
 
     return (
         <div>
-            <Link className={styles.back} to="/">back</Link>
+            <Link className={styles.back} to="/">Back</Link>
             <SearchBar searchVariable={searchVariable} handleSearchChange={handleSearchChange} handleOnClick={handleOnClick} />
             <div className={styles.flexboxContainerRender}>
                 <div>
@@ -201,7 +201,6 @@ interface PrintSearchDataProps {
 const PrintSearchData = ({ searchResult }: PrintSearchDataProps) => {
     return (
         <div className={styles.searchResultContainer}>
-            <div className={styles.searchTitle}>Zoekresultaat:</div>
             <div className={styles.flexboxItem}>
                 <p className={styles.title}>
                     <strong>Naam</strong>
