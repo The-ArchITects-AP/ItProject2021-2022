@@ -1,12 +1,16 @@
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FullView } from '../../types';
 import styles from './HistoryPage.module.css';
+
+//componenten splitsen na feedback Sprintreview 4 
 
 const HistoryPage = () => {
     const [searchVariable, setSearchVariable] = useState<string>("");
     const [searchResult, setSearchResult] = useState<FullView>();
     const [latestDbEntries, setLatestDbEntries] = useState<FullView[]>();
+    const [enterpriseName, setEnterpriseName] = useState<string>("");
+    const [showChosenDbEntry, setShowChosenDbEntry] = useState<boolean>(false);
     const [updating, setUpdating] = useState<boolean>(false);
 
     const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (
@@ -19,6 +23,12 @@ const HistoryPage = () => {
         event
     ) => {
         doSearch(searchVariable);
+    };
+
+    const handleShowDetails: MouseEventHandler<HTMLButtonElement> = (
+        event
+    ) => {
+        setShowChosenDbEntry(true);
     };
 
     useEffect(() => {
@@ -72,7 +82,7 @@ const HistoryPage = () => {
                     {!latestDbEntries ? (
                         <div>loading...</div>
                     ) : (
-                        <GetLatestDbEntries latestDbEntries={latestDbEntries} />
+                        <GetLatestDbEntries latestDbEntries={latestDbEntries} setEnterpriseName={setEnterpriseName} handleShowDetails={handleShowDetails} />
                     )}
                 </div>
                 <div>
@@ -80,6 +90,13 @@ const HistoryPage = () => {
                         <div></div>
                     ) : (
                         <PrintSearchData searchResult={searchResult} />
+                    )}
+                </div>
+                <div>
+                    {showChosenDbEntry && latestDbEntries ? (
+                        <PrintDetails latestDbEntries={latestDbEntries} />
+                    ) : (
+                        <div></div>
                     )}
                 </div>
             </div>
@@ -116,10 +133,13 @@ const SearchBar = ({ searchVariable, handleSearchChange, handleOnClick }: Search
 }
 
 interface GetLatestDbEntriesProps {
-    latestDbEntries: FullView[]
+    latestDbEntries: FullView[],
+    setEnterpriseName: any,
+    handleShowDetails: MouseEventHandler<HTMLButtonElement>
 }
 
-const GetLatestDbEntries = ({ latestDbEntries }: GetLatestDbEntriesProps) => {
+//component aanpassen: tonen accounting data na klik 
+const GetLatestDbEntries = ({ latestDbEntries, setEnterpriseName, handleShowDetails }: GetLatestDbEntriesProps) => {
     return (
         <div>{latestDbEntries.map((companyDetails: FullView) => {
             return <div className={styles.flexboxContainer} key={companyDetails.enterpriseName}>
@@ -145,6 +165,31 @@ const GetLatestDbEntries = ({ latestDbEntries }: GetLatestDbEntriesProps) => {
             </div>
         })}
         </div>
+    );
+    //<div className={styles.flexboxItem2}></div>
+    //<button onClick={handleShowDetails}>accounting details</button>
+    //</div>
+}
+
+interface ParamsTypes {
+    enterpriseName: string
+}
+
+interface PrintDetailsProps {
+    latestDbEntries: FullView[]
+}
+
+const PrintDetails = ({ latestDbEntries}: PrintDetailsProps) => {
+    let { enterpriseName } = useParams<ParamsTypes>();
+
+    let dbEntry = latestDbEntries.find(dbEntry => dbEntry.enterpriseName === enterpriseName);
+
+    if (dbEntry === undefined) {
+        return <div>Database entry not found</div>
+    }
+
+    return (
+        <PrintSearchData searchResult={dbEntry} />
     );
 }
 
@@ -210,5 +255,6 @@ const PrintSearchData = ({ searchResult }: PrintSearchDataProps) => {
         </div>
     );
 }
+
 
 export default HistoryPage;
