@@ -201,6 +201,7 @@ interface PrintSearchDataProps {
 const PrintSearchData = ({ searchResult }: PrintSearchDataProps) => {
     return (
         <div className={styles.searchResultContainer}>
+            <div className={styles.searchTitle}>Zoekresultaat:</div>
             <div className={styles.flexboxItem}>
                 <p className={styles.title}>
                     <strong>Naam</strong>
