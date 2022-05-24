@@ -11,7 +11,7 @@ interface InputFormProps {
 
 const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFormProps) => {
     return (
-      <form className={styles.inputForm} autoComplete="off">
+      <div className={styles.inputForm}>
         <input
           type="string"
           id="vatNumber1"
@@ -37,7 +37,7 @@ const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnCli
           onClick={handleOnClick}>
           Vergelijk
         </button>
-      </form>
+      </div>
     );
   }
 
