@@ -35,24 +35,40 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
   return (
     <div>
       <div className={styles.flexboxContainer}>
-        <p><span>Datum neerlegging</span></p>
-        <p>{accountingData1.depositDate}</p> 
-        <p><span>Eigen Vermogen</span></p>
-        <p style={boolEigenVermogen ? { color: "green" } : { color: "red" }}>{Number(accountingData1.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-        <p><span>Schulden</span></p>
-        <p style={boolSchulden ? { color: "red" } : { color: "green" }}>{Number(accountingData1.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-        <p><span>Bedrijfswinst</span></p>
-        <p style={boolBedrijfswinst ? { color: "green" } : { color: "red" }}>{Number(accountingData1.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
+        <div className={styles.flexboxItem}>
+          <p><strong>Datum neerlegging</strong></p>
+          <p><span>{accountingData1.depositDate}</span></p>
+        </div>
+        <div className={styles.flexboxItem}>
+          <p><strong>Eigen Vermogen</strong></p>
+          <p style={boolEigenVermogen ? { color: "green" } : { color: "red" }}><span>{Number(accountingData1.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</span></p>
+        </div>
+        <div className={styles.flexboxItem}>
+          <p><strong>Schulden</strong></p>
+          <p style={boolSchulden ? { color: "red" } : { color: "green" }}><span>{Number(accountingData1.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</span></p>
+        </div>
+        <div className={styles.flexboxItem}>
+          <p><strong>Bedrijfswinst</strong></p>
+          <p style={boolBedrijfswinst ? { color: "green" } : { color: "red" }}><span>{Number(accountingData1.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</span></p>
+        </div>
       </div>
       <div className={styles.flexboxContainer}>
-        <p><span>Datum neerlegging</span></p>
-        <p>{accountingData2.depositDate}</p>  
-        <p><span>Eigen Vermogen</span></p>
-        <p style={boolEigenVermogen ? { color: "red" } : { color: "green" }}>{Number(accountingData2.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-        <p><span>Schulden</span></p>
-        <p style={boolSchulden ? { color: "green" } : { color: "red" }}>{Number(accountingData2.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
-        <p><span>Bedrijfswinst</span></p>
-        <p style={boolBedrijfswinst ? { color: "red" } : { color: "green" }}>{Number(accountingData2.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
+        <div className={styles.flexboxItem}>
+          <p><strong>Datum neerlegging</strong></p>
+          <p><span>{accountingData2.depositDate}</span></p>
+        </div>
+        <div className={styles.flexboxItem}>
+          <p><strong>Eigen Vermogen</strong></p>
+          <p style={boolEigenVermogen ? { color: "red" } : { color: "green" }}><span>{Number(accountingData2.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</span></p>
+        </div>
+        <div className={styles.flexboxItem}>
+          <p><strong>Schulden</strong></p>
+          <p style={boolSchulden ? { color: "green" } : { color: "red" }}><span>{Number(accountingData2.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</span></p>
+        </div>
+        <div className={styles.flexboxItem}>
+          <p><strong>Bedrijfswinst</strong></p>
+          <p style={boolBedrijfswinst ? { color: "red" } : { color: "green" }}><span>{Number(accountingData2.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</span></p>
+        </div>
       </div>
     </div>
   )

@@ -1,7 +1,8 @@
 .flexboxContainer {
     float: left;
-    margin-right: 7rem;
-    margin-top: 1.5rem;
+    margin-right: 3rem;
+    margin-top: 2.5rem;
+    width: 26.5rem;
 }
 
 .flexboxItem {

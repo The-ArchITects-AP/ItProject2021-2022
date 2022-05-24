@@ -1,15 +1,16 @@
 .flexboxContainer {
     float: left;
-    margin-right: 13rem;
+    margin-right: 3rem;
     margin-top: 3rem;
+    width: 26.5rem;
 }
 
 .flexboxItem {
     display: flex;
     flex-direction: row;
-    margin-top: -0.5rem;
 }
 
 span {
-    font-weight: bold;
+    text-align: right;
+    margin-left: 1rem;
 }

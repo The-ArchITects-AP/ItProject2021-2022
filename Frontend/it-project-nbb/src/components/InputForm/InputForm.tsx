@@ -7,7 +7,7 @@ interface InputFormProps {
     handleVatNumber1Change: ChangeEventHandler<HTMLInputElement>,
     handleVatNumber2Change: ChangeEventHandler<HTMLInputElement>,
     handleOnClick: MouseEventHandler<HTMLButtonElement>
-  }  
+}  
 
 const InputForm = ({ handleVatNumber1Change, handleVatNumber2Change, handleOnClick, vatNumber1, vatNumber2 }: InputFormProps) => {
     return (

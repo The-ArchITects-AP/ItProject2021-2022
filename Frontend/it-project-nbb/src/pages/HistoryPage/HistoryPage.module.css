@@ -4,10 +4,10 @@
 }
 
 .searchResultContainer {
-    background-color: rgb(241, 236, 236);
+    background-color: rgba(231, 240, 254);
     border-radius: 5px;
     margin-top: 4rem;
-    margin-left: 9rem;
+    margin-left: 11rem;
     padding: 3rem 4rem 6rem 4rem;
 }
 
@@ -64,41 +64,4 @@
 
 .title, .address {
     margin-right: 1rem;
-}
-
-.accordionItem {
-    border-bottom: solid 1px black;
-}
-
-.accordionItemTitle {
-    width: 31rem;
-}
-
-.accordionItemButton {
-    display: flex;
-    align-items: center;
-    border: 0;
-    padding: 15px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: transparent;
-    cursor: pointer;
-    user-select: none;
-}
-
-.accordionItemButton::after {
-    enterpriseName: "";
-    width: 18px;
-    height: 18px;
-    margin-left: auto;
-    transition: transform 0.2s ease-in-out;
-}
-
-.accordionItem.active .accordionItemButton::after {
-    transform: rotate(-180deg);
-}
-
-.accordionItemContainer {
-    transition: height .2s ease-in-out;
-    overflow: hidden;
 }

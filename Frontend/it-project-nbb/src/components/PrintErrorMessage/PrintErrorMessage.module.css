@@ -1,0 +1,14 @@
+.messageContainer {
+    background-color: rgba(231, 240, 254);
+    padding: 1px 0px 1px 20px;
+    border-radius: 5px;
+    width: 25rem;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+}
+
+.messageContainer > img {
+    margin-top: 0.95rem;
+    margin-right: 0.5rem;
+}
