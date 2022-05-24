@@ -112,7 +112,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ searchVariable, handleSearchChange, handleOnClick }: SearchBarProps) => {
     return (
-        <div className={styles.inputForm}>
+        <form className={styles.inputForm} autoComplete="off">
             <input
                 type="string"
                 id="search"
@@ -128,7 +128,7 @@ const SearchBar = ({ searchVariable, handleSearchChange, handleOnClick }: Search
                 onClick={handleOnClick}>
                 Zoek
             </button>
-        </div>
+        </form>
     );
 }
 
