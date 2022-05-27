@@ -8,6 +8,7 @@
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.98.0">
   <title>NBB API</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/starter-template/">
 
@@ -89,47 +90,78 @@
     </header>
 
     <main>
-      <h1>Get started with Bootstrap</h1>
-      <p class="fs-5 col-md-8">Quickly and easily get started with Bootstrap's compiled, production-ready files with
-        this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.
+      <h1>Welkom bij de officiële API van de Nationale Bank van België</h1>
+      <p class="fs-5 col-md-8">Ontwikkeld door The ArchITects&trade;
       </p>
-
-      <div class="mb-5">
-        <a href="../examples/" class="btn btn-primary btn-lg px-4">Download examples</a>
-      </div>
 
       <hr class="col-3 col-md-2 mb-5">
 
       <div class="row g-5">
         <div class="col-md-6">
-          <h2>Starter projects</h2>
-          <p>Ready to beyond the starter template? Check out these open source projects that you can quickly duplicate
-            to a new GitHub repository.</p>
-          <ul class="icon-list ps-0">
-            <li class="d-flex align-items-start mb-1"><a href="https://github.com/twbs/bootstrap-npm-starter"
-                rel="noopener" target="_blank">Bootstrap npm starter</a></li>
-            <li class="text-muted d-flex align-items-start mb-1">Bootstrap Parcel starter (coming soon!)</li>
-          </ul>
+          <h2>Wat is dit?</h2>
+          <p>Deze API haalt de belangrijkste financiële data van alle Belgische bedrijven uit de database van de
+            Nationale Bank van België, dit aan de hand van een kbo-nummer.
+            Buiten het gewoon teruggeven van de
+            individuele data, wordt er ook een vergelijking van twee bedrijven voorzien.
+            <br>
+            Alle mogelijke routes en datasoorten worden hieronder meegedeeld.
+          </p>
         </div>
 
         <div class="col-md-6">
-          <h2>Guides</h2>
-          <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
-          <ul class="icon-list ps-0">
-            <li class="d-flex align-items-start mb-1"><a href="../getting-started/introduction/">Bootstrap quick start
-                guide</a></li>
-            <li class="d-flex align-items-start mb-1"><a href="../getting-started/webpack/">Bootstrap Webpack guide</a>
-            </li>
-            <li class="d-flex align-items-start mb-1"><a href="../getting-started/parcel/">Bootstrap Parcel guide</a>
-            </li>
-            <li class="d-flex align-items-start mb-1"><a href="../getting-started/contribute/">Contributing to
-                Bootstrap</a></li>
-          </ul>
+          <h2>Wie zijn we?</h2>
+          <p>Deze API wordt u gebracht als deel van het IT Project op AP Hogeschool door de ontwikkelaarsgroep The
+            ArchITects; <br> een gedreven team van dynamische developers genaamd Valerie, Sam en Qin.</p>
         </div>
       </div>
+      <br>
+      <div>
+        <h2>Documentatie</h2>
+        <div>
+          <h3>Dataformaat</h3>
+          <p>Alle responses die deze API voorziet, worden aangeleverd in JSON-formaat.</p>
+        </div>
+        <div>
+          <h3>Routes</h3>
+          <p>Alle routes worden voorafgegaan door de string
+            <strong>https://nbb-architects-api.azurewebsites.net/home</strong>.
+          </p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Endpoint</th>
+                <th>Response</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">/gegevens/{kbonummer}</td>
+                <td>Adresgegevens van het bedrijf</td>
+              </tr>
+              <tr>
+                <th scope="row">/accountingdata/{kbonummer}</td>
+                <td>Financiële gegevens van het bedrijf
+                  <ul>
+                    <li>deposit date</li>
+                    <li>eigen vermogen</li>
+                    <li>schulden</li>
+                    <li>bedrijfswinst</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <br>
+
+      <div class="mb-5">
+        <a href="https://the-architects.be" class="btn btn-outline-dark btn-lg px-4">Bekijk ons voorbeeld</a>
+      </div>
+
     </main>
     <footer class="pt-5 my-5 text-muted border-top">
-      Created by the Bootstrap team &middot; &copy; 2022
+      Ontwikkeld door The ArchITects &middot; &copy; 2022
     </footer>
   </div>
 
