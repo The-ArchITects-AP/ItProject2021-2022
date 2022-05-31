@@ -1,9 +1,9 @@
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 import { AccountingView, NameView } from '../../types';
 import InputForm from '../../components/InputForm/InputForm';
-import PrintAccountingData from '../../components/PrintAccountingData/PrintAccountingData';
-import PrintDetailsCompany from '../../components/PrintDetailsCompany/PrintDetailsCompany';
 import PrintErrorMessage from '../../components/PrintErrorMessage/PrintErrorMessage';
+import PrintDetailsCompany from '../../components/PrintDetailsCompany/PrintDetailsCompany';
+import PrintAccountingData from '../../components/PrintAccountingData/PrintAccountingData';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
@@ -78,7 +78,6 @@ const HomePage = () => {
     console.log(response);
     console.log(response.status);
 
-    //if (response.status === 404 && !errorMessage) {
     if (response.status === 404) {
       setStatusNotFound(true);
       setErrorMessage("Het ingevoerde ondernemingsnummer is niet geldig");

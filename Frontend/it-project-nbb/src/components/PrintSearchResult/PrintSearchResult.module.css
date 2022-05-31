@@ -1,0 +1,31 @@
+.searchResultContainer {
+    background-color: rgb(243, 245, 247);
+    border-radius: 5px;
+    margin-top: 4rem;
+    margin-left: 11rem;
+    padding: 3.5rem 4.5rem 5.5rem 4rem;
+}
+
+.flexboxContainer {
+    width: 37rem;
+ }
+ 
+ .flexboxContainer:first-child {
+     margin-top: 3rem;
+   }
+ 
+ .flexboxItem {
+     display: flex;
+     flex-direction: row;
+     margin-top: -0.5rem;
+ }
+ 
+ .flexboxItem > p {
+     margin-bottom: 0.5rem;
+     margin-top: 1.5rem;
+ }
+ 
+ .title, .address {
+     margin-right: 1rem;
+ }
+ 

@@ -1,11 +1,10 @@
-import styles from './App.module.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../Header/Header";
 import HomePage from "../../pages/HomePage/HomePage";
 import HistoryPage from "../../pages/HistoryPage/HistoryPage";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import styles from './App.module.css';
 
 const App = () => {
-
   return (
     <BrowserRouter>
       <div className={styles.app}>

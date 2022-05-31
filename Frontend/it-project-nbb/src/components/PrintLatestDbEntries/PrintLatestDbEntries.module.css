@@ -1,0 +1,30 @@
+.flexboxContainer {
+    width: 37rem;
+ }
+ 
+ .flexboxContainer:first-child {
+     margin-top: 3rem;
+   }
+ 
+ .flexboxItem, .flexboxItem2 {
+     display: flex;
+     flex-direction: row;
+     margin-top: -0.5rem;
+ }
+ 
+ .flexboxItem > p {
+     margin-bottom: 0.5rem;
+     margin-top: 1.5rem;
+ }
+ 
+ .flexboxItem2 > p {
+     margin-bottom: 1rem;
+ }
+ 
+ .flexboxItem2 {
+     border-bottom: solid 1px black;
+ }
+ 
+ .title, .address {
+     margin-right: 1rem;
+ }
