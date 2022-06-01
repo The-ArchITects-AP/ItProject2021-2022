@@ -1,6 +1,6 @@
 .messageContainer {
     background-color: rgba(231, 240, 254);
-    padding: 1px 0px 1px 20px;
+    padding: 10px 0px 10px 20px;
     border-radius: 5px;
     width: 25rem;
     font-size: 14px;
@@ -9,6 +9,6 @@
 }
 
 .messageContainer > img {
-    margin-top: 0.95rem;
+    margin-top: 0.10rem;
     margin-right: 0.5rem;
 }
