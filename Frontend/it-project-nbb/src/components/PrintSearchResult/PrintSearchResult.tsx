@@ -27,15 +27,27 @@ const PrintSearchResult = ({ searchResult }: PrintSearchResultProps) => {
             </div>
             <div className={styles.flexboxItem}>
                 <p className={styles.title}><strong>Eigen Vermogen</strong></p>
-                <p>{Number(searchResult.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
+                {searchResult.eigenVermogen === 'geen data beschikbaar' ? (
+                    <p>{searchResult.eigenVermogen}</p>
+                ) : (
+                    <p>{Number(searchResult.eigenVermogen).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
+                )}
             </div>
             <div className={styles.flexboxItem}>
                 <p className={styles.title}><strong>Schulden</strong></p>
-                <p>{Number(searchResult.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
+                {searchResult.schulden === 'geen data beschikbaar' ? (
+                    <p>{searchResult.schulden}</p>
+                ) : (
+                    <p>{Number(searchResult.schulden).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
+                )}
             </div>
             <div className={styles.flexboxItem}>
                 <p className={styles.title}><strong>Bedrijfswinst</strong></p>
-                <p>{Number(searchResult.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
+                {searchResult.bedrijfswinst === 'geen data beschikbaar' ? (
+                    <p>{searchResult.bedrijfswinst}</p>
+                ) : (
+                    <p>{Number(searchResult.bedrijfswinst).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} EUR</p>
+                )}
             </div>
         </div>
     );
