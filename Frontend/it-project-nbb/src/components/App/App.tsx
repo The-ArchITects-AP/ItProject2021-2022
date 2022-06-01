@@ -7,7 +7,7 @@ import styles from './App.module.css';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/ItProject2022-2023'>
       <div className={styles.app}>
         <Header />
         <div className={styles.main}>

@@ -78,7 +78,7 @@ const HomePage = () => {
     console.log(response);
     console.log(response.status);
 
-    if (response.status === 404) {
+    if (response.status === 404 && (vatNumber1.match(/^[0-9]+$/) || vatNumber2.match(/^[0-9]+$/))) {
       setStatusNotFound(true);
       setErrorMessage("Het ingevoerde ondernemingsnummer is niet geldig");
       setLoadingMessage("");
