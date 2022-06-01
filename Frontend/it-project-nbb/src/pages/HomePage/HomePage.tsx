@@ -134,7 +134,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className={styles.app}>
+    <div>
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       <div className={styles.flexboxContainer}>
         <div>

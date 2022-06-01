@@ -1,5 +1,16 @@
+html, body {
+    width:100%;
+    display: block;
+}
+
 .app {
+    min-height: 100vh;
     width: 100%;
-    padding: 4rem;
+    position: relative;
+}
+
+.main {
+    padding-left: 4rem;
+    padding-right: 4rem;
 }
 

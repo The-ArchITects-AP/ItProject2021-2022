@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../Header/Header";
 import HomePage from "../../pages/HomePage/HomePage";
 import HistoryPage from "../../pages/HistoryPage/HistoryPage";
+import Footer from "../Footer/Footer";
 import styles from './App.module.css';
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       <div className={styles.app}>
         <Header />
-        <div>
+        <div className={styles.main}>
           <Switch>
             <Route path='/history'>
               <HistoryPage />
@@ -19,6 +20,7 @@ const App = () => {
             </Route>
           </Switch>
         </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );
