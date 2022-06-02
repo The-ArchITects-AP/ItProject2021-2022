@@ -6,11 +6,11 @@ import PrintLatestDbEntries from '../../components/PrintLatestDbEntries/PrintLat
 import PrintSearchResult from '../../components/PrintSearchResult/PrintSearchResult';
 import styles from './HistoryPage.module.css';
 
-
 const HistoryPage = () => {
     const [searchVariable, setSearchVariable] = useState<string>("");
     const [searchResult, setSearchResult] = useState<FullView>();
     const [latestDbEntries, setLatestDbEntries] = useState<FullView[]>();
+    const [chosenDbEntry, setchosenDbEntry] = useState<FullView>();
     const [updating, setUpdating] = useState<boolean>(false);
 
     const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (
@@ -23,7 +23,12 @@ const HistoryPage = () => {
         event
     ) => {
         getSearchResult(searchVariable);
+        setchosenDbEntry(undefined);
     };
+
+    const showAccountingDetails = (companyDetails : FullView) => {
+        setchosenDbEntry(companyDetails);
+    }
 
     useEffect(() => {
         getLatestDbEntries();
@@ -76,7 +81,7 @@ const HistoryPage = () => {
                     {!latestDbEntries ? (
                         <div>loading...</div>
                     ) : (
-                        <PrintLatestDbEntries latestDbEntries={latestDbEntries} />
+                        <PrintLatestDbEntries latestDbEntries={latestDbEntries} showAccountingDetails={showAccountingDetails}/>
                     )}
                 </div>
                 <div>
@@ -85,7 +90,14 @@ const HistoryPage = () => {
                     ) : (
                         <PrintSearchResult searchResult={searchResult} />
                     )}
-                </div>               
+                </div>       
+                <div>
+                    {!chosenDbEntry ? (
+                        <div></div>
+                    ) : (
+                        <PrintSearchResult searchResult={chosenDbEntry} />
+                    )}
+                </div>                 
             </div>
         </div>
     );

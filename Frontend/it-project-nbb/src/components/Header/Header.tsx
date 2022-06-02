@@ -4,7 +4,9 @@ import styles from './Header.module.css';
 const Header = () => {
     return (
         <div className={styles.header}>
-            <img src="LogoTheArchitects.png" alt="Logo The ArchITects" width="200" height="" />
+            <div className={styles.imageContainer}>
+                <img src="LogoTheArchitects.png" alt="Logo The ArchITects" />
+            </div>
             <div>
                 <ul>
                     <li><NavLink exact to="/history" activeClassName={styles.activeLink}>Zoekgeschiedenis</NavLink></li>

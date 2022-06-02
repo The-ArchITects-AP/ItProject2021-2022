@@ -55,13 +55,13 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    if (vatNumber1.length === 10) {
+    if (vatNumber1.length === 10 && vatNumber1.match(/^[0-9]+$/)) {
       getReferenceNumber1(vatNumber1);
     }
   }, [vatNumber1])
 
   useEffect(() => {
-    if (vatNumber2.length === 10) {
+    if (vatNumber2.length === 10 && vatNumber2.match(/^[0-9]+$/)) {
       getReferenceNumber2(vatNumber2);
     }
   }, [vatNumber2])
@@ -78,7 +78,7 @@ const HomePage = () => {
     console.log(response);
     console.log(response.status);
 
-    if (response.status === 404 && (vatNumber1.match(/^[0-9]+$/) || vatNumber2.match(/^[0-9]+$/))) {
+    if (response.status === 404) {
       setStatusNotFound(true);
       setErrorMessage("Het ingevoerde ondernemingsnummer is niet geldig");
       setLoadingMessage("");

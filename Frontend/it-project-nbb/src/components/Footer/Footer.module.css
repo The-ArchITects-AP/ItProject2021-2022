@@ -2,9 +2,7 @@
     position: absolute;
     bottom: 0;
     display:block; 
-    padding-left: 4rem;
-    padding-right: 4rem;
-    padding-bottom: 0.6rem;
+    padding: 0rem 4rem 0.6rem 4rem;
     font-size: 11pt;
 }
 

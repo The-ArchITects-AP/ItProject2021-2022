@@ -1,30 +1,30 @@
 .header {  
-    font-size: 12pt;
-    flex-direction: column;
     display: flex;
     flex-direction: row;
-    margin-bottom: 4rem;
-    padding: 4rem 4rem 0 4rem;
+    padding: 4rem 4rem 3rem 4rem;
+}
+
+.imageContainer { 
+    width: 200px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
    
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
-}
-  
-li {
-    margin-left: 5rem;
-    margin-top: 0rem;
+    margin-top: 0.5rem;
 }
   
 li a {
     color: black;
-    text-align: right;
     text-decoration: none;
+    margin-left: 3.5rem;
 }
   
 li a:hover {
-    color: rgb(48, 44, 155);
+    font-weight: 600;
 }

@@ -2,14 +2,14 @@ import { FullView } from '../../types';
 import styles from './PrintLatestDbEntries.module.css';
 
 interface PrintLatestDbEntriesProps {
-    latestDbEntries: FullView[]
+    latestDbEntries: FullView[],
+    showAccountingDetails: any
 }
 
-//component aanpassen: tonen accounting data na klik 
-const PrintLatestDbEntries = ({ latestDbEntries }: PrintLatestDbEntriesProps) => {
+const PrintLatestDbEntries = ({ latestDbEntries, showAccountingDetails }: PrintLatestDbEntriesProps) => { 
     return (
         <div>{latestDbEntries.map((companyDetails: FullView) => {
-            return <div className={styles.flexboxContainer} key={companyDetails.enterpriseName}>
+            return <div className={styles.flexboxContainer} key={companyDetails.enterpriseName} onClick={() => showAccountingDetails(companyDetails)}>
                 <div className={styles.flexboxItem}>
                     <p className={styles.title}><strong>Naam</strong></p>
                     <p>{companyDetails.enterpriseName}</p>
@@ -28,5 +28,4 @@ const PrintLatestDbEntries = ({ latestDbEntries }: PrintLatestDbEntriesProps) =>
         </div>
     );
 }
-
 export default PrintLatestDbEntries;
