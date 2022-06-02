@@ -1,12 +1,15 @@
-.inputForm > input {
-    width: 26rem;
-    height: 1.8rem;
-    margin-top: 4rem;
-    margin-right: 3rem;    
-    margin-bottom: 1rem;
+.searchBar {
+    width: 100%;
 }
 
-.inputForm > button {
+.searchBar > input {
+    width: 26rem;
+    height: 1.8rem;
+    margin-top: 3.9rem;
+    margin-right: 3rem;   
+}
+
+.searchBar > button {
     background-color: black;
     color: white;
     width: 8rem;

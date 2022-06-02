@@ -1,11 +1,10 @@
-.flexboxContainer {
-    float: left;
+.homePageContainer {
+    width: 100%;
     margin-right: 7rem;
     margin-top: 1.5rem;
 }
 
-.flexboxItem {
+.homePageItem1, .homePageItem2 {
     display: flex;
     flex-direction: row;
-    margin-top: -0.5rem;
 }

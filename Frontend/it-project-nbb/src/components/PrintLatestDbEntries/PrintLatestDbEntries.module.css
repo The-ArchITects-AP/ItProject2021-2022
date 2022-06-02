@@ -1,30 +1,37 @@
 .flexboxContainer {
     width: 37rem;
- }
+}
+
+.flexboxContainer:hover {
+    padding-top: 0.05px;
+    background-color: rgb(243, 245, 247);
+}
  
- .flexboxContainer:first-child {
-     margin-top: 3rem;
-   }
+.flexboxContainer:first-child {
+    margin-top: 3rem;
+}
  
- .flexboxItem, .flexboxItem2 {
-     display: flex;
-     flex-direction: row;
-     margin-top: -0.5rem;
- }
+.flexboxItem {
+    display: flex;
+    flex-direction: row;
+    margin-top: -0.5rem;
+}
  
- .flexboxItem > p {
-     margin-bottom: 0.5rem;
-     margin-top: 1.5rem;
- }
+.flexboxItem > p {
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.flexboxItem:last-child > p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
  
- .flexboxItem2 > p {
-     margin-bottom: 1rem;
- }
+.flexboxItem:last-child {
+    border-bottom: solid 1px black;
+}
  
- .flexboxItem2 {
-     border-bottom: solid 1px black;
- }
- 
- .title, .address {
-     margin-right: 1rem;
- }
+.name, .address {     
+    font-weight: bold;
+    margin-right: 1rem;
+}

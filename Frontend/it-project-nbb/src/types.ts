@@ -17,7 +17,8 @@ export interface AccountingView {
     bedrijfswinst: string
 }
 
-//path [search/alldata]
+//path [search/alldata] 
+//path [/search/searchquery/{searchVariable}]
 export interface FullView {
     enterpriseName: string;
     street: string

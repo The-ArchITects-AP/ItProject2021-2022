@@ -9,17 +9,17 @@ interface PrintLatestDbEntriesProps {
 const PrintLatestDbEntries = ({ latestDbEntries, showAccountingDetails }: PrintLatestDbEntriesProps) => { 
     return (
         <div>{latestDbEntries.map((companyDetails: FullView) => {
-            return <div className={styles.flexboxContainer} key={companyDetails.enterpriseName} onClick={() => showAccountingDetails(companyDetails)}>
+            return <div className={styles.flexboxContainer} onClick={() => showAccountingDetails(companyDetails)}>
                 <div className={styles.flexboxItem}>
-                    <p className={styles.title}><strong>Naam</strong></p>
+                    <p className={styles.name}>Naam</p>
                     <p>{companyDetails.enterpriseName}</p>
                 </div>
-                <div className={styles.flexboxItem2}>
-                    <p className={styles.address}><strong>Adres</strong></p>
+                <div className={styles.flexboxItem}>
+                    <p className={styles.address}>Adres</p>
                     <p>
-                        {companyDetails.street}{" "}
+                        {companyDetails.street}{' '}
                         {companyDetails.number}<br />
-                        {companyDetails.postalCode}{" "}
+                        {companyDetails.postalCode}{' '}
                         {companyDetails.city}
                     </p>
                 </div>

@@ -9,7 +9,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ searchVariable, handleSearchChange, handleOnClick }: SearchBarProps) => {
     return (
-        <div className={styles.inputForm}>
+        <div className={styles.searchBar}>
             <input
                 type="string"
                 id="search"

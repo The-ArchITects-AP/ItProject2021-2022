@@ -1,20 +1,19 @@
-.flexboxContainer {
-    float: left;
+.flexboxContainer {   
+    width: 26.5rem;
     margin-right: 3rem;
     margin-top: 2.5rem;
-    width: 26.5rem;
 }
 
 .flexboxItem {
     display: flex;
     flex-direction: row;
-    margin-top: -0.5rem;
 }
 
 .flexboxItem > p {
     margin-bottom: 0.5rem;
 }
 
-.title, .address {
+.name, .address {
+    font-weight: bold;
     margin-right: 1rem;
 }

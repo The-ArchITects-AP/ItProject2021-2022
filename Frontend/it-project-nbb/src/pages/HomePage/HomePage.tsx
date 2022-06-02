@@ -31,9 +31,9 @@ const HomePage = () => {
     setErrorMessage("");
     setVatNumber2("");
     setVatNumber1(event.target.value);
-    if (vatNumber1 && !vatNumber1.match(/^[0-9]+$/)) {
+    /*if (vatNumber1 && !vatNumber1.match(/^[0-9]+$/)) {
       setErrorMessage("Gelieve enkel getallen in te voeren.");
-    }
+    }*/
   };
 
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
@@ -42,9 +42,9 @@ const HomePage = () => {
     setStatusNotFound(false);
     setErrorMessage("");
     setVatNumber2(event.target.value);
-    if (vatNumber2 && !vatNumber2.match(/^[0-9]+$/)) {
+    /*if (vatNumber2.length && !vatNumber2.match(/^[0-9]+$/)) {
       setErrorMessage("Gelieve enkel getallen in te voeren.");
-    }
+    }*/
   };
 
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (
@@ -65,6 +65,20 @@ const HomePage = () => {
       getReferenceNumber2(vatNumber2);
     }
   }, [vatNumber2])
+
+  const getReferenceNumber1 = async (vatNumber: string) => {
+    setUpdating1(true);
+    let json = await fetchReferenceData(vatNumber);
+    setReferenceNumberData1(json as NameView);
+    setUpdating1(false);
+  };
+
+  const getReferenceNumber2 = async (vatNumber: string) => {
+    setUpdating2(true);
+    let json = await fetchReferenceData(vatNumber);
+    setReferenceNumberData2(json as NameView);
+    setUpdating2(false);
+  };
 
   //methode haalt bedrijfsgegevens op bij API 
   const fetchReferenceData = async (vatNumber: string) => {
@@ -87,20 +101,20 @@ const HomePage = () => {
     let json = await response.json();
     console.log(json);
     return json;
-  }
+  }  
 
-  const getReferenceNumber1 = async (vatNumber: string) => {
-    setUpdating1(true);
-    let json = await fetchReferenceData(vatNumber);
-    setReferenceNumberData1(json as NameView);
-    setUpdating1(false);
+  const getAccountingData1 = async (vatNumber: string) => {
+    setUpdating(true);
+    let json = await fetchAccountingData(vatNumber);
+    setAccountingData1(json as AccountingView);
+    setUpdating(false);
   };
 
-  const getReferenceNumber2 = async (vatNumber: string) => {
-    setUpdating2(true);
-    let json = await fetchReferenceData(vatNumber);
-    setReferenceNumberData2(json as NameView);
-    setUpdating2(false);
+  const getAccountingData2 = async (vatNumber: string) => {
+    setUpdating(true);
+    let json = await fetchAccountingData(vatNumber);
+    setAccountingData2(json as AccountingView);
+    setUpdating(false);
   };
 
   //methode haalt accounting data op bij API 
@@ -119,24 +133,10 @@ const HomePage = () => {
     return json;
   }
 
-  const getAccountingData1 = async (vatNumber: string) => {
-    setUpdating(true);
-    let json = await fetchAccountingData(vatNumber);
-    setAccountingData1(json as AccountingView);
-    setUpdating(false);
-  };
-
-  const getAccountingData2 = async (vatNumber: string) => {
-    setUpdating(true);
-    let json = await fetchAccountingData(vatNumber);
-    setAccountingData2(json as AccountingView);
-    setUpdating(false);
-  };
-
   return (
     <div>
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
-      <div className={styles.flexboxContainer}>
+      <div className={styles.homePageContainer}>
         <div>
           {statusNotFound || (errorMessage && !statusNotFound) ? (
             <PrintErrorMessage errorMessage={errorMessage} />
@@ -144,7 +144,7 @@ const HomePage = () => {
             <div></div>
           )}
         </div>
-        <div>
+        <div className={styles.homePageItem1}>
           {!referenceNumberData1 || updating1 ? (
             <div className={styles.loading}>{updating1 ? (<div>{loadingMessage}</div>) : (<div></div>)}</div>
           ) : (
@@ -156,7 +156,7 @@ const HomePage = () => {
             <PrintDetailsCompany referenceNumberData={referenceNumberData2} />
           )}
         </div>
-        <div>
+        <div className={styles.homePageItem2}>
           {!accountingData1 || !accountingData2 || updating ? (
             <div></div>
           ) : (

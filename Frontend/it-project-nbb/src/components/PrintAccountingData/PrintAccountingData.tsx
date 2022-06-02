@@ -7,9 +7,8 @@ interface PrintAccountingDataProps {
 }
 
 const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccountingDataProps) => {
-  var boolEigenVermogen;
-  var boolSchulden;
-  var boolBedrijfswinst;
+  var boolEigenVermogen, boolSchulden, boolBedrijfswinst;
+
   if (Number(accountingData1.eigenVermogen) > Number(accountingData2.eigenVermogen)) {
     boolEigenVermogen = true;
   }
@@ -28,9 +27,6 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
   else {
     boolBedrijfswinst = false;
   }
-  console.log(boolEigenVermogen);
-  console.log(boolSchulden);
-  console.log(boolBedrijfswinst);
 
   return (
     <div>
@@ -41,7 +37,7 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
         </div>
         <div className={styles.flexboxItem}>
           <p><strong>Eigen Vermogen</strong></p>
-          {accountingData1.eigenVermogen === 'geen data beschikbaar' ? (
+          {accountingData1.eigenVermogen === "geen data beschikbaar" ? (
             <p><span>{accountingData1.eigenVermogen}</span></p>
           ) : (
             <p style={boolEigenVermogen ? { color: "green" } : { color: "red" }}>
@@ -51,7 +47,7 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
         </div>
         <div className={styles.flexboxItem}>
           <p><strong>Schulden</strong></p>
-          {accountingData1.schulden === 'geen data beschikbaar' ? (
+          {accountingData1.schulden === "geen data beschikbaar" ? (
             <p><span>{accountingData1.schulden}</span></p>
           ) : (
             <p style={boolSchulden ? { color: "red" } : { color: "green" }}>
@@ -61,7 +57,7 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
         </div>
         <div className={styles.flexboxItem}>
           <p><strong>Bedrijfswinst</strong></p>
-          {accountingData1.bedrijfswinst === 'geen data beschikbaar' ? (
+          {accountingData1.bedrijfswinst === "geen data beschikbaar" ? (
             <p><span>{accountingData1.bedrijfswinst}</span></p>
           ) : (
             <p style={boolBedrijfswinst ? { color: "green" } : { color: "red" }}>
@@ -69,8 +65,8 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
             </p>
           )}
         </div>
-
       </div>
+
       <div className={styles.flexboxContainer}>
         <div className={styles.flexboxItem}>
           <p><strong>Datum neerlegging</strong></p>
@@ -78,7 +74,7 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
         </div>
         <div className={styles.flexboxItem}>
           <p><strong>Eigen Vermogen</strong></p>
-          {accountingData2.eigenVermogen === 'geen data beschikbaar' ? (
+          {accountingData2.eigenVermogen === "geen data beschikbaar" ? (
             <p><span>{accountingData2.eigenVermogen}</span></p>
           ) : (
             <p style={boolEigenVermogen ? { color: "red" } : { color: "green" }}>
@@ -88,7 +84,7 @@ const PrintAccountingData = ({ accountingData1, accountingData2 }: PrintAccounti
         </div>
         <div className={styles.flexboxItem}>
           <p><strong>Schulden</strong></p>
-          {accountingData2.schulden === 'geen data beschikbaar' ? (
+          {accountingData2.schulden === "geen data beschikbaar" ? (
             <p><span>{accountingData2.schulden}</span></p>
           ) : (
             <p style={boolSchulden ? { color: "green" } : { color: "red" }}>

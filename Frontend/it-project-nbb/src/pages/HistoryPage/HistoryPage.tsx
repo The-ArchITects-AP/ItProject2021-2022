@@ -28,6 +28,7 @@ const HistoryPage = () => {
 
     const showAccountingDetails = (companyDetails : FullView) => {
         setchosenDbEntry(companyDetails);
+        setSearchResult(undefined);
     }
 
     useEffect(() => {
@@ -49,7 +50,6 @@ const HistoryPage = () => {
         console.log(json);
 
         setLatestDbEntries(json as FullView[]);
-        console.log(latestDbEntries);
         setUpdating(false);
     };
 
@@ -62,21 +62,19 @@ const HistoryPage = () => {
                 method: "GET",
             }
         );
-        console.log(response);
 
-        let json = await response.json();
+        let json = await response.json();        
         console.log(json);
 
         setSearchResult(json as FullView);
-        console.log(latestDbEntries);
-        setUpdating(false);
+        setUpdating(false); 
     };
 
     return (
         <div>
             <Link className={styles.back} to="/">Back</Link>
             <SearchBar searchVariable={searchVariable} handleSearchChange={handleSearchChange} handleOnClick={handleOnClick} />
-            <div className={styles.flexboxContainerRender}>
+            <div className={styles.historyPageContainer}>
                 <div>
                     {!latestDbEntries ? (
                         <div>loading...</div>

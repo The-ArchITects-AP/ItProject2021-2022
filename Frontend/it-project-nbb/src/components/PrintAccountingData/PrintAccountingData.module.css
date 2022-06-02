@@ -5,12 +5,12 @@
     width: 26.5rem;
 }
 
-.flexboxItem {
+.flexboxItem {    
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 span {
-    text-align: right;
-    margin-left: 1rem;
+    margin-right: 3rem;
 }

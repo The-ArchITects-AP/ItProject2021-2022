@@ -1,3 +1,7 @@
+.inputForm {
+    width: 100%;
+}
+
 .inputForm > input {
     width: 26rem;
     height: 1.8rem;
