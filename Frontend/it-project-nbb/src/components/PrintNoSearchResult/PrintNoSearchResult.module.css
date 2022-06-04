@@ -1,0 +1,10 @@
+.messageContainer {
+    background-color: rgb(243, 245, 247);
+    border-radius: 5px;
+    margin-top: 4rem;
+    margin-left: 11rem;
+    height: 22rem;
+    width: 23rem;
+    padding: 3.5rem 4.5rem 2.7rem 4rem;
+    font-weight: bold;
+}

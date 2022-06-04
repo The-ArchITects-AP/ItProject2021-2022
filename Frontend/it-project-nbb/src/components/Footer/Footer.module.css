@@ -1,7 +1,8 @@
 .footer {
+    max-width: 100%;
     position: absolute;
     bottom: 0;
-    display:block; 
+    display: block; 
     padding: 0rem 4rem 0.6rem 4rem;
     font-size: 11pt;
 }

@@ -30,10 +30,7 @@ const HomePage = () => {
     setStatusNotFound(false);
     setErrorMessage("");
     setVatNumber2("");
-    setVatNumber1(event.target.value);
-    /*if (vatNumber1 && !vatNumber1.match(/^[0-9]+$/)) {
-      setErrorMessage("Gelieve enkel getallen in te voeren.");
-    }*/
+    setVatNumber1(event.target.value);   
   };
 
   const handleVatNumber2Change: ChangeEventHandler<HTMLInputElement> = (
@@ -42,9 +39,6 @@ const HomePage = () => {
     setStatusNotFound(false);
     setErrorMessage("");
     setVatNumber2(event.target.value);
-    /*if (vatNumber2.length && !vatNumber2.match(/^[0-9]+$/)) {
-      setErrorMessage("Gelieve enkel getallen in te voeren.");
-    }*/
   };
 
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (
@@ -138,7 +132,7 @@ const HomePage = () => {
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       <div className={styles.homePageContainer}>
         <div>
-          {statusNotFound || (errorMessage && !statusNotFound) ? (
+          {statusNotFound || (errorMessage.length > 1 && !statusNotFound) ? (
             <PrintErrorMessage errorMessage={errorMessage} />
           ) : (
             <div></div>

@@ -4,6 +4,7 @@ html, body {
 
 .app {
     min-height: 100vh;
+    width: 100%;
     position: relative;
 }
 
@@ -11,4 +12,5 @@ html, body {
     padding-left: 4rem;
     padding-right: 4rem;
 }
+
 

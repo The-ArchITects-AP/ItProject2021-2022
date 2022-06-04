@@ -16,7 +16,7 @@ const SearchBar = ({ searchVariable, handleSearchChange, handleOnClick }: Search
                 name="search"
                 value={searchVariable}
                 placeholder="Ondernemingsnummer of bedrijfsnaam"
-                title="Gelieve een ondernemingsnummer in te voeren of een bedrijfsnaam"
+                title="Gelieve een ondernemingsnummer of een bedrijfsnaam in te voeren"
                 onChange={handleSearchChange}
                 required
             />

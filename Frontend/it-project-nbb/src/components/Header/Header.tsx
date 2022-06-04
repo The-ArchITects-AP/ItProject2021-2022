@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <div className={styles.header}>
             <div className={styles.imageContainer}>
-                <img src="LogoTheArchitects.png" alt="Logo The ArchITects" />
+                <a href="/"><img src="LogoTheArchitects.png" alt="Logo The ArchITects" /></a>
             </div>
             <div>
                 <ul>
