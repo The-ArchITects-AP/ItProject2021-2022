@@ -28,3 +28,20 @@ li a {
 li a:hover {
     font-weight: 600;
 }
+
+@media all and (max-width:450px) {
+    .header {  
+        display: flex;
+        flex-direction: column;
+        padding: 3rem 2rem 3rem 2rem;
+    }
+
+    ul {
+        margin-top: 2rem;
+        font-size: 10pt;
+    }
+      
+    li a {
+        margin-left: -2.5rem;
+    }
+}

@@ -86,7 +86,7 @@ const HistoryPage = () => {
             <Link className={styles.back} to="/">Terug</Link>
             <SearchBar searchVariable={searchVariable} handleSearchChange={handleSearchChange} handleOnClick={handleOnClick} />
             <div className={styles.historyPageContainer}>
-                <div>
+                <div className={styles.latestDbEntriesContainer}>
                     {!latestDbEntries ? (
                         <div>loading...</div>
                     ) : (

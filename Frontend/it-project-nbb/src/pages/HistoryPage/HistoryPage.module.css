@@ -8,3 +8,14 @@
     text-decoration: none;
     font-size: 11pt;
 }
+
+.latestDbEntriesContainer {
+    margin-top: 3rem;
+}
+
+@media all and (max-width:1200px) {
+    .historyPageContainer {
+        display: flex;
+        flex-direction: column;
+    }
+}

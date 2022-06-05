@@ -1,11 +1,11 @@
 .inputForm {
     width: 100%;
+    padding-top: 5rem;
 }
 
 .inputForm > input {
     width: 26rem;
-    height: 1.8rem;
-    margin-top: 5rem;
+    height: 1.8rem;   
     margin-right: 3rem;    
     margin-bottom: 1rem;
     background-color: none;
@@ -20,4 +20,39 @@
     border-radius: 3px;
     font-weight: bold;
     letter-spacing: 0.1rem;
+}
+
+@media all and (max-width:1200px) {
+    .inputForm > input {
+        width: 19.5rem;
+    }
+}
+
+@media all and (max-width:800px) {
+    .inputForm > input {
+        width: 80%;
+        margin-right: 0rem;    
+        margin-bottom: 2rem;
+    }
+}
+
+@media all and (max-width:450px) {
+    .inputForm {
+        padding-top: 1rem;
+    }
+
+    .inputForm > input {
+        height: 1.6rem;   
+        margin-right: 2.2rem;    
+        margin-bottom: 1rem;
+        font-size: 9pt; 
+    }
+    
+    .inputForm > button {
+        background-color: black;
+        color: white;
+        width: 82%;
+        height: 1.9rem;
+        font-size: 9pt;    
+    }
 }

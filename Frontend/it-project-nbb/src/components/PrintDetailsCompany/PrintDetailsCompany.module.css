@@ -17,3 +17,24 @@
     font-weight: bold;
     margin-right: 1rem;
 }
+
+@media all and (max-width:1200px) {
+    .flexboxContainer {   
+        width: 20rem;
+        margin-bottom: -1rem;
+    }
+}
+
+@media all and (max-width:850px) {
+    .flexboxContainer {
+        font-size: 10pt;
+    }
+}
+
+@media all and (max-width:450px) {
+    .flexboxContainer {   
+        width: 100%;
+        margin-right: 2rem;
+        margin-top: 2rem;
+    }
+}

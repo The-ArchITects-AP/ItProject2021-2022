@@ -19,3 +19,18 @@
     font-weight: bold;
     letter-spacing: 0.1rem;
 }
+
+@media all and (max-width:450px) {    
+    .searchBar > input {
+        width: 80%;
+        height: 1.6rem;
+        margin-right: 2rem;  
+        margin-bottom: 1rem;                    
+        font-size: 9pt;
+    }
+    
+    .searchBar > button {
+        width: 82%;
+        height: 1.9rem; 
+    }
+}

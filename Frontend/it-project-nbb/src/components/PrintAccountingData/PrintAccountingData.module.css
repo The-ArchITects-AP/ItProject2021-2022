@@ -15,3 +15,34 @@
 span {
     margin-right: 7rem;
 }
+
+@media all and (max-width:1200px) {
+    .flexboxContainer {
+        width: 20rem;
+        margin-top: 2rem;
+        font-size: 10pt;
+    }
+
+    span {
+        margin-right: 1rem;
+    }
+}
+
+@media all and (max-width:850px) {
+    .flexboxContainer {
+        width: 17rem;
+        font-size: 10pt;
+    }
+
+    span {
+        margin-right: 0rem;
+    }
+}
+
+@media all and (max-width:450px) {
+    .flexboxContainer {
+        width: 90%;
+        margin-top: 3rem;
+        margin-bottom: -1rem;
+    }
+}

@@ -8,3 +8,24 @@
     padding: 3.5rem 4.5rem 2.7rem 4rem;
     font-weight: bold;
 }
+
+@media all and (max-width:1200px) {
+    .messageContainer {
+        margin-top: 3.5rem;
+        margin-left: 0rem;
+        height: 19rem;
+        width: 28.5rem;
+        padding: 3.5rem 4.5rem 2.7rem 4rem;
+    }
+}
+
+@media all and (max-width:450px) {
+    .messageContainer {
+        margin-top: 3rem;
+        width: 80%;
+        height: 5rem;
+        width: 16rem;        
+        padding: 1.5rem 2rem 2rem 2rem;
+        font-size: 9pt;
+    }
+}

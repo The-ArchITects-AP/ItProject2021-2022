@@ -10,15 +10,17 @@
     flex-direction: row;
 }
 
-.errorContainer {
-    display: flex;
-    flex-direction: row;
-}
+@media all and (max-width:450px) {
+    .homePageContainer {
+        font-size: 9pt;
+    }
 
-.errorEmpty {    
-    width: 29.4rem;
-}
+    .homePageItem1 {
+        display: flex;
+        flex-direction: column;
+    }
 
-.referenceData1Empty {
-    width: 29.4rem;
+    .homePageItem2 {
+       margin-bottom: 3.5rem;
+    }
 }
