@@ -44,6 +44,9 @@ const HomePage = () => {
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (
     event
   ) => {
+    if (!referenceNumberData1 || !referenceNumberData2) {
+      setErrorMessage("Gelieve beide velden correct in te vullen");
+    }
     getAccountingData1(vatNumber1);
     getAccountingData2(vatNumber2);
   };
