@@ -80,17 +80,13 @@
   <div class="col-lg-8 mx-auto p-3 py-md-5">
     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
       <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor" class="bi bi-bank2"
-          viewBox="0 0 16 16">
-          <path
-            d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z" />
-        </svg>
-        <span class="fs-4">NBB API</span>
+        <img src="images/LogoTheArchitects.png" style="width: 24rem" alt="">
+        
       </a>
     </header>
 
     <main>
-      <h1>Welkom bij de API van de The ArchITects</h1>
+      <h1>Welkom bij de API van The ArchITects</h1>
       <p class="fs-5 col-md-8">Ontwikkeld door The ArchITects&trade;
       </p>
 
@@ -110,7 +106,7 @@
         <div class="col-md-6">
           <h2>Wie zijn we?</h2>
           <p>Deze API wordt u gebracht als deel van het vak IT Project, opleiding graduaat Programmmeren van de AP Hogeschool. Ontwikkeld door "The
-            ArchITects", een gedreven team van dynamische developers genaamd Valerie, Sam en Qin.</p>
+            ArchITects", een gedreven team van dynamische developers genaamd Valérie, Sam en Qin.</p>
         </div>
       </div>
       <br>
@@ -123,7 +119,7 @@
         <div>
           <h3>Routes</h3>
           <p>Alle routes worden voorafgegaan door de URI
-            <strong>https://nbb-architects-api.azurewebsites.net/home</strong>.
+            <strong>https://nbb-architects-api.azurewebsites.net/</strong>.
           </p>
           <table class="table">
             <thead>
@@ -134,11 +130,11 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">/gegevens/{kbonummer}</td>
+                <th scope="row">home/gegevens/{kbonummer}</td>
                 <td>Adresgegevens van het bedrijf</td>
               </tr>
               <tr>
-                <th scope="row">/accountingdata/{kbonummer}</td>
+                <th scope="row">home/accountingdata/{kbonummer}</td>
                 <td>Financiële gegevens van het bedrijf
                   <ul>
                     <li>datum van neerlegging</li>
@@ -147,6 +143,14 @@
                     <li>bedrijfswinst</li>
                   </ul>
                 </td>
+              </tr>
+              <tr>
+                <th scope="row">search/alldata</td>
+                <td>Adres- en financiële gegevens van de vier laatste databank entries</td>
+              </tr>
+              <tr>
+                <th scope="row">search/searchquery/{kbonummer/bedrijfsnaam}</td>
+                <td>Adres- en financiële gegevens van het opgezochte bedrijf</td>
               </tr>
             </tbody>
           </table>
