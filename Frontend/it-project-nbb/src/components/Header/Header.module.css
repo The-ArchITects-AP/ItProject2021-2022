@@ -29,11 +29,11 @@ li a:hover {
     font-weight: 600;
 }
 
-@media all and (max-width:450px) {
+@media all and (max-width:600px) {
     .header {  
         display: flex;
         flex-direction: column;
-        padding: 3rem 2rem 3rem 2rem;
+        padding: 3rem 2rem 1rem 2rem;
     }
 
     ul {
@@ -43,5 +43,15 @@ li a:hover {
       
     li a {
         margin-left: -2.5rem;
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .header {  
+        padding: 4rem 4rem 1rem 4rem;
+    }
+
+    ul {
+        font-size: 11pt;
     }
 }

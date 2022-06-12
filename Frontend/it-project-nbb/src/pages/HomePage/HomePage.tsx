@@ -135,7 +135,7 @@ const HomePage = () => {
       <InputForm handleVatNumber1Change={handleVatNumber1Change} handleVatNumber2Change={handleVatNumber2Change} handleOnClick={handleOnClick} vatNumber1={vatNumber1} vatNumber2={vatNumber2} />
       <div className={styles.homePageContainer}>
         <div>
-          {statusNotFound || (errorMessage.length > 1 && !statusNotFound) ? (
+          {statusNotFound ? (
             <PrintErrorMessage errorMessage={errorMessage} />
           ) : (
             <div></div>

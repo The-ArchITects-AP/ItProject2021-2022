@@ -36,7 +36,7 @@
     margin-right: 1rem;
 }
 
-@media all and (max-width:450px) {
+@media all and (max-width:600px) {
     .flexboxContainer {
         width: 100%;
         font-size: 9pt;
@@ -44,5 +44,11 @@
 
     .flexboxItem > p {
         margin-bottom: 0.5rem;
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .flexboxContainer {            
+        font-size: 10pt;
     }
 }

@@ -9,9 +9,16 @@
     font-weight: bold;
 }
 
+@media all and (max-width:1500px) {
+    .messageContainer {
+        margin-left: 6.5rem;
+    }
+}
+
 @media all and (max-width:1200px) {
     .messageContainer {
-        margin-top: 3.5rem;
+        margin-top: 3.5rem;      
+        margin-bottom: 3.5rem;
         margin-left: 0rem;
         height: 19rem;
         width: 28.5rem;
@@ -19,13 +26,21 @@
     }
 }
 
-@media all and (max-width:450px) {
+@media all and (max-width:600px) {
     .messageContainer {
         margin-top: 3rem;
         width: 80%;
-        height: 5rem;
-        width: 16rem;        
+        height: 1rem;
+        width: 15.5rem;        
         padding: 1.5rem 2rem 2rem 2rem;
         font-size: 9pt;
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .messageContainer {   
+        height: 1rem;   
+        padding: 2rem 4.5rem 2.7rem 4rem;      
+        font-size: 10pt;
     }
 }

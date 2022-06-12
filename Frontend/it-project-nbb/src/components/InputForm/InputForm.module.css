@@ -25,25 +25,28 @@
 @media all and (max-width:1200px) {
     .inputForm > input {
         width: 19.5rem;
+        margin-right: 3.5rem;        
+        font-size: 11pt;
     }
 }
 
-@media all and (max-width:800px) {
+@media all and (max-width:1000px) {
     .inputForm > input {
-        width: 80%;
+        width: 95%;
         margin-right: 0rem;    
         margin-bottom: 2rem;
     }
 }
 
-@media all and (max-width:450px) {
+@media all and (max-width:600px) {
     .inputForm {
+        margin-right: 0rem;    
+        margin-bottom: 2rem;
         padding-top: 1rem;
     }
 
     .inputForm > input {
-        height: 1.6rem;   
-        margin-right: 2.2rem;    
+        height: 1.6rem;     
         margin-bottom: 1rem;
         font-size: 9pt; 
     }
@@ -51,8 +54,22 @@
     .inputForm > button {
         background-color: black;
         color: white;
-        width: 82%;
+        width: 97.5%;
         height: 1.9rem;
         font-size: 9pt;    
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .inputForm {
+        padding-top: 3.5rem;
+    }
+
+    .inputForm > input {
+        font-size: 9pt;
+    }
+
+    .inputForm > button {
+        font-size: 9pt;
     }
 }

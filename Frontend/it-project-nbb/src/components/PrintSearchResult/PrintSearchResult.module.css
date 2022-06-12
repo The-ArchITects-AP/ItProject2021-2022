@@ -3,7 +3,7 @@
     border-radius: 5px;
     margin-top: 4rem;
     margin-left: 11rem;
-    width: 23rem;
+    width: 26rem;
     padding: 2.5rem 4.5rem 2.7rem 4rem;
 }
  
@@ -58,12 +58,18 @@
     }
 }
 
-@media all and (max-width:450px) {
+@media all and (max-width:600px) {
     .searchResultContainer {
         margin-top: 3rem;
         width: 80%;
         padding: 1.5rem 2rem 2rem 2rem;
         font-size: 9pt;
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .searchResultContainer {            
+        font-size: 10pt;
     }
 }
 

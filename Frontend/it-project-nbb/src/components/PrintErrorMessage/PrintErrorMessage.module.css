@@ -1,9 +1,9 @@
 .messageContainer {
     background-color: rgba(231, 240, 254);
     margin-right: 3rem;
-    padding: 10px 0px 10px 20px;
+    padding: 10px 0px 10px 270px;
     border-radius: 3px;    
-    width: 25.2rem;
+    width: 39rem;
     font-size: 10.5pt;
     display: flex;
     flex-direction: row;
@@ -12,27 +12,49 @@
 .messageContainer > img {
     margin-top: 0.10rem;
     margin-right: 0.5rem;
+    width: 16px;
+    height: 16px;
 }
 
 @media all and (max-width:1200px) {
     .messageContainer {   
-        width: 42rem;
+        width: 32rem;
+        padding: 8px 0px 8px 180px;
+        
+        font-size: 10pt;
     }
 }
 
 @media all and (max-width:800px) {
     .messageContainer {   
-        width: 31.5rem;
+        width: 30rem;
+        padding: 10px 0px 10px 130px;
     }
 }
 
-@media all and (max-width:450px) {
+@media all and (max-width:600px) {
     .messageContainer {   
-        width: 18rem;
-        font-size: 8pt;
+        width: 93%;
+        padding: 8px 0px 8px 15px;
+        font-size: 8.5pt;
     }
 
     .messageContainer > img {
-        margin-top: -0.1rem;
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .messageContainer {   
+        width: 94%;
+        padding: 8px 0px 8px 15px;
+        font-size: 8.5pt;
+    }
+
+    .messageContainer > img {
+        margin-top: 0.05rem;
+        width: 14px;
+        height: 14px;
     }
 }

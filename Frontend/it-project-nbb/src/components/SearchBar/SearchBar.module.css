@@ -20,17 +20,34 @@
     letter-spacing: 0.1rem;
 }
 
-@media all and (max-width:450px) {    
+@media all and (max-width:1200px) {    
+    .searchBar > input {                          
+        font-size: 11pt;
+    }
+}
+
+@media all and (max-width:600px) {    
     .searchBar > input {
-        width: 80%;
+        width: 95%;
         height: 1.6rem;
-        margin-right: 2rem;  
+        margin-right: 2rem; 
+        margin-top: 3rem; 
         margin-bottom: 1rem;                    
         font-size: 9pt;
     }
     
     .searchBar > button {
-        width: 82%;
+        width: 97.5%;
         height: 1.9rem; 
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .searchBar > input {
+        font-size: 9pt;  
+    }    
+
+    .searchBar > button {
+        font-size: 9pt;
     }
 }

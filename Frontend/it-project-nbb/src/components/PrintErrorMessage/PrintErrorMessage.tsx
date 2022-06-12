@@ -7,7 +7,7 @@ interface PrintErrorMessageProps {
 const PrintErrorMessage = ({ errorMessage }: PrintErrorMessageProps) => {
     return (
         <div className={styles.messageContainer}>
-            <img src="IconError.png" alt="Error icon" width="16" height="16" />
+            <img src="IconError.png" alt="Error icon"/>
             <div>{errorMessage}</div>
         </div>
     );

@@ -19,8 +19,8 @@ span {
 @media all and (max-width:1200px) {
     .flexboxContainer {
         width: 20rem;
-        margin-top: 2rem;
-        font-size: 10pt;
+        margin-right: 3.5rem;
+        margin-top: 4rem;
     }
 
     span {
@@ -28,9 +28,10 @@ span {
     }
 }
 
-@media all and (max-width:850px) {
+@media all and (max-width:800px) {
     .flexboxContainer {
-        width: 17rem;
+        width: 15rem;
+        margin-right: 5rem;
         font-size: 10pt;
     }
 
@@ -39,10 +40,20 @@ span {
     }
 }
 
-@media all and (max-width:450px) {
+@media all and (max-width:600px) {
     .flexboxContainer {
         width: 90%;
         margin-top: 3rem;
         margin-bottom: -1rem;
+        font-size: 9pt;
     }
+}
+
+@media all and (max-height: 450px)  {
+    .flexboxContainer {   
+        width: 17rem;
+        margin-bottom: 3.5rem;
+        font-size: 10pt;
+    }
+
 }

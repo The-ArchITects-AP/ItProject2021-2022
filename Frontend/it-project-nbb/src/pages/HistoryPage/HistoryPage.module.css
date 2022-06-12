@@ -19,3 +19,15 @@
         flex-direction: column;
     }
 }
+
+@media all and (max-width:600px) {
+    .back { 
+        font-size: 9pt;
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .back {
+        font-size: 10pt;  
+    }    
+}

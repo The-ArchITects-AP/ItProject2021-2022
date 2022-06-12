@@ -21,20 +21,30 @@
 @media all and (max-width:1200px) {
     .flexboxContainer {   
         width: 20rem;
+        margin-right: 3.5rem;
         margin-bottom: -1rem;
+        margin-top: 1.5rem;
     }
 }
 
-@media all and (max-width:850px) {
+@media all and (max-width:800px) {
     .flexboxContainer {
         font-size: 10pt;
     }
 }
 
-@media all and (max-width:450px) {
+@media all and (max-width:600px) {
     .flexboxContainer {   
         width: 100%;
         margin-right: 2rem;
         margin-top: 2rem;
+        font-size: 9pt;
+    }
+}
+
+@media all and (max-height: 450px)  {
+    .flexboxContainer {            
+        width: 17rem;
+        font-size: 10pt;
     }
 }
