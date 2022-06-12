@@ -75,7 +75,7 @@ namespace ITProjectAPI.Controllers
             {
                 var mostRecentModel = _apiService.GetMostRecent(dataReferenceNumbers);                        //haalt uit de lijst het meest recente volledige model
 
-               // _dbService.Add(mostRecentModel);                                                               //meest recente referencemodel wordt in de database opgeslagen
+                _dbService.Add(mostRecentModel);                                                               //meest recente referencemodel wordt in de database opgeslagen
 
                 
                 var mostRecentRef = mostRecentModel.ReferenceNumber;            
@@ -83,10 +83,10 @@ namespace ITProjectAPI.Controllers
                
                 var accountingData = _apiService.GetAccountingData(mostRecentRef);                             //haalt de accountingdata van meest recente refnummer via 2e api-call
 
-                //if (accountingData != null)
-                //{
-                //    _dbService.Addaccounting(accountingData);                                                  //accountingdata van het meest recente refnummer wordt opgeslagen in DB
-                //}
+                if (accountingData != null)
+                {
+                    _dbService.Addaccounting(accountingData);                                                  //accountingdata van enkel het meest recente refnummer wordt opgeslagen in DB
+                }
 
 
                 var result = new AccountingView()

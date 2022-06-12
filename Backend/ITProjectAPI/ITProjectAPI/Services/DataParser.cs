@@ -51,12 +51,6 @@ namespace ITProjectAPI.Services
 
 
 
-
-
-
-
-
-
         //helemaal mis, gaan we via jsonxbrl doen
 
 

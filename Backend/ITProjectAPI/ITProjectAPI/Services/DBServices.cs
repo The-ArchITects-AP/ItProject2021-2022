@@ -1,10 +1,5 @@
 ﻿using ITProjectAPI.Models;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using ITProjectAPI.Viewmodels;
-using System.Net.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -66,8 +61,6 @@ namespace ITProjectAPI.Services
             _context.AccountingModels.Add(newAccountingModel);
             _context.SaveChanges();
         }
-
-
 
        
     }
