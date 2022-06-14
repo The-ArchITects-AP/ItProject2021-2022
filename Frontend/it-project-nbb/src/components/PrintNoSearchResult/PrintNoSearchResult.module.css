@@ -11,6 +11,7 @@
 
 @media all and (max-width:1500px) {
     .messageContainer {
+        width: 23rem;
         margin-left: 6.5rem;
     }
 }

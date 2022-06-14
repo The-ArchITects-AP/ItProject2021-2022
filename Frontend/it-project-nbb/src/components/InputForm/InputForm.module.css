@@ -54,7 +54,7 @@
     .inputForm > button {
         background-color: black;
         color: white;
-        width: 97.5%;
+        width: 98%;
         height: 1.9rem;
         font-size: 9pt;    
     }
@@ -65,15 +65,12 @@
         padding-top: 3.5rem;
     }
 
-    .inputForm > input {
-        width: 16rem; 
-        margin-right: 2rem;    
+    .inputForm > input {  
         margin-bottom: 1rem;
         font-size: 9pt;
     }
 
-    .inputForm > button {
-        width: 5.5rem;   
+    .inputForm > button {   
         font-size: 9pt;
     }
 }
