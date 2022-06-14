@@ -47,8 +47,19 @@
     }
 }
 
+@media all and (max-height: 800px)  {
+    .flexboxContainer {   
+        font-size: 11pt;
+    }
+}
+
 @media all and (max-height: 450px)  {
-    .flexboxContainer {            
+    .flexboxContainer { 
+        width: 35rem;           
         font-size: 10pt;
+    }
+
+    .flexboxContainer:last-child {
+        margin-bottom: 1rem;
     }
 }

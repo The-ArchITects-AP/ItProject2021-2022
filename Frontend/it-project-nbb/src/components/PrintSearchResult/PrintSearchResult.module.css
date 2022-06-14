@@ -61,15 +61,24 @@
 @media all and (max-width:600px) {
     .searchResultContainer {
         margin-top: 3rem;
+        margin-bottom: 3rem;
         width: 80%;
         padding: 1.5rem 2rem 2rem 2rem;
         font-size: 9pt;
     }
 }
 
+@media all and (max-height: 800px)  {
+    .searchResultContainer {   
+        font-size: 11pt;
+    }
+}
+
 @media all and (max-height: 450px)  {
     .searchResultContainer {            
         font-size: 10pt;
+        margin-top: 3rem;
+        width: 26.5rem;
     }
 }
 

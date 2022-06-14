@@ -47,7 +47,7 @@
 
 @media all and (max-height: 450px)  {
     .messageContainer {   
-        width: 94%;
+        width: 34rem;
         padding: 8px 0px 8px 15px;
         font-size: 8.5pt;
     }

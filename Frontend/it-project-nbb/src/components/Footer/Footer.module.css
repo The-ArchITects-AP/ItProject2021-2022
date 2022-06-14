@@ -7,14 +7,31 @@
     font-size: 11pt;
 }
 
+@media all and (max-width:1400px) {
+    .footer {    
+        font-size: 10pt;
+    }
+}
+
 @media all and (max-width:600px) {
     .footer {    
-        color: transparent;
+        position: absolute;
+        bottom: -5rem;
+        padding: 0rem 2rem 0.6rem 2rem;        
+        font-size: 9pt;
+    }
+}
+
+@media all and (max-height: 800px)  {
+    .footer {   
+        bottom: -5rem;
     }
 }
 
 @media all and (max-height: 450px)  {
     .footer {    
-        color: transparent;
+        position: absolute;
+        bottom: -5rem;
+        font-size: 9pt;
     }
 }

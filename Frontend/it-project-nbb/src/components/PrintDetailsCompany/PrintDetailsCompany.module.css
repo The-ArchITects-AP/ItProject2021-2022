@@ -29,6 +29,8 @@
 
 @media all and (max-width:800px) {
     .flexboxContainer {
+        width: 16rem;
+        margin-right: 3rem;
         font-size: 10pt;
     }
 }
@@ -42,9 +44,16 @@
     }
 }
 
+@media all and (max-height: 800px)  {
+    .flexboxContainer {   
+        font-size: 11pt;
+    }
+}
+
 @media all and (max-height: 450px)  {
     .flexboxContainer {            
-        width: 17rem;
-        font-size: 10pt;
+        width: 16rem;
+        margin-right: 2.5rem;
+        font-size: 9pt;
     }
 }

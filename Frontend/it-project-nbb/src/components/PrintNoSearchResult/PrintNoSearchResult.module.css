@@ -4,7 +4,7 @@
     margin-top: 4rem;
     margin-left: 11rem;
     height: 22rem;
-    width: 23rem;
+    width: 26rem;
     padding: 3.5rem 4.5rem 2.7rem 4rem;
     font-weight: bold;
 }
@@ -30,16 +30,23 @@
     .messageContainer {
         margin-top: 3rem;
         width: 80%;
-        height: 1rem;
-        width: 15.5rem;        
+        height: 1rem;      
         padding: 1.5rem 2rem 2rem 2rem;
         font-size: 9pt;
+    }
+}
+
+
+@media all and (max-height: 800px)  {
+    .messageContainer {   
+        font-size: 11pt;
     }
 }
 
 @media all and (max-height: 450px)  {
     .messageContainer {   
         height: 1rem;   
+        width: 26.5rem;
         padding: 2rem 4.5rem 2.7rem 4rem;      
         font-size: 10pt;
     }
