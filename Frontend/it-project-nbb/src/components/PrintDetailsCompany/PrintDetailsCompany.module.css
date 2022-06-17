@@ -18,10 +18,16 @@
     margin-right: 1rem;
 }
 
+@media all and (max-width:1400px) {
+    .flexboxContainer {   
+        margin-right: 4rem;
+    }
+}
+
 @media all and (max-width:1200px) {
     .flexboxContainer {   
-        width: 20rem;
-        margin-right: 3.5rem;
+        width: 19rem;
+        margin-right: 4rem;
         margin-bottom: -1rem;
         margin-top: 1.5rem;
     }

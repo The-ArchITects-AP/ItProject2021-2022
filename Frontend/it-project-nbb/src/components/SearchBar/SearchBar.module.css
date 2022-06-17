@@ -20,9 +20,9 @@
     letter-spacing: 0.1rem;
 }
 
-@media all and (max-width:1200px) {    
+@media all and (max-width:1400px) {    
     .searchBar > input {                          
-        font-size: 11pt;
+        font-size: 10pt;
     }
 }
 

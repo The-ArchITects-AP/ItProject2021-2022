@@ -16,9 +16,15 @@
     height: 16px;
 }
 
+@media all and (max-width:1400px) {
+    .messageContainer {   
+        width: 39.5rem;
+    }
+}
+
 @media all and (max-width:1200px) {
     .messageContainer {   
-        width: 32rem;
+        width: 31.5rem;
         padding: 8px 0px 8px 180px;
         
         font-size: 10pt;
@@ -32,7 +38,7 @@
     }
 }
 
-@media all and (max-width:600px) {
+@media all and (max-width:700px) {
     .messageContainer {   
         width: 93%;
         padding: 8px 0px 8px 15px;
