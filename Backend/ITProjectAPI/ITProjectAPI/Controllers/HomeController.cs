@@ -64,7 +64,7 @@ namespace ITProjectAPI.Controllers
             HttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization,Content-lenght,X-Requested-With");
 
        
-            var dataReferenceNumbers = _apiService.GetReferences(kbonummer);                                  //haalt alle referentienummers op via 1e api-call
+            var dataReferenceNumbers = _apiService.GetReferences(kbonummer);                                  //haalt alle referentienummers op via 1e api-call naar NBB
 
             if (dataReferenceNumbers == null)
             {
@@ -75,18 +75,18 @@ namespace ITProjectAPI.Controllers
             {
                 var mostRecentModel = _apiService.GetMostRecent(dataReferenceNumbers);                        //haalt uit de lijst het meest recente volledige model
 
-                //_dbService.Add(mostRecentModel);                                                               //meest recente referencemodel wordt in de database opgeslagen
+                _dbService.Add(mostRecentModel);                                                              //meest recente referencemodel wordt in de database opgeslagen
 
-                
+
                 var mostRecentRef = mostRecentModel.ReferenceNumber;            
                 var mostRecentDepositDate = mostRecentModel.DepositDate;
                
-                var accountingData = _apiService.GetAccountingData(mostRecentRef);                             //haalt de accountingdata van meest recente refnummer via 2e api-call
+                var accountingData = _apiService.GetAccountingData(mostRecentRef);                             //haalt de accountingdata van meest recente refnummer via 2e api-call naar NBB
 
-                //if (accountingData != null)
-                //{
-                //    _dbService.Addaccounting(accountingData);                                                  //accountingdata van enkel het meest recente refnummer wordt opgeslagen in DB
-                //}
+                if (accountingData != null)
+                {
+                    _dbService.Addaccounting(accountingData);                                                  //accountingdata van enkel het meest recente refnummer wordt opgeslagen in DB
+                }
 
 
                 var result = new AccountingView()
