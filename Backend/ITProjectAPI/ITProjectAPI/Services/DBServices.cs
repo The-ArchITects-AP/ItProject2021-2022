@@ -16,7 +16,7 @@ namespace ITProjectAPI.Services
         }
 
 
-        //geeft alle referencemodels van DB terug
+        //geeft laatste 4 referencemodels van DB terug
 
         public IEnumerable<ReferenceModel> GetLastNames()
         {
@@ -33,7 +33,7 @@ namespace ITProjectAPI.Services
         }
 
 
-        //doet en search op kbonummer, als deze lijst leeg is dan zoekt hij op ondernemingsnaam
+        //doet een search op kbonummer, als deze lijst leeg is dan zoekt hij op ondernemingsnaam
 
         public ReferenceModel GetSearch(string input)
         {

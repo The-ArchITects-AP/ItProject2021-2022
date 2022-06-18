@@ -19,7 +19,7 @@ namespace ITProjectAPI.Controllers
         }
 
 
-        //van zodra men naar searchpagina gaat, haal de laatste vier adresgegevens op uit DB
+        //haalt laatste 4 referencemodels op uit DB en returned Nameview, deze methode wordt niet in de front gebruikt
 
         [HttpGet("all")]
         public IActionResult GetNames()
@@ -54,6 +54,10 @@ namespace ITProjectAPI.Controllers
 
             return Ok(result);
         }
+
+
+
+        //van zodra men naar searchpagina gaat, haal de laatste vier adresgegevens op uit DB
 
         [HttpGet("alldata")]
         public IActionResult GetAllData()
